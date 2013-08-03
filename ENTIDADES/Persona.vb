@@ -63,10 +63,10 @@
     Private _telefono As String
     Public Property telefono() As String
         Get
-            Return telefono
+            Return _telefono
         End Get
         Set(ByVal value As String)
-            telefono = value
+            _telefono = value
         End Set
     End Property
 
