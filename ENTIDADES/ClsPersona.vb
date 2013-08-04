@@ -1,7 +1,23 @@
-﻿Public Class Persona
-
+﻿Public Class ClsPersona
+    ''' <summary>
+    ''' Declaracion de atributos
+    ''' </summary>
+    ''' <remarks></remarks>
     Private _idPersona As Integer
-    Public Property idPersona() As Integer
+    Private _usuarioCreacion As String
+    Private _usuarioModificacion As String
+    Private _nombre As String
+    Private _apellido As String
+    Private _cedula As Integer
+    Private _estadoCivil As Integer
+    Private _fechaNacimiento As Date
+    Private _telefono As String
+    Private _direccion As String
+    Private _fechaCreacion As Date
+    Private _fechaModificacion As Date
+    Private _estado As Integer
+
+    Public Property IdPersona() As Integer
         Get
             Return _idPersona
         End Get
@@ -10,78 +26,7 @@
         End Set
     End Property
 
-    Private _nombre As String
-    Public Property nombre() As String
-        Get
-            Return _nombre
-        End Get
-        Set(ByVal value As String)
-            _nombre = value
-        End Set
-    End Property
-
-    Private _apellido As String
-    Public Property apellido() As String
-        Get
-            Return _apellido
-        End Get
-        Set(ByVal value As String)
-            _apellido = value
-        End Set
-    End Property
-
-    Private _cedula As Integer
-    Public Property cedula() As Integer
-        Get
-            Return _cedula
-        End Get
-        Set(ByVal value As Integer)
-            _cedula = value
-        End Set
-    End Property
-
-    Private _estadoCivil As Integer
-    Public Property estadoCivil() As Integer
-        Get
-            Return _estadoCivil
-        End Get
-        Set(ByVal value As Integer)
-            _estadoCivil = value
-        End Set
-    End Property
-
-    Private _fechaNacimiento As Date
-    Public Property fechaNacimiento() As Date
-        Get
-            Return _fechaNacimiento
-        End Get
-        Set(ByVal value As Date)
-            _fechaNacimiento = value
-        End Set
-    End Property
-
-    Private _telefono As String
-    Public Property telefono() As String
-        Get
-            Return _telefono
-        End Get
-        Set(ByVal value As String)
-            _telefono = value
-        End Set
-    End Property
-
-    Private _direccion As String
-    Public Property direccion() As String
-        Get
-            Return _direccion
-        End Get
-        Set(ByVal value As String)
-            _direccion = value
-        End Set
-    End Property
-
-    Private _usuarioCreacion As String
-    Public Property usuarioCreacion() As String
+    Public Property UsuarioCreacion() As String
         Get
             Return _usuarioCreacion
         End Get
@@ -90,8 +35,7 @@
         End Set
     End Property
 
-    Private _usuarioModificacion As String
-    Public Property usuarioModificacion() As String
+    Public Property UsuarioModificacion() As String
         Get
             Return _usuarioModificacion
         End Get
@@ -100,8 +44,70 @@
         End Set
     End Property
 
-    Private _fechaCreacion As Date
-    Public Property fechaCreacion() As Date
+    Public Property Nombre() As String
+        Get
+            Return _nombre
+        End Get
+        Set(ByVal value As String)
+            _nombre = value
+        End Set
+    End Property
+
+    Public Property Apellido() As String
+        Get
+            Return _apellido
+        End Get
+        Set(ByVal value As String)
+            _apellido = value
+        End Set
+    End Property
+
+    Public Property Cedula() As Integer
+        Get
+            Return _cedula
+        End Get
+        Set(ByVal value As Integer)
+            _cedula = value
+        End Set
+    End Property
+
+    Public Property EstadoCivil() As Integer
+        Get
+            Return _estadoCivil
+        End Get
+        Set(ByVal value As Integer)
+            _estadoCivil = value
+        End Set
+    End Property
+
+    Public Property FechaNacimiento() As Date
+        Get
+            Return _fechaNacimiento
+        End Get
+        Set(ByVal value As Date)
+            _fechaNacimiento = value
+        End Set
+    End Property
+
+    Public Property Telefono() As String
+        Get
+            Return _telefono
+        End Get
+        Set(ByVal value As String)
+            _telefono = value
+        End Set
+    End Property
+
+    Public Property Direccion() As String
+        Get
+            Return _direccion
+        End Get
+        Set(ByVal value As String)
+            _direccion = value
+        End Set
+    End Property
+
+    Public Property FechaCreacion() As Date
         Get
             Return _fechaCreacion
         End Get
@@ -110,13 +116,21 @@
         End Set
     End Property
 
-    Private _fechaModificacion As Date
-    Public Property fechaMoficacion() As Date
+    Public Property FechaModificacion() As Date
         Get
             Return _fechaModificacion
         End Get
         Set(ByVal value As Date)
             _fechaModificacion = value
+        End Set
+    End Property
+
+    Public Property Estado() As Integer
+        Get
+            Return _estado
+        End Get
+        Set(ByVal value As Integer)
+            _estado = value
         End Set
     End Property
 
