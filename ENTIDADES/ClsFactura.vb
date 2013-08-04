@@ -6,6 +6,9 @@
     Private _idFactura As Integer
     Private _idPersona As Integer
     Private _idGarante As Integer
+    Private _idTipoVenta As Integer
+    Private _usuarioCreacion As Integer
+    Private _usuarioModificacion As Integer
     Private _numeroFactura As String
     Private _numeroContrato As String
     Private _fechaVenta As Date
@@ -34,7 +37,6 @@
         End Set
     End Property
 
-
     Public Property IdGarante() As Integer
         Get
             Return _idGarante
@@ -44,6 +46,32 @@
         End Set
     End Property
 
+    Public Property IdTipoVenta() As Integer
+        Get
+            Return _idTipoVenta
+        End Get
+        Set(ByVal value As Integer)
+            _idTipoVenta = value
+        End Set
+    End Property
+
+    Public Property UsuarioCreacion() As String
+        Get
+            Return _usuarioCreacion
+        End Get
+        Set(ByVal value As String)
+            _usuarioCreacion = value
+        End Set
+    End Property
+
+    Public Property UsuarioModificacion() As String
+        Get
+            Return _usuarioModificacion
+        End Get
+        Set(ByVal value As String)
+            _usuarioModificacion = value
+        End Set
+    End Property
 
     Public Property NumeroFactura() As String
         Get
