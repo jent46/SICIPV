@@ -1,6 +1,6 @@
 ﻿Public Class ClsUsuario
     ''' <summary>
-    ''' Declaracion de atributos
+    ''' Declaracion de atributos que se utilizaran en la clase 
     ''' </summary>
     ''' <remarks></remarks>
     Private _idUsuario As Integer

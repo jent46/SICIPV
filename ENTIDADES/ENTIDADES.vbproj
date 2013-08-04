@@ -65,6 +65,9 @@
     <Compile Include="ClsAbono.vb" />
     <Compile Include="ClsEstadoCivil.vb" />
     <Compile Include="ClsFactura.vb" />
+    <Compile Include="ClsIngresoProducto.vb" />
+    <Compile Include="ClsItemFactura.vb" />
+    <Compile Include="ClsProducto.vb" />
     <Compile Include="ClsRol.vb" />
     <Compile Include="ClsTipoVenta.vb" />
     <Compile Include="ClsUsuario.vb" />
