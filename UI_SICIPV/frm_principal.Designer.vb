@@ -57,7 +57,7 @@ Partial Class frm_principal
         '
         'btnIngresar
         '
-        Me.btnIngresar.Location = New System.Drawing.Point(83, 160)
+        Me.btnIngresar.Location = New System.Drawing.Point(103, 158)
         Me.btnIngresar.Name = "btnIngresar"
         Me.btnIngresar.Size = New System.Drawing.Size(95, 32)
         Me.btnIngresar.TabIndex = 4
@@ -119,19 +119,19 @@ Partial Class frm_principal
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(80, 22)
         Me.ToolStripMenuItem2.Text = "1"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(80, 22)
         Me.ToolStripMenuItem3.Text = "2"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(80, 22)
         Me.ToolStripMenuItem4.Text = "3"
         '
         'VentanaToolStripMenuItem
