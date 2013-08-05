@@ -4,9 +4,10 @@
     ''' </summary>
     ''' <remarks></remarks>
     Private _idPersona As Integer
-    Private _idEstadoCivil As Integer
-    Private _usuarioCreacion As Integer
-    Private _usuarioModificacion As Integer
+    Private _idGarante As ClsPersona
+    Private _idEstadoCivil As ClsEstadoCivil
+    Private _usuarioCreacion As ClsUsuario
+    Private _usuarioModificacion As ClsUsuario
     Private _nombre As String
     Private _apellido As String
     Private _cedula As Integer
@@ -26,29 +27,38 @@
         End Set
     End Property
 
-    Public Property IdEstadoCivil() As Integer
+    Public Property IdGarante() As ClsPersona
+        Get
+            Return _idGarante
+        End Get
+        Set(ByVal value As ClsPersona)
+            _idGarante = value
+        End Set
+    End Property
+
+    Public Property IdEstadoCivil() As ClsEstadoCivil
         Get
             Return _idEstadoCivil
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsEstadoCivil)
             _idEstadoCivil = value
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As Integer
+    Public Property UsuarioCreacion() As ClsUsuario
         Get
             Return _usuarioCreacion
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsUsuario)
             _usuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioModificacion() As Integer
+    Public Property UsuarioModificacion() As ClsUsuario
         Get
             Return _usuarioModificacion
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsUsuario)
             _usuarioModificacion = value
         End Set
     End Property

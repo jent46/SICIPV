@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Class1.vb" />
     <Compile Include="DLL_Base.vb" />
+    <Compile Include="DLL_Factura.vb" />
     <Compile Include="DLL_Persona.vb" />
     <Compile Include="DLL_Usuario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

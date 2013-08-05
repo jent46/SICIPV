@@ -4,9 +4,9 @@
     ''' </summary>
     ''' <remarks></remarks>
     Private _idAbono As Integer
-    Private _idFactura As Integer
-    Private _usuarioCreacion As Integer
-    Private _usuarioModificacion As Integer
+    Private _idFactura As ClsFactura
+    Private _usuarioCreacion As ClsPersona
+    Private _usuarioModificacion As ClsPersona
     Private _saldoPagado As Double
     Private _saldoPendiente As Double
     Private _interes As Double
@@ -23,29 +23,29 @@
         End Set
     End Property
 
-    Public Property IdFactura() As Integer
+    Public Property IdFactura() As ClsFactura
         Get
             Return _idFactura
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsFactura)
             _idFactura = value
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As String
+    Public Property UsuarioCreacion() As ClsPersona
         Get
             Return _usuarioCreacion
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As ClsPersona)
             _usuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioModificacion() As String
+    Public Property UsuarioModificacion() As ClsPersona
         Get
             Return _usuarioModificacion
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As ClsPersona)
             _usuarioModificacion = value
         End Set
     End Property

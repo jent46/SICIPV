@@ -175,17 +175,13 @@ Public Class frm_Persona
             Else
                 MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
             End If
-
-
-
-
-
-
-
-
         End If
 
     End Sub
 
+
+    Private Sub frm_Persona_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.SetBounds(0, 0, 527, 482)
+    End Sub
 
 End Class

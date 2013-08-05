@@ -8,7 +8,13 @@ Public Class frm_principal
     Public usuario As ClsUsuario
     Dim mensaje As String = ""
     Private Sub frm_principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        gbIngreso.Visible = False
+        frm_Facturacion.MdiParent = Me
+        frm_Facturacion.Show()
+        frm_Persona.MdiParent = Me
+        frm_Persona.Show()
+        frmProducto.MdiParent = Me
+        frmProducto.Show()
     End Sub
 
     Private Sub btnIngresar_Click(sender As Object, e As EventArgs) Handles btnIngresar.Click
@@ -19,11 +25,12 @@ Public Class frm_principal
             MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
         Else
             gbIngreso.Visible = False
-            frm_Persona.MdiParent = Me
-            frm_Persona.Show()
-        End If
 
-        
+        End If
+        frm_Facturacion.MdiParent = Me
+        frm_Facturacion.Show()
+
+
 
 
     End Sub

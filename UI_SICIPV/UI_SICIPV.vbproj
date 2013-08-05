@@ -69,6 +69,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmProducto.Designer.vb">
+      <DependentUpon>frmProducto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Abono.Designer.vb">
+      <DependentUpon>frm_Abono.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Abono.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_Persona.Designer.vb">
       <DependentUpon>frm_Persona.vb</DependentUpon>
     </Compile>
@@ -79,6 +91,12 @@
       <DependentUpon>frm_principal.vb</DependentUpon>
     </Compile>
     <Compile Include="frm_principal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Facturacion.Designer.vb">
+      <DependentUpon>frm_Facturacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Facturacion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -98,11 +116,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmProducto.resx">
+      <DependentUpon>frmProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Abono.resx">
+      <DependentUpon>frm_Abono.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_Persona.resx">
       <DependentUpon>frm_Persona.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_principal.resx">
       <DependentUpon>frm_principal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Facturacion.resx">
+      <DependentUpon>frm_Facturacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
