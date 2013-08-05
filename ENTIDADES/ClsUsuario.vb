@@ -4,7 +4,7 @@
     ''' </summary>
     ''' <remarks></remarks>
     Private _idUsuario As Integer
-    Private _idRol As Integer
+    Private _idRol As ClsRol
     Private _nombre As String
     Private _apellido As String
     Private _usuario As String
@@ -22,11 +22,11 @@
         End Set
     End Property
 
-    Public Property IdRol() As Integer
+    Public Property IdRol() As ClsRol
         Get
             Return _idRol
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsRol)
             _idRol = value
         End Set
     End Property

@@ -5,8 +5,8 @@
     ''' <remarks></remarks>
 
     Private _idProducto As Integer
-    Private _usuarioCreacion As Integer
-    Private _usuarioModificacion As Integer
+    Private _usuarioCreacion As ClsUsuario
+    Private _usuarioModificacion As ClsUsuario
     Private _descripcion As String
     Private _valor As Double
     Private _pvp As Double
@@ -23,20 +23,20 @@
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As Integer
+    Public Property UsuarioCreacion() As ClsUsuario
         Get
             Return _usuarioCreacion
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsUsuario)
             _usuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioModificacion() As Integer
+    Public Property UsuarioModificacion() As ClsUsuario
         Get
             Return _usuarioModificacion
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsUsuario)
             _usuarioModificacion = value
         End Set
     End Property

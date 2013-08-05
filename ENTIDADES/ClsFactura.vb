@@ -1,14 +1,14 @@
-﻿Public Class ClsFactur
+﻿Public Class ClsFactura
     ''' <summary>
     ''' Declaracion de atributos
     ''' </summary>
     ''' <remarks></remarks>
     Private _idFactura As Integer
-    Private _idPersona As Integer
-    Private _idGarante As Integer
-    Private _idTipoVenta As Integer
-    Private _usuarioCreacion As Integer
-    Private _usuarioModificacion As Integer
+    Private _idPersona As ClsPersona
+    Private _idGarante As ClsPersona
+    Private _idTipoVenta As ClsTipoVenta
+    Private _usuarioCreacion As ClsUsuario
+    Private _usuarioModificacion As ClsUsuario
     Private _numeroFactura As String
     Private _numeroContrato As String
     Private _fechaVenta As Date
@@ -28,47 +28,47 @@
         End Set
     End Property
 
-    Public Property IdPersona() As Integer
+    Public Property IdPersona() As ClsPersona
         Get
             Return _idPersona
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsPersona)
             _idPersona = value
         End Set
     End Property
 
-    Public Property IdGarante() As Integer
+    Public Property IdGarante() As ClsPersona
         Get
             Return _idGarante
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsPersona)
             _idGarante = value
         End Set
     End Property
 
-    Public Property IdTipoVenta() As Integer
+    Public Property IdTipoVenta() As ClsTipoVenta
         Get
             Return _idTipoVenta
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsTipoVenta)
             _idTipoVenta = value
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As String
+    Public Property UsuarioCreacion() As ClsUsuario
         Get
             Return _usuarioCreacion
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As ClsUsuario)
             _usuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioModificacion() As String
+    Public Property UsuarioModificacion() As ClsUsuario
         Get
             Return _usuarioModificacion
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As ClsUsuario)
             _usuarioModificacion = value
         End Set
     End Property

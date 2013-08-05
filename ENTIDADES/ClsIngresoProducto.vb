@@ -5,9 +5,9 @@
     ''' <remarks></remarks>
 
     Private _idIngresoProucto As Integer
-    Private _idProducto As Integer
-    Private _usuarioCreacion As Integer
-    Private _usuarioModificacion As Integer
+    Private _idProducto As ClsProducto
+    Private _usuarioCreacion As ClsUsuario
+    Private _usuarioModificacion As ClsUsuario
     Private _cantidad As Integer
     Private _fecha As Date
     Private _estado As Integer
@@ -23,29 +23,29 @@
         End Set
     End Property
 
-    Public Property IdProducto() As Integer
+    Public Property IdProducto() As ClsProducto
         Get
             Return _idProducto
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsProducto)
             _idProducto = value
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As Integer
+    Public Property UsuarioCreacion() As ClsUsuario
         Get
             Return _usuarioCreacion
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsUsuario)
             _usuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioModificacion() As Integer
+    Public Property UsuarioModificacion() As ClsUsuario
         Get
             Return _usuarioModificacion
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As ClsUsuario)
             _usuarioModificacion = value
         End Set
     End Property
