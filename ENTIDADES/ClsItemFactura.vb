@@ -13,6 +13,8 @@
     Private _precioTotal As Double
     Private _descripcionProducto As String
     Private _costoProducto As Double
+    Private _fechaCreacion As Date
+    Private _fechaModificacion As Date
 
     Public Property IdItemFactura() As Integer
         Get

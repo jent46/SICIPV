@@ -22,12 +22,14 @@ Partial Class frm_Persona
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.gbBuscar = New System.Windows.Forms.GroupBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.dgvBusqueda = New System.Windows.Forms.DataGridView()
+        Me.btnBuscar = New System.Windows.Forms.Button()
+        Me.txtBusqueda = New System.Windows.Forms.TextBox()
+        Me.rbCedula = New System.Windows.Forms.RadioButton()
+        Me.rbApellido = New System.Windows.Forms.RadioButton()
+        Me.rbNombre = New System.Windows.Forms.RadioButton()
         Me.gbDatos = New System.Windows.Forms.GroupBox()
         Me.cbEstado = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -49,25 +51,28 @@ Partial Class frm_Persona
         Me.tslIngresar = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.tslModificar = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tslConsultar = New System.Windows.Forms.ToolStripLabel()
         Me.pnlBotones = New System.Windows.Forms.Panel()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.btnAceptar = New System.Windows.Forms.Button()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.gbBuscar.SuspendLayout()
+        CType(Me.dgvBusqueda, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbDatos.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlBotones.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'gbBuscar
         '
-        Me.gbBuscar.Controls.Add(Me.DataGridView1)
-        Me.gbBuscar.Controls.Add(Me.Button3)
-        Me.gbBuscar.Controls.Add(Me.TextBox6)
-        Me.gbBuscar.Controls.Add(Me.RadioButton3)
-        Me.gbBuscar.Controls.Add(Me.RadioButton2)
-        Me.gbBuscar.Controls.Add(Me.RadioButton1)
+        Me.gbBuscar.Controls.Add(Me.dgvBusqueda)
+        Me.gbBuscar.Controls.Add(Me.btnBuscar)
+        Me.gbBuscar.Controls.Add(Me.txtBusqueda)
+        Me.gbBuscar.Controls.Add(Me.rbCedula)
+        Me.gbBuscar.Controls.Add(Me.rbApellido)
+        Me.gbBuscar.Controls.Add(Me.rbNombre)
         Me.gbBuscar.Enabled = False
         Me.gbBuscar.Location = New System.Drawing.Point(45, 43)
         Me.gbBuscar.Name = "gbBuscar"
@@ -77,54 +82,64 @@ Partial Class frm_Persona
         Me.gbBuscar.Text = "Busqueda Persona"
         Me.gbBuscar.Visible = False
         '
-        'Button3
+        'dgvBusqueda
         '
-        Me.Button3.Location = New System.Drawing.Point(296, 40)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(26, 23)
-        Me.Button3.TabIndex = 4
-        Me.Button3.Text = "..."
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.dgvBusqueda.AllowUserToAddRows = False
+        Me.dgvBusqueda.AllowUserToDeleteRows = False
+        Me.dgvBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvBusqueda.Location = New System.Drawing.Point(16, 90)
+        Me.dgvBusqueda.Name = "dgvBusqueda"
+        Me.dgvBusqueda.ReadOnly = True
+        Me.dgvBusqueda.Size = New System.Drawing.Size(432, 208)
+        Me.dgvBusqueda.TabIndex = 5
         '
-        'TextBox6
+        'btnBuscar
         '
-        Me.TextBox6.Location = New System.Drawing.Point(128, 43)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(159, 20)
-        Me.TextBox6.TabIndex = 3
+        Me.btnBuscar.Location = New System.Drawing.Point(296, 40)
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Size = New System.Drawing.Size(26, 23)
+        Me.btnBuscar.TabIndex = 4
+        Me.btnBuscar.Text = "..."
+        Me.btnBuscar.UseVisualStyleBackColor = True
         '
-        'RadioButton3
+        'txtBusqueda
         '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(286, 19)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(58, 17)
-        Me.RadioButton3.TabIndex = 2
-        Me.RadioButton3.TabStop = True
-        Me.RadioButton3.Text = "Cedula"
-        Me.RadioButton3.UseVisualStyleBackColor = True
+        Me.txtBusqueda.Location = New System.Drawing.Point(128, 43)
+        Me.txtBusqueda.Name = "txtBusqueda"
+        Me.txtBusqueda.Size = New System.Drawing.Size(159, 20)
+        Me.txtBusqueda.TabIndex = 3
         '
-        'RadioButton2
+        'rbCedula
         '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(185, 19)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(62, 17)
-        Me.RadioButton2.TabIndex = 1
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Apellido"
-        Me.RadioButton2.UseVisualStyleBackColor = True
+        Me.rbCedula.AutoSize = True
+        Me.rbCedula.Checked = True
+        Me.rbCedula.Location = New System.Drawing.Point(286, 19)
+        Me.rbCedula.Name = "rbCedula"
+        Me.rbCedula.Size = New System.Drawing.Size(58, 17)
+        Me.rbCedula.TabIndex = 2
+        Me.rbCedula.TabStop = True
+        Me.rbCedula.Text = "Cedula"
+        Me.rbCedula.UseVisualStyleBackColor = True
         '
-        'RadioButton1
+        'rbApellido
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(96, 19)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(62, 17)
-        Me.RadioButton1.TabIndex = 0
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Nombre"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.rbApellido.AutoSize = True
+        Me.rbApellido.Location = New System.Drawing.Point(185, 19)
+        Me.rbApellido.Name = "rbApellido"
+        Me.rbApellido.Size = New System.Drawing.Size(62, 17)
+        Me.rbApellido.TabIndex = 1
+        Me.rbApellido.Text = "Apellido"
+        Me.rbApellido.UseVisualStyleBackColor = True
+        '
+        'rbNombre
+        '
+        Me.rbNombre.AutoSize = True
+        Me.rbNombre.Location = New System.Drawing.Point(96, 19)
+        Me.rbNombre.Name = "rbNombre"
+        Me.rbNombre.Size = New System.Drawing.Size(62, 17)
+        Me.rbNombre.TabIndex = 0
+        Me.rbNombre.Text = "Nombre"
+        Me.rbNombre.UseVisualStyleBackColor = True
         '
         'gbDatos
         '
@@ -287,7 +302,7 @@ Partial Class frm_Persona
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tslIngresar, Me.ToolStripSeparator1, Me.tslModificar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tslIngresar, Me.ToolStripSeparator1, Me.tslModificar, Me.ToolStripSeparator2, Me.tslConsultar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(567, 25)
@@ -307,9 +322,21 @@ Partial Class frm_Persona
         '
         'tslModificar
         '
+        Me.tslModificar.Enabled = False
         Me.tslModificar.Name = "tslModificar"
         Me.tslModificar.Size = New System.Drawing.Size(58, 22)
         Me.tslModificar.Text = "Modificar"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'tslConsultar
+        '
+        Me.tslConsultar.Name = "tslConsultar"
+        Me.tslConsultar.Size = New System.Drawing.Size(58, 22)
+        Me.tslConsultar.Text = "Consultar"
         '
         'pnlBotones
         '
@@ -340,13 +367,9 @@ Partial Class frm_Persona
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
-        'DataGridView1
+        'ErrorProvider1
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(16, 90)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(432, 208)
-        Me.DataGridView1.TabIndex = 5
+        Me.ErrorProvider1.ContainerControl = Me
         '
         'frm_Persona
         '
@@ -361,22 +384,23 @@ Partial Class frm_Persona
         Me.Text = ".:: Persona ::."
         Me.gbBuscar.ResumeLayout(False)
         Me.gbBuscar.PerformLayout()
+        CType(Me.dgvBusqueda, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbDatos.ResumeLayout(False)
         Me.gbDatos.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.pnlBotones.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents gbBuscar As System.Windows.Forms.GroupBox
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents TextBox6 As System.Windows.Forms.TextBox
-    Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
+    Friend WithEvents btnBuscar As System.Windows.Forms.Button
+    Friend WithEvents txtBusqueda As System.Windows.Forms.TextBox
+    Friend WithEvents rbCedula As System.Windows.Forms.RadioButton
+    Friend WithEvents rbApellido As System.Windows.Forms.RadioButton
+    Friend WithEvents rbNombre As System.Windows.Forms.RadioButton
     Friend WithEvents gbDatos As System.Windows.Forms.GroupBox
     Friend WithEvents cbEstado As System.Windows.Forms.CheckBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
@@ -401,5 +425,8 @@ Partial Class frm_Persona
     Friend WithEvents pnlBotones As System.Windows.Forms.Panel
     Friend WithEvents btnCancelar As System.Windows.Forms.Button
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvBusqueda As System.Windows.Forms.DataGridView
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents tslConsultar As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents ErrorProvider1 As System.Windows.Forms.ErrorProvider
 End Class

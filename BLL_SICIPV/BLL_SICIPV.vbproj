@@ -62,6 +62,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL_Persona.vb" />
+    <Compile Include="BLL_Usuario.vb" />
     <Compile Include="Class1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -97,6 +99,16 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DLL_SICIPV\DLL_SICIPV.vbproj">
+      <Project>{2389F9F0-D8B7-42EB-BD78-E6147F6A6B46}</Project>
+      <Name>DLL_SICIPV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ENTIDADES\ENTIDADES.vbproj">
+      <Project>{40A583C7-5107-4DE1-98CE-934FB222E591}</Project>
+      <Name>ENTIDADES</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
