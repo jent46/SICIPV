@@ -13,6 +13,17 @@
     Private _stock As Integer
     Private _fechaCreacion As Date
     Private _fechaModificacion As Date
+    
+    Private _estado As Integer
+    Public Property Estado() As Integer
+        Get
+            Return _estado
+        End Get
+        Set(ByVal value As Integer)
+            _estado = value
+        End Set
+    End Property
+
 
     Public Property IdProducto() As Integer
         Get

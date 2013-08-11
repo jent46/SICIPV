@@ -13,8 +13,12 @@ Public Class frm_principal
         frm_Facturacion.Show()
         frm_Persona.MdiParent = Me
         frm_Persona.Show()
-        frmProducto.MdiParent = Me
-        frmProducto.Show()
+        frm_Producto.MdiParent = Me
+        frm_Producto.Show()
+
+        frm_Usuario.MdiParent = Me
+        frm_Usuario.Show()
+
     End Sub
 
     Private Sub btnIngresar_Click(sender As Object, e As EventArgs) Handles btnIngresar.Click
