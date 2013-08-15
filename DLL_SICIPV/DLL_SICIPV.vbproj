@@ -63,10 +63,15 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.vb" />
+    <Compile Include="DLL_IngresoProducto.vb" />
+    <Compile Include="DLL_ItemFactura.vb" />
+    <Compile Include="DLL_Abono.vb" />
     <Compile Include="DLL_Base.vb" />
+    <Compile Include="DLL_Cuota.vb" />
     <Compile Include="DLL_Factura.vb" />
     <Compile Include="DLL_Persona.vb" />
+    <Compile Include="DLL_Producto.vb" />
+    <Compile Include="DLL_TipoVenta.vb" />
     <Compile Include="DLL_Usuario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

@@ -5,25 +5,24 @@ Public Class DLL_Persona
     Inherits DLL_Base
 
 
-    Public Function ingresarBD(ByVal ppersona As ClsPersona, ByVal mensaje As String) As Boolean
+    Public Function ingresarBD(ByVal persona As ClsPersona, ByVal mensaje As String) As Boolean
         getConexion()
         Dim comando As New MySqlCommand
         Dim estado As Boolean = False
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "INS_Persona"
 
-        comando.Parameters.AddWithValue("pnombre", ppersona.Nombre)
-        comando.Parameters.AddWithValue("papellido", ppersona.Apellido)
-        comando.Parameters.AddWithValue("pcedula", ppersona.Cedula)
-        comando.Parameters.AddWithValue("pestadoCivil", ppersona.IdEstadoCivil)
-        comando.Parameters.AddWithValue("pfechaNacimiendo", ppersona.FechaNacimiento)
-        comando.Parameters.AddWithValue("ptelefono", ppersona.Telefono)
-        comando.Parameters.AddWithValue("pdireccion", ppersona.Direccion)
-        comando.Parameters.AddWithValue("pfeCreacion", ppersona.FechaCreacion)
-        comando.Parameters.AddWithValue("pfeModificacion", ppersona.FechaModificacion)
-        comando.Parameters.AddWithValue("puserCreacion", ppersona.UsuarioCreacion)
-        comando.Parameters.AddWithValue("puserModificacion", ppersona.UsuarioModificacion)
-        comando.Parameters.AddWithValue("pestado", ppersona.Nombre)
+        comando.Parameters.AddWithValue("_idEstadoCivil", persona.IdEstadoCivil)
+        comando.Parameters.AddWithValue("_idUsuarioCreacion", persona.IdUsuarioCreacion)
+        comando.Parameters.AddWithValue("_idUsuarioModificacion", persona.IdUsuarioModificacion)
+        comando.Parameters.AddWithValue("_nombre", persona.Nombre)
+        comando.Parameters.AddWithValue("_cedula", persona.Cedula)
+        comando.Parameters.AddWithValue("_telefono", persona.Telefono)
+        comando.Parameters.AddWithValue("_direccion", persona.Direccion)
+        comando.Parameters.AddWithValue("_estado", persona.Estado)
+        comando.Parameters.AddWithValue("_fechaDeNacimiento", persona.FechaNacimiento)
+        comando.Parameters.AddWithValue("_fechaCreacion", persona.FechaCreacion)
+        comando.Parameters.AddWithValue("_fechaModificacion", persona.FechaModificacion)
 
         Try
             comando.Connection = conn
@@ -138,4 +137,5 @@ Public Class DLL_Persona
 
         Return dt
     End Function
+
 End Class

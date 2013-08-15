@@ -4,19 +4,18 @@
     ''' </summary>
     ''' <remarks></remarks>
     Private _idPersona As Integer
-    Private _idGarante As ClsPersona
     Private _idEstadoCivil As ClsEstadoCivil
-    Private _usuarioCreacion As ClsUsuario
-    Private _usuarioModificacion As ClsUsuario
+    Private _idUsuarioCreacion As ClsUsuario
+    Private _idUsuarioModificacion As ClsUsuario
     Private _nombre As String
-    Private _apellido As String
     Private _cedula As Integer
-    Private _fechaNacimiento As Date
     Private _telefono As String
     Private _direccion As String
+    Private _fechaNacimiento As Date
+    Private _estado As Integer
     Private _fechaCreacion As Date
     Private _fechaModificacion As Date
-    Private _estado As Integer
+
 
     Public Property IdPersona() As Integer
         Get
@@ -24,15 +23,6 @@
         End Get
         Set(ByVal value As Integer)
             _idPersona = value
-        End Set
-    End Property
-
-    Public Property IdGarante() As ClsPersona
-        Get
-            Return _idGarante
-        End Get
-        Set(ByVal value As ClsPersona)
-            _idGarante = value
         End Set
     End Property
 
@@ -45,21 +35,21 @@
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As ClsUsuario
+    Public Property IdUsuarioCreacion() As ClsUsuario
         Get
-            Return _usuarioCreacion
+            Return _idUsuarioCreacion
         End Get
         Set(ByVal value As ClsUsuario)
-            _usuarioCreacion = value
+            _idUsuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioModificacion() As ClsUsuario
+    Public Property IdUsuarioModificacion() As ClsUsuario
         Get
-            Return _usuarioModificacion
+            Return _idUsuarioModificacion
         End Get
         Set(ByVal value As ClsUsuario)
-            _usuarioModificacion = value
+            _idUsuarioModificacion = value
         End Set
     End Property
 
@@ -69,15 +59,6 @@
         End Get
         Set(ByVal value As String)
             _nombre = value
-        End Set
-    End Property
-
-    Public Property Apellido() As String
-        Get
-            Return _apellido
-        End Get
-        Set(ByVal value As String)
-            _apellido = value
         End Set
     End Property
 

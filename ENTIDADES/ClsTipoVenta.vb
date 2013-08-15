@@ -4,8 +4,8 @@
     ''' </summary>
     ''' <remarks></remarks>
     Private _idTipoVenta As Integer
-    Private _usuarioCreacion As ClsUsuario
-    Private _usuarioModificacion As ClsUsuario
+    Private _idUsuarioCreacion As ClsUsuario
+    Private _idUsuarioModificacion As ClsUsuario
     Private _fechaCreacion As Date
     Private _fechaModificacion As Date
     Private _estado As Integer
@@ -19,23 +19,34 @@
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As ClsUsuario
+    Public Property IdUsuarioCreacion() As ClsUsuario
         Get
-            Return _usuarioCreacion
+            Return _idUsuarioCreacion
         End Get
         Set(ByVal value As ClsUsuario)
-            _usuarioCreacion = value
+            _idUsuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioModificacion() As ClsUsuario
+    Public Property IdUsuarioModificacion() As ClsUsuario
         Get
-            Return _usuarioModificacion
+            Return _idUsuarioModificacion
         End Get
         Set(ByVal value As ClsUsuario)
-            _usuarioModificacion = value
+            _idUsuarioModificacion = value
         End Set
     End Property
+
+    Private _descripcion As String
+    Public Property Descripcion() As String
+        Get
+            Return _descripcion
+        End Get
+        Set(ByVal value As String)
+            _descripcion = value
+        End Set
+    End Property
+
 
     Public Property FechaCreacion() As Date
         Get

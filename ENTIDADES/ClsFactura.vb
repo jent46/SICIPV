@@ -4,11 +4,11 @@
     ''' </summary>
     ''' <remarks></remarks>
     Private _idFactura As Integer
+    Private _idTipoVenta As ClsTipoVenta
     Private _idPersona As ClsPersona
     Private _idGarante As ClsPersona
-    Private _idTipoVenta As ClsTipoVenta
-    Private _usuarioCreacion As ClsUsuario
-    Private _usuarioModificacion As ClsUsuario
+    Private _idUsuarioCreacion As ClsUsuario
+    Private _idUsuarioModificacion As ClsUsuario
     Private _numeroFactura As String
     Private _numeroContrato As String
     Private _fechaVenta As Date
@@ -25,6 +25,15 @@
         End Get
         Set(ByVal value As Integer)
             _idFactura = value
+        End Set
+    End Property
+
+    Public Property IdTipoVenta() As ClsTipoVenta
+        Get
+            Return _idTipoVenta
+        End Get
+        Set(ByVal value As ClsTipoVenta)
+            _idTipoVenta = value
         End Set
     End Property
 
@@ -46,30 +55,21 @@
         End Set
     End Property
 
-    Public Property IdTipoVenta() As ClsTipoVenta
+    Public Property IdUsuarioCreacion() As ClsUsuario
         Get
-            Return _idTipoVenta
+            Return _idUsuarioCreacion
         End Get
-        Set(ByVal value As ClsTipoVenta)
-            _idTipoVenta = value
+        Set(ByVal value As ClsUsuario)
+            _idUsuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As ClsUsuario
+    Public Property IdUsuarioModificacion() As ClsUsuario
         Get
-            Return _usuarioCreacion
+            Return _idUsuarioModificacion
         End Get
         Set(ByVal value As ClsUsuario)
-            _usuarioCreacion = value
-        End Set
-    End Property
-
-    Public Property UsuarioModificacion() As ClsUsuario
-        Get
-            Return _usuarioModificacion
-        End Get
-        Set(ByVal value As ClsUsuario)
-            _usuarioModificacion = value
+            _idUsuarioModificacion = value
         End Set
     End Property
 
@@ -109,12 +109,26 @@
         End Set
     End Property
 
-    Public Property NewProperty() As Double
+    Public Property Iva() As Double
         Get
             Return _iva
         End Get
         Set(ByVal value As Double)
             _iva = value
+        End Set
+    End Property
+
+   
+
+  
+
+    Private _porcentajeDescuento As Double
+    Public Property PorcentajeDescuento() As Double
+        Get
+            Return _porcentajeDescuento
+        End Get
+        Set(ByVal value As Double)
+            _porcentajeDescuento = value
         End Set
     End Property
 
@@ -142,6 +156,117 @@
         End Get
         Set(ByVal value As Integer)
             _estado = value
+        End Set
+    End Property
+
+    Private _cuotas As Integer
+    Public Property Cuotas() As Integer
+        Get
+            Return _cuotas
+        End Get
+        Set(ByVal value As Integer)
+            _cuotas = value
+        End Set
+    End Property
+
+
+    Private _clienteNombre As String
+    Public Property ClienteNombre() As String
+        Get
+            Return _clienteNombre
+        End Get
+        Set(ByVal value As String)
+            _clienteNombre = value
+        End Set
+    End Property
+
+    Private _clienteCedula As String
+    Public Property ClienteCedula() As String
+        Get
+            Return _clienteCedula
+        End Get
+        Set(ByVal value As String)
+            _clienteCedula = value
+        End Set
+    End Property
+
+    Private _clienteTelefono As String
+    Public Property ClienteTelefono() As String
+        Get
+            Return _clienteTelefono
+        End Get
+        Set(ByVal value As String)
+            _clienteTelefono = value
+        End Set
+    End Property
+
+    Private _clienteDireccion As String
+    Public Property ClienteDireccion() As String
+        Get
+            Return _clienteDireccion
+        End Get
+        Set(ByVal value As String)
+            _clienteDireccion = value
+        End Set
+    End Property
+
+    Private _garanteNombre As String
+    Public Property GaranteNombre() As String
+        Get
+            Return _garanteNombre
+        End Get
+        Set(ByVal value As String)
+            _garanteNombre = value
+        End Set
+    End Property
+
+    Private _garanteCedula As String
+    Public Property GaranteCedula() As String
+        Get
+            Return _garanteCedula
+        End Get
+        Set(ByVal value As String)
+            _garanteCedula = value
+        End Set
+    End Property
+
+    Private _garanteTelefono As String
+    Public Property GaranteTelefono() As String
+        Get
+            Return _garanteTelefono
+        End Get
+        Set(ByVal value As String)
+            _garanteTelefono = value
+        End Set
+    End Property
+
+    Private _garanteDireccion As String
+    Public Property GaranteDireccion() As String
+        Get
+            Return _garanteDireccion
+        End Get
+        Set(ByVal value As String)
+            _garanteDireccion = value
+        End Set
+    End Property
+
+    Private _fechaCreacion As Date
+    Public Property FechaCreacion() As Date
+        Get
+            Return _fechaCreacion
+        End Get
+        Set(ByVal value As Date)
+            _fechaCreacion = value
+        End Set
+    End Property
+
+    Private _fechaModificacion As Date
+    Public Property FechaModificacion() As Date
+        Get
+            Return _fechaModificacion
+        End Get
+        Set(ByVal value As Date)
+            _fechaModificacion = value
         End Set
     End Property
 

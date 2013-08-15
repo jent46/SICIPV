@@ -1,82 +1,47 @@
 ﻿Public Class ClsAbono
-    ''' <summary>
-    ''' Declaracion de atributos
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private _idAbono As Integer
-    Private _idFactura As ClsFactura
-    Private _usuarioCreacion As ClsPersona
-    Private _usuarioModificacion As ClsPersona
-    Private _saldoPagado As Double
-    Private _saldoPendiente As Double
-    Private _interes As Double
-    Private _fecha As Date
-    Private _fechaCreacion As Date
-    Private _estado As Integer
 
-    Public Property IdAbono() As String
+    Private _idAbono As Integer
+    Public Property IdAbono() As Integer
         Get
-            Return _idAbono
+            Return IdAbono
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Integer)
             _idAbono = value
         End Set
     End Property
 
-    Public Property IdFactura() As ClsFactura
+    Private _idCuota As ClsCuota
+    Public Property IdCuota() As ClsCuota
         Get
-            Return _idFactura
+            Return _idCuota
         End Get
-        Set(ByVal value As ClsFactura)
-            _idFactura = value
+        Set(ByVal value As ClsCuota)
+            _idCuota = value
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As ClsPersona
+    Private _idUsuarioCreacion As ClsUsuario
+    Public Property IdUsuarioCreacion() As ClsUsuario
         Get
-            Return _usuarioCreacion
+            Return _idUsuarioCreacion
         End Get
-        Set(ByVal value As ClsPersona)
-            _usuarioCreacion = value
+        Set(ByVal value As ClsUsuario)
+            _idUsuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioModificacion() As ClsPersona
+    Private _idUsuarioModificacion As ClsUsuario
+    Public Property IdUsuarioModificacion() As ClsUsuario
         Get
-            Return _usuarioModificacion
+            Return _idUsuarioModificacion
         End Get
-        Set(ByVal value As ClsPersona)
-            _usuarioModificacion = value
+        Set(ByVal value As ClsUsuario)
+            _idUsuarioModificacion = value
         End Set
     End Property
 
-    Public Property SaldoPagado() As Double
-        Get
-            Return _saldoPagado
-        End Get
-        Set(ByVal value As Double)
-            _saldoPagado = value
-        End Set
-    End Property
 
-    Public Property SaldoPendiente() As Double
-        Get
-            Return _saldoPendiente
-        End Get
-        Set(ByVal value As Double)
-            _saldoPendiente = value
-        End Set
-    End Property
-
-    Public Property Interes() As Double
-        Get
-            Return _interes
-        End Get
-        Set(ByVal value As Double)
-            _interes = value
-        End Set
-    End Property
-
+    Private _fecha As Date
     Public Property Fecha() As Date
         Get
             Return _fecha
@@ -86,22 +51,15 @@
         End Set
     End Property
 
-    Public Property FechaCreacion() As Date
+    Private _valor As Double
+    Public Property Valor() As Double
         Get
-            Return _fechaCreacion
+            Return _valor
         End Get
-        Set(ByVal value As Date)
-            _fechaCreacion = value
+        Set(ByVal value As Double)
+            _valor = value
         End Set
     End Property
 
-    Public Property Estado() As Integer
-        Get
-            Return _estado
-        End Get
-        Set(ByVal value As Integer)
-            _estado = value
-        End Set
-    End Property
 
 End Class

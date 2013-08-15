@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClsAbono.vb" />
+    <Compile Include="ClsCuota.vb" />
     <Compile Include="ClsEstadoCivil.vb" />
     <Compile Include="ClsFactura.vb" />
     <Compile Include="ClsIngresoProducto.vb" />
