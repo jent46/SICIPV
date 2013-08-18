@@ -62,8 +62,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL_EstadoCivil.vb" />
     <Compile Include="BLL_Persona.vb" />
     <Compile Include="BLL_Producto.vb" />
+    <Compile Include="BLL_Rol.vb" />
+    <Compile Include="BLL_TipoVenta.vb" />
     <Compile Include="BLL_Usuario.vb" />
     <Compile Include="BLL_Factura.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

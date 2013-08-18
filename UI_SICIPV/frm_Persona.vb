@@ -166,8 +166,6 @@ Public Class frm_Persona
                 dt = BLL_Persona.ConsultarPersonasPorCedula(txtBusqueda.Text, mensaje)
             ElseIf rbNombre.Checked Then
                 dt = BLL_Persona.ConsultarPersonasPorNombre(txtBusqueda.Text, mensaje)
-            ElseIf rbApellido.Checked Then
-                dt = BLL_Persona.ConsultarPersonasPorApellido(txtBusqueda.Text, mensaje)
             End If
 
             If IsNothing(dt) Then

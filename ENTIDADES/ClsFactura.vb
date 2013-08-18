@@ -109,7 +109,7 @@
         End Set
     End Property
 
-    Public Property NewProperty() As Double
+    Public Property Iva() As Double
         Get
             Return _iva
         End Get

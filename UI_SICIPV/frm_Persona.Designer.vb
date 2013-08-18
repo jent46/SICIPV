@@ -53,7 +53,6 @@ Partial Class frm_Persona
         Me.btnBuscar = New System.Windows.Forms.Button()
         Me.txtBusqueda = New System.Windows.Forms.TextBox()
         Me.rbCedula = New System.Windows.Forms.RadioButton()
-        Me.rbApellido = New System.Windows.Forms.RadioButton()
         Me.rbNombre = New System.Windows.Forms.RadioButton()
         Me.pnlBotones = New System.Windows.Forms.Panel()
         Me.btnCancelar = New System.Windows.Forms.Button()
@@ -284,7 +283,6 @@ Partial Class frm_Persona
         Me.gbBuscar.Controls.Add(Me.btnBuscar)
         Me.gbBuscar.Controls.Add(Me.txtBusqueda)
         Me.gbBuscar.Controls.Add(Me.rbCedula)
-        Me.gbBuscar.Controls.Add(Me.rbApellido)
         Me.gbBuscar.Controls.Add(Me.rbNombre)
         Me.gbBuscar.Enabled = False
         Me.gbBuscar.Location = New System.Drawing.Point(3, 324)
@@ -326,7 +324,7 @@ Partial Class frm_Persona
         '
         Me.rbCedula.AutoSize = True
         Me.rbCedula.Checked = True
-        Me.rbCedula.Location = New System.Drawing.Point(286, 19)
+        Me.rbCedula.Location = New System.Drawing.Point(215, 20)
         Me.rbCedula.Name = "rbCedula"
         Me.rbCedula.Size = New System.Drawing.Size(58, 17)
         Me.rbCedula.TabIndex = 2
@@ -334,20 +332,10 @@ Partial Class frm_Persona
         Me.rbCedula.Text = "Cedula"
         Me.rbCedula.UseVisualStyleBackColor = True
         '
-        'rbApellido
-        '
-        Me.rbApellido.AutoSize = True
-        Me.rbApellido.Location = New System.Drawing.Point(185, 19)
-        Me.rbApellido.Name = "rbApellido"
-        Me.rbApellido.Size = New System.Drawing.Size(62, 17)
-        Me.rbApellido.TabIndex = 1
-        Me.rbApellido.Text = "Apellido"
-        Me.rbApellido.UseVisualStyleBackColor = True
-        '
         'rbNombre
         '
         Me.rbNombre.AutoSize = True
-        Me.rbNombre.Location = New System.Drawing.Point(96, 19)
+        Me.rbNombre.Location = New System.Drawing.Point(132, 19)
         Me.rbNombre.Name = "rbNombre"
         Me.rbNombre.Size = New System.Drawing.Size(62, 17)
         Me.rbNombre.TabIndex = 0
@@ -436,7 +424,6 @@ Partial Class frm_Persona
     Friend WithEvents btnBuscar As System.Windows.Forms.Button
     Friend WithEvents txtBusqueda As System.Windows.Forms.TextBox
     Friend WithEvents rbCedula As System.Windows.Forms.RadioButton
-    Friend WithEvents rbApellido As System.Windows.Forms.RadioButton
     Friend WithEvents rbNombre As System.Windows.Forms.RadioButton
     Friend WithEvents pnlBotones As System.Windows.Forms.Panel
     Friend WithEvents btnCancelar As System.Windows.Forms.Button

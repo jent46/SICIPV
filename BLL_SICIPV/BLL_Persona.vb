@@ -16,11 +16,6 @@ Public Class BLL_Persona
         Return ds
     End Function
 
-    Shared Function ConsultarPersonasPorApellido(ByVal apellido As String, ByRef mensaje As String) As DataTable
-        Dim ds As New DataTable
-        Return ds
-    End Function
-
     Shared Function ConsultarPersonasPorCedula(ByVal cedula As Integer, ByRef mensaje As String) As DataTable
         Dim ds As New DataTable
         Return ds
