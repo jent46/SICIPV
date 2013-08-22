@@ -6,8 +6,8 @@
 
     Private _idItemFactura As Integer
     Private _idProducto As ClsProducto
-    Private _usuarioCreacion As ClsUsuario
-    Private _usuarioModificacion As ClsUsuario
+    Private _idUsuarioCreacion As ClsUsuario
+    Private _idUsuarioModificacion As ClsUsuario
     Private _precioUnitario As Double
     Private _cantidad As Double
     Private _precioTotal As Double
@@ -16,12 +16,23 @@
     Private _fechaCreacion As Date
     Private _fechaModificacion As Date
 
+    Private _idFactura As ClsFactura
+
     Public Property IdItemFactura() As Integer
         Get
             Return _idItemFactura
         End Get
         Set(ByVal value As Integer)
             _idItemFactura = value
+        End Set
+    End Property
+
+    Public Property IdFactura() As ClsFactura
+        Get
+            Return _idFactura
+        End Get
+        Set(ByVal value As ClsFactura)
+            _idFactura = value
         End Set
     End Property
 
@@ -34,21 +45,21 @@
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As ClsUsuario
+    Public Property IdUsuarioCreacion() As ClsUsuario
         Get
-            Return _usuarioCreacion
+            Return _idUsuarioCreacion
         End Get
         Set(ByVal value As ClsUsuario)
-            _usuarioCreacion = value
+            _idUsuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioModificacion() As ClsUsuario
+    Public Property IdUsuarioModificacion() As ClsUsuario
         Get
-            Return _usuarioModificacion
+            Return _idUsuarioModificacion
         End Get
         Set(ByVal value As ClsUsuario)
-            _usuarioModificacion = value
+            _idUsuarioModificacion = value
         End Set
     End Property
 
@@ -96,6 +107,17 @@
             _costoProducto = value
         End Set
     End Property
+
+    Private _estado As Integer
+    Public Property Estado() As Integer
+        Get
+            Return _estado
+        End Get
+        Set(ByVal value As Integer)
+            _estado = value
+        End Set
+    End Property
+
 
     Public Property FechaCreacion() As Date
         Get

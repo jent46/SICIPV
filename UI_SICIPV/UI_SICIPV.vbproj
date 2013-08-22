@@ -161,7 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL_SICIPV\BLL_SICIPV.vbproj">
-      <Project>{7F92B458-A504-4BD9-9FDA-238815BA35C5}</Project>
+      <Project>{7f92b458-a504-4bd9-9fda-238815ba35c5}</Project>
       <Name>BLL_SICIPV</Name>
     </ProjectReference>
     <ProjectReference Include="..\ENTIDADES\ENTIDADES.vbproj">

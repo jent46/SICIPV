@@ -4,15 +4,24 @@ Imports MySql.Data.MySqlClient
 Public Class DLL_Producto
     Inherits DLL_Base
 
-    Public Function ingresarBD(ByVal pproducto As ClsProducto, ByVal mensaje As String) As Boolean
+    Public Function ingresarBD(ByVal producto As ClsProducto, ByVal mensaje As String) As Boolean
         getConexion()
         Dim comando As New MySqlCommand
         Dim estado As Boolean = False
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "INS_Producto"
 
-        comando.Parameters.AddWithValue("pnombre", pproducto.Descripcion)
+        comando.Parameters.AddWithValue("pnombre", producto.Descripcion)
 
+        comando.Parameters.AddWithValue("_idUsuarioCreacion", producto.IdUsuarioCreacion)
+        comando.Parameters.AddWithValue("_idUsuarioModificacion", producto.IdUsuarioModificacion)
+        comando.Parameters.AddWithValue("_descripcion", producto.Descripcion)
+        comando.Parameters.AddWithValue("_valor", producto.Valor)
+        comando.Parameters.AddWithValue("_pvp", producto.Pvp)
+        comando.Parameters.AddWithValue("_stock", producto.Stock)
+        comando.Parameters.AddWithValue("_estado", producto.Estado)
+        comando.Parameters.AddWithValue("_fechaCreacion", producto.FechaCreacion)
+        comando.Parameters.AddWithValue("_fechaModificacion", producto.FechaModificacion)
 
         Try
             comando.Connection = conn

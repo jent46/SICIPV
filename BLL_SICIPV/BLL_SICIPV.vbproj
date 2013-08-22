@@ -106,7 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLL_SICIPV\DLL_SICIPV.vbproj">
-      <Project>{2389F9F0-D8B7-42EB-BD78-E6147F6A6B46}</Project>
+      <Project>{2389f9f0-d8b7-42eb-bd78-e6147f6a6b46}</Project>
       <Name>DLL_SICIPV</Name>
     </ProjectReference>
     <ProjectReference Include="..\ENTIDADES\ENTIDADES.vbproj">

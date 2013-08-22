@@ -71,7 +71,6 @@ Public Class frm_Persona
         If validarCampos() Then
             Dim persona As ClsPersona = New ClsPersona
             persona.Nombre = txtNombre.Text
-            persona.Apellido = txtApellido.Text
             persona.Cedula = txtCedula.Text
             persona.Direccion = txtDireccion.Text
             persona.Telefono = txtTelefono.Text

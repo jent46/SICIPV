@@ -5,8 +5,8 @@
     ''' <remarks></remarks>
 
     Private _idProducto As Integer
-    Private _usuarioCreacion As ClsUsuario
-    Private _usuarioModificacion As ClsUsuario
+    Private _idUsuarioCreacion As ClsUsuario
+    Private _idUsuarioModificacion As ClsUsuario
     Private _descripcion As String
     Private _valor As Double
     Private _pvp As Double
@@ -34,21 +34,21 @@
         End Set
     End Property
 
-    Public Property UsuarioCreacion() As ClsUsuario
+    Public Property IdUsuarioCreacion() As ClsUsuario
         Get
-            Return _usuarioCreacion
+            Return _idUsuarioCreacion
         End Get
         Set(ByVal value As ClsUsuario)
-            _usuarioCreacion = value
+            _idUsuarioCreacion = value
         End Set
     End Property
 
-    Public Property UsuarioModificacion() As ClsUsuario
+    Public Property IdUsuarioModificacion() As ClsUsuario
         Get
-            Return _usuarioModificacion
+            Return _idUsuarioModificacion
         End Get
         Set(ByVal value As ClsUsuario)
-            _usuarioModificacion = value
+            _idUsuarioModificacion = value
         End Set
     End Property
 
@@ -87,6 +87,8 @@
             _stock = value
         End Set
     End Property
+
+
 
     Public Property FechaCreacion() As Date
         Get

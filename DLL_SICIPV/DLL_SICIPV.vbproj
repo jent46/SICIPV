@@ -63,9 +63,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DLL_Abono.vb" />
     <Compile Include="DLL_Base.vb" />
+    <Compile Include="DLL_Cuota.vb" />
     <Compile Include="DLL_EstadoCivil.vb" />
     <Compile Include="DLL_Factura.vb" />
+    <Compile Include="DLL_IngresoProducto.vb" />
     <Compile Include="DLL_ItemFactura.vb" />
     <Compile Include="DLL_Persona.vb" />
     <Compile Include="DLL_Producto.vb" />
