@@ -8,6 +8,7 @@
     Private _idUsuarioCreacion As ClsUsuario
     Private _idUsuarioModificacion As ClsUsuario
     Private _nombre As String
+    Private _apellido As String
     Private _cedula As Integer
     Private _telefono As String
     Private _direccion As String
@@ -59,6 +60,15 @@
         End Get
         Set(ByVal value As String)
             _nombre = value
+        End Set
+    End Property
+
+    Public Property Apellido() As String
+        Get
+            Return _apellido
+        End Get
+        Set(ByVal value As String)
+            _apellido = value
         End Set
     End Property
 

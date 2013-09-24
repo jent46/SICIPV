@@ -8,11 +8,11 @@ Public Class DLL_Base
 
             Dim cadena As New MySqlConnectionStringBuilder
 
-            cadena.Database = "Base"
+            cadena.Database = "base"
             cadena.Server = "localhost"
             cadena.UserID = "root"
-            cadena.Password = "root"
-            cadena.Port = "3306"
+            cadena.Password = "1234"
+            cadena.Port = "3305"
 
             conn = New MySqlConnection(cadena.ConnectionString)
         End If

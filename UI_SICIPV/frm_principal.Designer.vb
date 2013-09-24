@@ -28,15 +28,15 @@ Partial Class frm_principal
         Me.txtUsuario = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TbMenu = New System.Windows.Forms.MenuStrip()
-        Me.IngresoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.VentanaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NuevoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.AdministradorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturacionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AbonoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClienteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gbIngreso.SuspendLayout()
-        Me.TbMenu.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'gbIngreso
@@ -99,52 +99,51 @@ Partial Class frm_principal
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "USUARIO :"
         '
-        'TbMenu
+        'MenuStrip1
         '
-        Me.TbMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IngresoToolStripMenuItem, Me.VentanaToolStripMenuItem, Me.NuevoToolStripMenuItem})
-        Me.TbMenu.Location = New System.Drawing.Point(0, 0)
-        Me.TbMenu.Name = "TbMenu"
-        Me.TbMenu.Size = New System.Drawing.Size(1244, 24)
-        Me.TbMenu.TabIndex = 6
-        Me.TbMenu.Text = "MenuStrip1"
-        Me.TbMenu.Visible = False
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdministradorToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(1244, 24)
+        Me.MenuStrip1.TabIndex = 8
+        Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'IngresoToolStripMenuItem
+        'AdministradorToolStripMenuItem
         '
-        Me.IngresoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ToolStripMenuItem4})
-        Me.IngresoToolStripMenuItem.Name = "IngresoToolStripMenuItem"
-        Me.IngresoToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
-        Me.IngresoToolStripMenuItem.Text = "ingreso"
+        Me.AdministradorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturacionToolStripMenuItem, Me.AbonoToolStripMenuItem, Me.ProductoToolStripMenuItem, Me.ClienteToolStripMenuItem1, Me.UsuarioToolStripMenuItem})
+        Me.AdministradorToolStripMenuItem.Name = "AdministradorToolStripMenuItem"
+        Me.AdministradorToolStripMenuItem.Size = New System.Drawing.Size(95, 20)
+        Me.AdministradorToolStripMenuItem.Text = "Administrador"
         '
-        'ToolStripMenuItem2
+        'FacturacionToolStripMenuItem
         '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(80, 22)
-        Me.ToolStripMenuItem2.Text = "1"
+        Me.FacturacionToolStripMenuItem.Name = "FacturacionToolStripMenuItem"
+        Me.FacturacionToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.FacturacionToolStripMenuItem.Text = "Facturacion"
         '
-        'ToolStripMenuItem3
+        'AbonoToolStripMenuItem
         '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(80, 22)
-        Me.ToolStripMenuItem3.Text = "2"
+        Me.AbonoToolStripMenuItem.Name = "AbonoToolStripMenuItem"
+        Me.AbonoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AbonoToolStripMenuItem.Text = "Abono"
         '
-        'ToolStripMenuItem4
+        'ProductoToolStripMenuItem
         '
-        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(80, 22)
-        Me.ToolStripMenuItem4.Text = "3"
+        Me.ProductoToolStripMenuItem.Name = "ProductoToolStripMenuItem"
+        Me.ProductoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ProductoToolStripMenuItem.Text = "Producto"
         '
-        'VentanaToolStripMenuItem
+        'ClienteToolStripMenuItem1
         '
-        Me.VentanaToolStripMenuItem.Name = "VentanaToolStripMenuItem"
-        Me.VentanaToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
-        Me.VentanaToolStripMenuItem.Text = "ventana"
+        Me.ClienteToolStripMenuItem1.Name = "ClienteToolStripMenuItem1"
+        Me.ClienteToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ClienteToolStripMenuItem1.Text = "Cliente"
         '
-        'NuevoToolStripMenuItem
+        'UsuarioToolStripMenuItem
         '
-        Me.NuevoToolStripMenuItem.Name = "NuevoToolStripMenuItem"
-        Me.NuevoToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
-        Me.NuevoToolStripMenuItem.Text = "nuevo"
+        Me.UsuarioToolStripMenuItem.Name = "UsuarioToolStripMenuItem"
+        Me.UsuarioToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.UsuarioToolStripMenuItem.Text = "Usuario"
         '
         'frm_principal
         '
@@ -153,16 +152,16 @@ Partial Class frm_principal
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1244, 522)
         Me.Controls.Add(Me.gbIngreso)
-        Me.Controls.Add(Me.TbMenu)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.IsMdiContainer = True
-        Me.MainMenuStrip = Me.TbMenu
         Me.Name = "frm_principal"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = ".:: SCIPV ::."
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.gbIngreso.ResumeLayout(False)
         Me.gbIngreso.PerformLayout()
-        Me.TbMenu.ResumeLayout(False)
-        Me.TbMenu.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -173,11 +172,11 @@ Partial Class frm_principal
     Friend WithEvents txtUsuario As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TbMenu As System.Windows.Forms.MenuStrip
-    Friend WithEvents IngresoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents VentanaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents NuevoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+    Friend WithEvents AdministradorToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FacturacionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AbonoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ProductoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ClienteToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents UsuarioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

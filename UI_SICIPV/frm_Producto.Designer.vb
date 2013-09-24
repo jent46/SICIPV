@@ -294,14 +294,15 @@ Partial Class frm_Producto
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'frmProducto
+        'frm_Producto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(892, 608)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
-        Me.Name = "frmProducto"
+        Me.Name = "frm_Producto"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = ".:: Productos ::."
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()

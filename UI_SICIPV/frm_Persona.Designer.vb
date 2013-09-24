@@ -150,7 +150,7 @@ Partial Class frm_Persona
         Me.cbEstado.Location = New System.Drawing.Point(174, 249)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(73, 17)
-        Me.cbEstado.TabIndex = 21
+        Me.cbEstado.TabIndex = 23
         Me.cbEstado.Text = "Habilitado"
         Me.cbEstado.UseVisualStyleBackColor = True
         '
@@ -168,7 +168,7 @@ Partial Class frm_Persona
         Me.dtpFechaNacimiento.Location = New System.Drawing.Point(174, 194)
         Me.dtpFechaNacimiento.Name = "dtpFechaNacimiento"
         Me.dtpFechaNacimiento.Size = New System.Drawing.Size(200, 20)
-        Me.dtpFechaNacimiento.TabIndex = 18
+        Me.dtpFechaNacimiento.TabIndex = 21
         '
         'cbEstadoCivil
         '
@@ -176,14 +176,14 @@ Partial Class frm_Persona
         Me.cbEstadoCivil.Location = New System.Drawing.Point(174, 217)
         Me.cbEstadoCivil.Name = "cbEstadoCivil"
         Me.cbEstadoCivil.Size = New System.Drawing.Size(121, 21)
-        Me.cbEstadoCivil.TabIndex = 17
+        Me.cbEstadoCivil.TabIndex = 22
         '
         'txtTelefono
         '
         Me.txtTelefono.Location = New System.Drawing.Point(174, 167)
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(221, 20)
-        Me.txtTelefono.TabIndex = 12
+        Me.txtTelefono.TabIndex = 20
         '
         'txtDireccion
         '
@@ -191,21 +191,21 @@ Partial Class frm_Persona
         Me.txtDireccion.Multiline = True
         Me.txtDireccion.Name = "txtDireccion"
         Me.txtDireccion.Size = New System.Drawing.Size(221, 46)
-        Me.txtDireccion.TabIndex = 13
+        Me.txtDireccion.TabIndex = 19
         '
         'txtCedula
         '
         Me.txtCedula.Location = New System.Drawing.Point(174, 91)
         Me.txtCedula.Name = "txtCedula"
         Me.txtCedula.Size = New System.Drawing.Size(221, 20)
-        Me.txtCedula.TabIndex = 14
+        Me.txtCedula.TabIndex = 18
         '
         'txtApellido
         '
         Me.txtApellido.Location = New System.Drawing.Point(174, 66)
         Me.txtApellido.Name = "txtApellido"
         Me.txtApellido.Size = New System.Drawing.Size(221, 20)
-        Me.txtApellido.TabIndex = 15
+        Me.txtApellido.TabIndex = 17
         '
         'txtNombre
         '
@@ -358,7 +358,7 @@ Partial Class frm_Persona
         Me.btnCancelar.Location = New System.Drawing.Point(269, 13)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancelar.TabIndex = 20
+        Me.btnCancelar.TabIndex = 25
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
@@ -367,7 +367,7 @@ Partial Class frm_Persona
         Me.btnAceptar.Location = New System.Drawing.Point(119, 13)
         Me.btnAceptar.Name = "btnAceptar"
         Me.btnAceptar.Size = New System.Drawing.Size(75, 23)
-        Me.btnAceptar.TabIndex = 21
+        Me.btnAceptar.TabIndex = 24
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
@@ -379,6 +379,7 @@ Partial Class frm_Persona
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "frm_Persona"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = ".:: Persona ::."
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
@@ -410,14 +411,12 @@ Partial Class frm_Persona
     Friend WithEvents txtTelefono As System.Windows.Forms.TextBox
     Friend WithEvents txtDireccion As System.Windows.Forms.TextBox
     Friend WithEvents txtCedula As System.Windows.Forms.TextBox
-    Friend WithEvents txtApellido As System.Windows.Forms.TextBox
     Friend WithEvents txtNombre As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents gbBuscar As System.Windows.Forms.GroupBox
     Friend WithEvents dgvBusqueda As System.Windows.Forms.DataGridView
@@ -428,4 +427,6 @@ Partial Class frm_Persona
     Friend WithEvents pnlBotones As System.Windows.Forms.Panel
     Friend WithEvents btnCancelar As System.Windows.Forms.Button
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
+    Friend WithEvents txtApellido As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 End Class

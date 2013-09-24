@@ -20,11 +20,20 @@ Public Class frm_Usuario
         operacion = "I"
     End Sub
 
+    Private Sub limpiarCampos()
+        txtNombre.Text = String.Empty
+        txtApellido.Text = String.Empty
+        txtcontrasena.Text = String.Empty
+        txtUsuario.Text = String.Empty
+
+    End Sub
+
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
         If validarCampos() Then
             ErrorProvider1.Clear()
             Dim usuario As ClsUsuario = New ClsUsuario
             usuario.Nombre = txtNombre.Text
+            usuario.Apellido = txtApellido.Text
             usuario.Contrasena = txtcontrasena.Text
             usuario.Usuario = txtUsuario.Text
             usuario.FechaModificacion = Now
@@ -39,6 +48,8 @@ Public Class frm_Usuario
                 Case "I"
                     usuario.FechaCreacion = Now
                     If BLL_Usuario.ingresarBD(usuario, mensaje) Then
+                        limpiarCampos()
+                        MsgBox("Usuario ingresado correctamente", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
 
                     End If
                 Case "M"
@@ -65,13 +76,18 @@ Public Class frm_Usuario
             resultado = False
         End If
 
+        If txtApellido.Text = "" Then
+            ErrorProvider1.SetError(txtApellido, "Apellido es requerido")
+            resultado = False
+        End If
+
         If txtUsuario.Text = "" Then
             ErrorProvider1.SetError(txtUsuario, "Usuario es requerido")
             resultado = False
         End If
 
         If txtcontrasena.Text = "" Then
-            ErrorProvider1.SetError(txtcontrasena, "Contrasena es requerido")
+            ErrorProvider1.SetError(txtcontrasena, "Contraseña es requerido")
             resultado = False
         End If
 
@@ -128,6 +144,9 @@ Public Class frm_Usuario
 
     Private Sub frm_Usuario_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.SetBounds(0, 0, 512, 451)
+        cbRol.DataSource = BLL_Rol.ConsultarRolTodos(mensaje)
+        cbRol.DisplayMember = "descripcion"
+        cbRol.ValueMember = "codigo"
     End Sub
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click

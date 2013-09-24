@@ -16,11 +16,12 @@ Public Class DLL_Persona
         comando.Parameters.AddWithValue("_idUsuarioCreacion", persona.IdUsuarioCreacion)
         comando.Parameters.AddWithValue("_idUsuarioModificacion", persona.IdUsuarioModificacion)
         comando.Parameters.AddWithValue("_nombre", persona.Nombre)
+        comando.Parameters.AddWithValue("_apellido", persona.Apellido)
         comando.Parameters.AddWithValue("_cedula", persona.Cedula)
         comando.Parameters.AddWithValue("_telefono", persona.Telefono)
         comando.Parameters.AddWithValue("_direccion", persona.Direccion)
         comando.Parameters.AddWithValue("_estado", persona.Estado)
-        comando.Parameters.AddWithValue("_fechaDeNacimiento", persona.FechaNacimiento)
+        comando.Parameters.AddWithValue("_fechaNacimiento", persona.FechaNacimiento)
         comando.Parameters.AddWithValue("_fechaCreacion", persona.FechaCreacion)
         comando.Parameters.AddWithValue("_fechaModificacion", persona.FechaModificacion)
 

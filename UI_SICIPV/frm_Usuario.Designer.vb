@@ -30,6 +30,8 @@ Partial Class frm_Usuario
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.tslConsultar = New System.Windows.Forms.ToolStripLabel()
         Me.gbDatos = New System.Windows.Forms.GroupBox()
+        Me.txtApellido = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.cbEstado = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.cbRol = New System.Windows.Forms.ComboBox()
@@ -100,6 +102,8 @@ Partial Class frm_Usuario
         '
         'gbDatos
         '
+        Me.gbDatos.Controls.Add(Me.txtApellido)
+        Me.gbDatos.Controls.Add(Me.Label2)
         Me.gbDatos.Controls.Add(Me.cbEstado)
         Me.gbDatos.Controls.Add(Me.Label8)
         Me.gbDatos.Controls.Add(Me.cbRol)
@@ -118,10 +122,26 @@ Partial Class frm_Usuario
         Me.gbDatos.Text = "Datos Usuario"
         Me.gbDatos.Visible = False
         '
+        'txtApellido
+        '
+        Me.txtApellido.Location = New System.Drawing.Point(174, 68)
+        Me.txtApellido.Name = "txtApellido"
+        Me.txtApellido.Size = New System.Drawing.Size(221, 20)
+        Me.txtApellido.TabIndex = 17
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(53, 75)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(50, 13)
+        Me.Label2.TabIndex = 21
+        Me.Label2.Text = "Apellido :"
+        '
         'cbEstado
         '
         Me.cbEstado.AutoSize = True
-        Me.cbEstado.Location = New System.Drawing.Point(174, 141)
+        Me.cbEstado.Location = New System.Drawing.Point(174, 166)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(73, 17)
         Me.cbEstado.TabIndex = 21
@@ -131,7 +151,7 @@ Partial Class frm_Usuario
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(53, 145)
+        Me.Label8.Location = New System.Drawing.Point(53, 170)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(43, 13)
         Me.Label8.TabIndex = 20
@@ -140,24 +160,25 @@ Partial Class frm_Usuario
         'cbRol
         '
         Me.cbRol.FormattingEnabled = True
-        Me.cbRol.Location = New System.Drawing.Point(174, 115)
+        Me.cbRol.Location = New System.Drawing.Point(174, 140)
         Me.cbRol.Name = "cbRol"
         Me.cbRol.Size = New System.Drawing.Size(121, 21)
-        Me.cbRol.TabIndex = 17
+        Me.cbRol.TabIndex = 20
         '
         'txtcontrasena
         '
-        Me.txtcontrasena.Location = New System.Drawing.Point(174, 90)
+        Me.txtcontrasena.Location = New System.Drawing.Point(174, 115)
         Me.txtcontrasena.Name = "txtcontrasena"
+        Me.txtcontrasena.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtcontrasena.Size = New System.Drawing.Size(221, 20)
-        Me.txtcontrasena.TabIndex = 14
+        Me.txtcontrasena.TabIndex = 19
         '
         'txtUsuario
         '
-        Me.txtUsuario.Location = New System.Drawing.Point(174, 66)
+        Me.txtUsuario.Location = New System.Drawing.Point(174, 91)
         Me.txtUsuario.Name = "txtUsuario"
         Me.txtUsuario.Size = New System.Drawing.Size(221, 20)
-        Me.txtUsuario.TabIndex = 14
+        Me.txtUsuario.TabIndex = 18
         '
         'txtNombre
         '
@@ -169,7 +190,7 @@ Partial Class frm_Usuario
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(53, 73)
+        Me.Label7.Location = New System.Drawing.Point(53, 98)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(46, 13)
         Me.Label7.TabIndex = 11
@@ -178,7 +199,7 @@ Partial Class frm_Usuario
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(53, 123)
+        Me.Label6.Location = New System.Drawing.Point(53, 148)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(26, 13)
         Me.Label6.TabIndex = 5
@@ -187,7 +208,7 @@ Partial Class frm_Usuario
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(53, 97)
+        Me.Label4.Location = New System.Drawing.Point(53, 122)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(64, 13)
         Me.Label4.TabIndex = 7
@@ -291,7 +312,7 @@ Partial Class frm_Usuario
         Me.btnCancelar.Location = New System.Drawing.Point(269, 13)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancelar.TabIndex = 20
+        Me.btnCancelar.TabIndex = 23
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
@@ -300,7 +321,7 @@ Partial Class frm_Usuario
         Me.btnAceptar.Location = New System.Drawing.Point(119, 13)
         Me.btnAceptar.Name = "btnAceptar"
         Me.btnAceptar.Size = New System.Drawing.Size(75, 23)
-        Me.btnAceptar.TabIndex = 21
+        Me.btnAceptar.TabIndex = 22
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
@@ -316,6 +337,7 @@ Partial Class frm_Usuario
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.FlowLayoutPanel2)
         Me.Name = "frm_Usuario"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = ".:: Usuario ::."
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
@@ -359,4 +381,6 @@ Partial Class frm_Usuario
     Friend WithEvents btnCancelar As System.Windows.Forms.Button
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents ErrorProvider1 As System.Windows.Forms.ErrorProvider
+    Friend WithEvents txtApellido As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 End Class

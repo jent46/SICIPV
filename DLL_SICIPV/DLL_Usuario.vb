@@ -43,7 +43,7 @@ Public Class DLL_Usuario
         comando.CommandText = "QRY_login"
 
         comando.Parameters.AddWithValue("_usuario", pusuario)
-        comando.Parameters.AddWithValue("_clave", pclave)
+        comando.Parameters.AddWithValue("_contrasena", pclave)
 
         Dim da As New MySqlDataAdapter
         Dim dt As New DataTable
@@ -75,8 +75,6 @@ Public Class DLL_Usuario
         End Try
 
         Return usuario
-
-
     End Function
 
     Public Function modificarBD(ByVal pusuario As ClsUsuario, ByVal mensaje As String) As Boolean

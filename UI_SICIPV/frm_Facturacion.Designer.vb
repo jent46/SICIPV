@@ -726,6 +726,7 @@ Partial Class frm_Facturacion
         Me.Controls.Add(Me.ToolStrip1)
         Me.MaximumSize = New System.Drawing.Size(1000, 1000)
         Me.Name = "frm_Facturacion"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = ".::Facturación::."
         Me.gbProductos.ResumeLayout(False)
         Me.gbProductos.PerformLayout()

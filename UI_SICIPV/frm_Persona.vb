@@ -1,5 +1,6 @@
 ﻿Imports BLL_SICIPV
 Imports ENTIDADES
+Imports System.Windows.Forms
 
 Public Class frm_Persona
 
@@ -67,16 +68,27 @@ Public Class frm_Persona
         operacion = "C"
     End Sub
 
+    Private Sub limpiarCampos()
+        txtNombre.Text = String.Empty
+        txtApellido.Text = String.Empty
+        txtCedula.Text = String.Empty
+        txtTelefono.Text = String.Empty
+        txtDireccion.Text = String.Empty
+        cbEstadoCivil.SelectedValue = String.Empty
+
+    End Sub
+
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
         If validarCampos() Then
             Dim persona As ClsPersona = New ClsPersona
             persona.Nombre = txtNombre.Text
+            persona.Apellido = txtApellido.Text
             persona.Cedula = txtCedula.Text
-            persona.Direccion = txtDireccion.Text
             persona.Telefono = txtTelefono.Text
+            persona.Direccion = txtDireccion.Text
             persona.FechaNacimiento = dtpFechaNacimiento.Value.Date
             persona.IdEstadoCivil = cbEstadoCivil.SelectedValue
-            persona.FechaModificacion = Now
+            persona.FechaModificacion = Date.Now
 
             If cbEstado.Checked Then
                 persona.Estado = 1
@@ -88,7 +100,8 @@ Public Class frm_Persona
                 Case "I"
                     persona.FechaCreacion = Now
                     If BLL_Persona.ingresarBD(persona, mensaje) Then
-
+                        limpiarCampos()
+                        MsgBox("Cliente ingresado correctamente", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
                     End If
                 Case "M"
                     If BLL_Persona.modificarBD(persona, mensaje) Then
@@ -121,10 +134,17 @@ Public Class frm_Persona
             resultado = False
         End If
 
-        If txtCedula.Text = "" Or Integer.TryParse(txtCedula.Text, New Integer) Or txtCedula.TextLength = 10 Or txtCedula.TextLength = 13 Then
+        If (txtCedula.Text.Length <> 10) Then
+            MessageBox.Show("LA CEDULA CONTIENE 10 DIGITOS", "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtCedula.Text = String.Empty
             ErrorProvider1.SetError(txtCedula, "Cedula es requerido")
-            resultado = False
+            Return False
         End If
+
+        ''If txtCedula.Text = "" Or Integer.TryParse(txtCedula.Text, New Integer) Or txtCedula.TextLength = 10 Or txtCedula.TextLength = 13 Then
+        ''ErrorProvider1.SetError(txtCedula, "Cedula es requerido")
+        ''resultado = False
+        ''End If
 
         If txtDireccion.Text = "" Then
             ErrorProvider1.SetError(txtDireccion, "Direccion es requerido")

@@ -313,6 +313,7 @@ Partial Class frm_Abono
         Me.Controls.Add(Me.gbInfoGeneral)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "frm_Abono"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = ".:: Abono ::."
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
