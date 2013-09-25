@@ -117,7 +117,7 @@ Partial Class frm_Abono
         Me.gbInfoGeneral.Controls.Add(Me.Label9)
         Me.gbInfoGeneral.Controls.Add(Me.Label8)
         Me.gbInfoGeneral.Controls.Add(Me.Label1)
-        Me.gbInfoGeneral.Location = New System.Drawing.Point(0, 58)
+        Me.gbInfoGeneral.Location = New System.Drawing.Point(12, 58)
         Me.gbInfoGeneral.Name = "gbInfoGeneral"
         Me.gbInfoGeneral.Size = New System.Drawing.Size(875, 150)
         Me.gbInfoGeneral.TabIndex = 34

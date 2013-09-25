@@ -269,10 +269,12 @@ Partial Class frm_Usuario
         'rbUsuario
         '
         Me.rbUsuario.AutoSize = True
+        Me.rbUsuario.Checked = True
         Me.rbUsuario.Location = New System.Drawing.Point(226, 20)
         Me.rbUsuario.Name = "rbUsuario"
         Me.rbUsuario.Size = New System.Drawing.Size(61, 17)
         Me.rbUsuario.TabIndex = 1
+        Me.rbUsuario.TabStop = True
         Me.rbUsuario.Text = "Usuario"
         Me.rbUsuario.UseVisualStyleBackColor = True
         '

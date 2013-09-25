@@ -64,7 +64,7 @@ Partial Class frm_Producto
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tslIngresar, Me.ToolStripSeparator1, Me.tslModificar, Me.ToolStripSeparator2, Me.tslConsultar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(892, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(507, 25)
         Me.ToolStrip1.TabIndex = 22
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -120,17 +120,17 @@ Partial Class frm_Producto
         'cbEstado
         '
         Me.cbEstado.AutoSize = True
-        Me.cbEstado.Location = New System.Drawing.Point(129, 126)
+        Me.cbEstado.Location = New System.Drawing.Point(91, 126)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(73, 17)
-        Me.cbEstado.TabIndex = 23
+        Me.cbEstado.TabIndex = 5
         Me.cbEstado.Text = "Habilitado"
         Me.cbEstado.UseVisualStyleBackColor = True
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(57, 131)
+        Me.Label8.Location = New System.Drawing.Point(19, 131)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(40, 13)
         Me.Label8.TabIndex = 22
@@ -138,36 +138,36 @@ Partial Class frm_Producto
         '
         'txtStock
         '
-        Me.txtStock.Location = New System.Drawing.Point(129, 100)
+        Me.txtStock.Location = New System.Drawing.Point(91, 100)
         Me.txtStock.Name = "txtStock"
-        Me.txtStock.Size = New System.Drawing.Size(247, 20)
-        Me.txtStock.TabIndex = 1
+        Me.txtStock.Size = New System.Drawing.Size(73, 20)
+        Me.txtStock.TabIndex = 4
         '
         'txtPvp
         '
-        Me.txtPvp.Location = New System.Drawing.Point(129, 77)
+        Me.txtPvp.Location = New System.Drawing.Point(91, 77)
         Me.txtPvp.Name = "txtPvp"
-        Me.txtPvp.Size = New System.Drawing.Size(247, 20)
-        Me.txtPvp.TabIndex = 1
+        Me.txtPvp.Size = New System.Drawing.Size(73, 20)
+        Me.txtPvp.TabIndex = 3
         '
         'txtValor
         '
-        Me.txtValor.Location = New System.Drawing.Point(129, 53)
+        Me.txtValor.Location = New System.Drawing.Point(91, 53)
         Me.txtValor.Name = "txtValor"
-        Me.txtValor.Size = New System.Drawing.Size(247, 20)
-        Me.txtValor.TabIndex = 1
+        Me.txtValor.Size = New System.Drawing.Size(73, 20)
+        Me.txtValor.TabIndex = 2
         '
         'txtDescripcion
         '
-        Me.txtDescripcion.Location = New System.Drawing.Point(129, 28)
+        Me.txtDescripcion.Location = New System.Drawing.Point(91, 28)
         Me.txtDescripcion.Name = "txtDescripcion"
-        Me.txtDescripcion.Size = New System.Drawing.Size(247, 20)
+        Me.txtDescripcion.Size = New System.Drawing.Size(356, 20)
         Me.txtDescripcion.TabIndex = 1
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(57, 107)
+        Me.Label4.Location = New System.Drawing.Point(19, 107)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(38, 13)
         Me.Label4.TabIndex = 0
@@ -176,7 +176,7 @@ Partial Class frm_Producto
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(57, 84)
+        Me.Label3.Location = New System.Drawing.Point(19, 84)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(31, 13)
         Me.Label3.TabIndex = 0
@@ -185,7 +185,7 @@ Partial Class frm_Producto
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(57, 60)
+        Me.Label2.Location = New System.Drawing.Point(19, 60)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(34, 13)
         Me.Label2.TabIndex = 0
@@ -194,7 +194,7 @@ Partial Class frm_Producto
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(57, 36)
+        Me.Label1.Location = New System.Drawing.Point(19, 36)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(66, 13)
         Me.Label1.TabIndex = 0
@@ -267,16 +267,16 @@ Partial Class frm_Producto
         Me.btnCancelar.Location = New System.Drawing.Point(269, 13)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancelar.TabIndex = 20
+        Me.btnCancelar.TabIndex = 7
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
         'btnAceptar
         '
-        Me.btnAceptar.Location = New System.Drawing.Point(119, 13)
+        Me.btnAceptar.Location = New System.Drawing.Point(119, 14)
         Me.btnAceptar.Name = "btnAceptar"
         Me.btnAceptar.Size = New System.Drawing.Size(75, 23)
-        Me.btnAceptar.TabIndex = 21
+        Me.btnAceptar.TabIndex = 6
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
@@ -298,7 +298,7 @@ Partial Class frm_Producto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(892, 608)
+        Me.ClientSize = New System.Drawing.Size(507, 608)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Name = "frm_Producto"

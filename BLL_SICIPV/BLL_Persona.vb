@@ -20,6 +20,11 @@ Public Class BLL_Persona
         Dim ds As New DataTable
         Return ds
     End Function
+
+    Shared Function ConsultarPersonasPorId(ByVal idPersona As Integer, ByRef mensaje As String) As DataTable
+        Return New DLL_Persona().ConsultarPersonasPorId(idPersona, mensaje)
+    End Function
+
 End Class
 
 

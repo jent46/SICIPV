@@ -7,22 +7,24 @@ Public Class BLL_Usuario
         Return New DLL_Usuario().login(usuario, clave, mensaje)
     End Function
 
-    Shared Function ingresarBD(ByVal pusuario As ClsUsuario, ByVal mensaje As String) As Boolean
+    Shared Function ingresarBD(ByVal pusuario As ClsUsuario, ByRef mensaje As String) As Boolean
         Return New DLL_Usuario().ingresarBD(pusuario, mensaje)
     End Function
 
-    Shared Function modificarBD(ByVal pusuario As ClsUsuario, ByVal mensaje As String) As Boolean
+    Shared Function modificarBD(ByVal pusuario As ClsUsuario, ByRef mensaje As String) As Boolean
         Return New DLL_Usuario().modificarBD(pusuario, mensaje)
     End Function
 
     Shared Function ConsultarUsuarioPorUsuario(ByVal usuario As String, ByRef mensaje As String) As DataTable
-        Dim ds As New DataTable
-        Return ds
+        Return New DLL_Usuario().ConsultarUsuarioPorUsuario(usuario, mensaje)
     End Function
 
     Shared Function ConsultarUsuarioPorNombre(ByVal nombre As String, ByRef mensaje As String) As DataTable
-        Dim ds As New DataTable
-        Return ds
+        Return New DLL_Usuario().ConsultarUsuarioPorNombre(nombre, mensaje)
+    End Function
+
+    Shared Function ConsultarUsuarioPorId(ByVal idUsuario As String, ByRef mensaje As String) As DataTable
+        Return New DLL_Usuario().ConsultarUsuarioPorId(idUsuario, mensaje)
     End Function
 
 End Class
