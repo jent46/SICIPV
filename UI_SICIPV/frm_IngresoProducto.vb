@@ -3,7 +3,7 @@ Imports BLL_SICIPV
 Imports System.Windows.Forms
 
 Public Class frm_IngresoProducto
-    Private idIngrsoPersona As Integer
+    Private idIngresoProducto As Integer
     Public usuario As ClsUsuario
     Private operacion As String = ""
     Private mensaje As String = ""
@@ -142,9 +142,9 @@ Public Class frm_IngresoProducto
     Private Sub dgvBusqueda_CellContentClick(sender As Object, e As Windows.Forms.DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
         Dim dr As DataGridViewRow = dgvBusqueda.Rows(e.RowIndex)
         Dim dt As DataTable = BLL_IngreoProducto.ConsultarIngreosProductoPorId(dr.Cells("Id").Value, mensaje)
-        idIngrsoPersona = dt.Rows(0)("idIngresoPersona")
+        idIngresoProducto = dt.Rows(0)("idIngresoProducto")
 
-        cbProducto.SelectedValue = dt.Rows(0)("descripcion")
+        cbProducto.SelectedValue = dt.Rows(0)("idIngresoProducto")
         txtCantidad.Text = dt.Rows(0)("cantidad")
         dtpFecha.Value = dt.Rows(0)("fecha")
         If (dt.Rows(0)("estado")) = 1 Then

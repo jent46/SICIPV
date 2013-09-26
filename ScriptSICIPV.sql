@@ -34,6 +34,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `base`.`usuario` (
   `idUsuario` BIGINT(20) NOT NULL AUTO_INCREMENT ,
+  `idRol` BIGINT(20) NOT NULL ,
   `nombre` VARCHAR(45) NOT NULL ,
   `apellido` VARCHAR(45) NOT NULL ,
   `usuario` VARCHAR(45) NOT NULL ,
@@ -41,7 +42,6 @@ CREATE  TABLE IF NOT EXISTS `base`.`usuario` (
   `fechaCreacion` DATE NOT NULL ,
   `fechaModificacion` DATE NOT NULL ,
   `estado` INT(11) NOT NULL ,
-  `idRol` BIGINT(20) NOT NULL ,
   PRIMARY KEY (`idUsuario`) ,
   INDEX `fk_idRol_usuario_idx` (`idRol` ASC) ,
   CONSTRAINT `fk_idRol_usuario`
@@ -50,7 +50,7 @@ CREATE  TABLE IF NOT EXISTS `base`.`usuario` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -91,6 +91,7 @@ CREATE  TABLE IF NOT EXISTS `base`.`persona` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -290,6 +291,7 @@ CREATE  TABLE IF NOT EXISTS `base`.`producto` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -326,6 +328,7 @@ CREATE  TABLE IF NOT EXISTS `base`.`ingresoproducto` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -612,6 +615,7 @@ DELIMITER ;
 DELIMITER $$
 USE `base`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `INS_Usuario`(
+IN _idRol BIGINT,
 IN _nombre VARCHAR(45),
 IN _apellido VARCHAR(45),
 IN _usuario VARCHAR(45),
@@ -621,8 +625,21 @@ IN _fechaModificacion DATE,
 IN _estado INT
 )
 BEGIN
-INSERT INTO Usuario (nombre,apellido,usuario,contrasena,fechaCreacion,fechaModificacion,estado)
-VALUES(_nombre,_apellido,_usuario,_contrasena,_fechaCreacion,_fechaModificacion,_estado);
+INSERT INTO Usuario (idRol,nombre,apellido,usuario,contrasena,fechaCreacion,fechaModificacion,estado)
+VALUES(_idRol,_nombre,_apellido,_usuario,_contrasena,_fechaCreacion,_fechaModificacion,_estado);
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarEstadoCivilTodos
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarEstadoCivilTodos`()
+BEGIN
+SELECT * FROM estadoCivil;
 END$$
 
 DELIMITER ;
@@ -679,6 +696,179 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarFacturasPorNumeroFactu
 BEGIN
 SELECT * FROM Factura 
 WHERE  numeroFactura=_factura;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarIngreosProductoPorId
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarIngreosProductoPorId`(IN _inIngresoProducto BIGINT)
+BEGIN
+SELECT * FROM ingresoProducto WHERE inIngresoProducto=_inIngresoProducto;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarIngresoProducto
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarIngresoProducto`(IN _descripcion VARCHAR(50))
+BEGIN
+SELECT idProducto as Id,descripcion as Descripcion,valor as Valor,pvp as Pvp,stock as Stock
+FROM Producto WHERE descripcion like CONCAT('%',_descripcion,'%');
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarIngresoProductosPorDescripcion
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarIngresoProductosPorDescripcion`(IN _descripcion VARCHAR(50))
+BEGIN
+SELECT ip.idIngresoProducto AS Id,p.descripcion,ip.cantidad,ip.fecha,
+CASE WHEN ip.estado=1 THEN 'Habilitado' ELSE 'Deshabilitado' END as Estado
+FROM ingresoProducto ip 
+INNER JOIN producto p ON
+	ip.idproducto=p.idproducto
+WHERE descripcion like CONCAT('%',_descripcion,'%') AND ip.estado=1;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarPersonasPorCedula
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarPersonasPorCedula`(in pcedula varchar(13))
+BEGIN
+select idPersona as Id, cedula as Cedula,nombre as Nombre, apellido as Apellido,telefono as Telefono, direccion as Direccion,
+ case when estado=1 then 'Habilitado' else 'Deshabilitado'  
+end as Estado 
+from persona where cedula=pcedula and estado=1;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarPersonasPorId
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarPersonasPorId`(IN _idPersona BIGINT)
+BEGIN
+SELECT * FROM PERSONA WHERE idPersona=_idPersona;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarPersonasPorNombre
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarPersonasPorNombre`(in pnombre varchar(45))
+BEGIN
+select idPersona as Id, cedula as Cedula,nombre as Nombre,apellido as Apellido, telefono as Telefono, direccion as Direccion, 
+case when estado=1 then 'Habilitado' else 'Deshabilitado' 
+end as Estado
+from persona where nombre=pnombre;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarProductosPorId
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarProductosPorId`(IN _idProducto BIGINT)
+BEGIN
+select * from producto where idProducto=_idProducto;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarRolTodos
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarRolTodos`()
+BEGIN
+SELECT * FROM rol;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarUsuarioPorId
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarUsuarioPorId`(IN _idUsuario BIGINT)
+BEGIN
+SELECT * FROM Usuario WHERE idUsuario=_idUsuario;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarUsuarioPorNombre
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarUsuarioPorNombre`(IN _nombre VARCHAR(45))
+BEGIN
+SELECT idUsuario as Id,nombre as Nombre,apellido as Apellido,usuario as Usuario, 
+CASE WHEN estado=1 THEN 'Habilitado' ELSE 'Deshabilitado' END as Estado
+FROM usuario 
+WHERE nombre = _nombre;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_ConsultarUsuarioPorUsuario
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_ConsultarUsuarioPorUsuario`(IN _usuario VARCHAR(45))
+BEGIN
+SELECT idUsuario as Id,nombre as Nombre,apellido as Apellido,usuario as Usuario,
+CASE WHEN estado=1 THEN 'Habilitado' ELSE 'Deshabilitado' END as Estado
+FROM usuario WHERE usuario = _usuario;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure QRY_listaProducto
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `base`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QRY_listaProducto`()
+BEGIN
+select idProducto as Id ,descripcion as Descripcion from Producto;
 END$$
 
 DELIMITER ;
@@ -844,23 +1034,19 @@ USE `base`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UPD_IngresoProducto`(
 IN _idIngresoProducto BIGINT,
 IN _idProducto BIGINT,
-IN _idUsuarioCreacion BIGINT,
 IN _idUsuarioModificacion BIGINT,
 IN _cantidad INT,
 IN _fecha DATE,
 IN _estado INT,
-IN _fechaCreacion DATE,
 IN _fechaModificacion DATE
 )
 BEGIN
 UPDATE IngresoProducto
-SET	idProducto=_idProducto,
-	idUsuarioCreacion=_idUsuarioCreacion,
+SET	idProducto=_idProducto,	
 	idUsuarioModificacion=_idUsuarioModificacion,
 	cantidad=_cantidad,
 	fecha=_fecha,
 	estado=_estado,
-	fechaCreacion=_fechaCreacion,
 	fechaModificacion=_fechaModificacion
 WHERE idIngresoProducto=_idIngresoProducto;
 END$$
@@ -916,29 +1102,29 @@ USE `base`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UPD_Persona`(
 IN _idPersona BIGINT,
 IN _idEstadoCivil BIGINT,
-IN _idUsuarioCreacion BIGINT,
+
 IN _idUsuarioModificacion BIGINT,
 IN _nombre VARCHAR(45),
+IN _apellido VARCHAR(45),
 IN _cedula VARCHAR(10),
 IN _telefono VARCHAR(45),
 IN _direccion VARCHAR(200),
 IN _estado INT,
-IN _fechaDeNacimiento DATE,
-IN _fechaCreacion DATE,
+IN _fechaNacimiento DATE,
+
 IN _fechaModificacion DATE
 )
 BEGIN
 UPDATE Persona
-SET idEstadoCivil=_idEstadoCivil,
-	idUsuarioCreacion=_idUsuarioCreacion,
+SET idEstadoCivil=_idEstadoCivil,	
 	idUsuarioModificacion=_idUsuarioModificacion,
 	nombre=_nombre,
+	apellido=_apellido,
 	cedula=_cedula,
 	telefono=_telefono,
 	direccion=_direccion,
 	estado=_estado,
-	fechaDeNacimiento=_fechaDeNacimiento,
-	fechaCreacion=_fechaCreacion,
+	fechaNacimiento=_fechaNacimiento,	
 	fechaModificacion=_fechaModificacion
 WHERE idPersona=_idPersona;
 END$$
@@ -953,23 +1139,23 @@ DELIMITER $$
 USE `base`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UPD_Producto`(
 IN _idProducto BIGINT,
-IN _idUsuarioCreacion BIGINT,
+
 IN _idUsuarioModificacion BIGINT,
 IN _descripcion VARCHAR(200),
 IN _valor FLOAT,
 IN _pvp FLOAT,
 IN _stock INT,
 IN _estado INT,
-IN _fechaCreacion DATE,
+
 IN _fechaModificacion DATE
 )
 BEGIN
 UPDATE Producto
-SET idUsuarioCreacion=_idUsuarioCreacion,
+SET 
 	idUsuarioModificacion=_idUsuarioModificacion,
 	descripcion=_descripcion,
 	valor=_valor,pvp=_pvp,stock=_stock,estado=_estado,
-	fechaCreacion=_fechaCreacion,
+	
 	fechaModificacion=_fechaModificacion
 WHERE idProducto=_idProducto;
 END$$
@@ -1012,17 +1198,17 @@ DELIMITER $$
 USE `base`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UPD_Usuario`(
 IN _idUsuario BIGINT,
+IN _idRol BIGINT,
 IN _nombre VARCHAR(45),
 IN _apellido VARCHAR(45),
 IN _usuario VARCHAR(45),
 IN _contrasena VARCHAR(45),
-IN _fechaCreacion DATE,
 IN _fechaModificacion DATE,
 IN _estado INT
 )
 BEGIN
 UPDATE Usuario
-SET nombre=_nombre,apellido=_apellido,usuario=_usuario,contrasena=_contrasena,fechaCreacion=_fechaCreacion,fechaModificacion=_fechaModificacion,estado=_estado
+SET idRol=_idRol,nombre=_nombre,apellido=_apellido,usuario=_usuario,contrasena=_contrasena,fechaModificacion=_fechaModificacion,estado=_estado
 WHERE idUsuario=_idUsuario;
 END$$
 
