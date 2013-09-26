@@ -21,7 +21,7 @@ Public Class frm_principal
             txtClave.Text = String.Empty
             txtUsuario.Text = String.Empty
         Else
-            MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+            ''MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
             gbIngreso.Visible = False
             habilitarAdministrador()
             ''gbIngreso.Visible = False
@@ -59,5 +59,11 @@ Public Class frm_principal
     End Sub
     Private Sub habilitarAdministrador()
         AdministradorToolStripMenuItem.Enabled = True
+    End Sub
+
+    Private Sub IngresoProductoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IngresoProductoToolStripMenuItem.Click
+        frm_IngresoProducto.MdiParent = Me
+        frm_IngresoProducto.Show()
+        frm_IngresoProducto.usuario = Me.usuario
     End Sub
 End Class

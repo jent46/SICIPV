@@ -69,6 +69,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_IngresoProducto.Designer.vb">
+      <DependentUpon>frm_IngresoProducto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_IngresoProducto.vb">
+    <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_IngresarProductoFactura.Designer.vb">
       <DependentUpon>frm_IngresarProductoFactura.vb</DependentUpon>
     </Compile>
@@ -128,8 +134,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+
     <EmbeddedResource Include="frm_IngresarProductoFactura.resx">
       <DependentUpon>frm_IngresarProductoFactura.vb</DependentUpon>
+</EmbeddedResource>        
+<EmbeddedResource Include="frm_IngresoProducto.resx">
+      <DependentUpon>frm_IngresoProducto.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Producto.resx">
       <DependentUpon>frm_Producto.vb</DependentUpon>
