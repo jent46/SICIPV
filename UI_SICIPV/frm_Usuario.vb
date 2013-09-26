@@ -1,8 +1,9 @@
 ﻿Imports BLL_SICIPV
 Imports ENTIDADES
+Imports System.Windows.Forms
 
 Public Class frm_Usuario
-
+    Dim idUsuario As Integer
     Private operacion As String = ""
     Private mensaje As String = ""
 
@@ -32,6 +33,10 @@ Public Class frm_Usuario
         If validarCampos() Then
             ErrorProvider1.Clear()
             Dim usuario As ClsUsuario = New ClsUsuario
+
+            usuario.IdRol = New ClsRol()
+            usuario.IdRol.IdRol = cbRol.SelectedValue
+
             usuario.Nombre = txtNombre.Text
             usuario.Apellido = txtApellido.Text
             usuario.Contrasena = txtcontrasena.Text
@@ -49,10 +54,10 @@ Public Class frm_Usuario
                     usuario.FechaCreacion = Now
                     If BLL_Usuario.ingresarBD(usuario, mensaje) Then
                         limpiarCampos()
-                        MsgBox("Usuario ingresado correctamente", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
 
                     End If
                 Case "M"
+                    usuario.IdUsuario = idUsuario
                     If BLL_Usuario.modificarBD(usuario, mensaje) Then
 
                     End If
@@ -91,11 +96,11 @@ Public Class frm_Usuario
             resultado = False
         End If
 
-        If cbRol.SelectedIndex <> -1 Then
+        If cbRol.SelectedIndex.Equals(-1) Then
             ErrorProvider1.SetError(cbRol, "Rol es requerido")
             resultado = False
         End If
-       
+
         Return resultado
 
     End Function
@@ -104,7 +109,7 @@ Public Class frm_Usuario
         gbDatos.Enabled = True
         gbDatos.Visible = True
         gbBuscar.Visible = False
-        gbBuscar.Visible = False
+        gbBuscar.Enabled = False
         pnlBotones.Enabled = True
         pnlBotones.Visible = True
         btnAceptar.Enabled = True
@@ -117,7 +122,7 @@ Public Class frm_Usuario
     Private Sub tslConsultar_Click(sender As Object, e As EventArgs) Handles tslConsultar.Click
         gbDatos.Enabled = False
         gbDatos.Visible = False
-        gbBuscar.Visible = True
+        gbBuscar.Enabled = True
         gbBuscar.Visible = True
         pnlBotones.Enabled = True
         pnlBotones.Visible = True
@@ -139,14 +144,15 @@ Public Class frm_Usuario
         tslIngresar.Enabled = True
         tslConsultar.Enabled = True
         tslModificar.Enabled = False
-        operacion = "C"
+        operacion = "Cancelar"
     End Sub
 
     Private Sub frm_Usuario_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.SetBounds(0, 0, 512, 451)
         cbRol.DataSource = BLL_Rol.ConsultarRolTodos(mensaje)
         cbRol.DisplayMember = "descripcion"
-        cbRol.ValueMember = "codigo"
+        cbRol.ValueMember = "id_Rol"
+        cbRol.SelectedIndex = -1
     End Sub
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
@@ -155,7 +161,8 @@ Public Class frm_Usuario
         Else
             ErrorProvider1.Clear()
             dgvBusqueda.Columns.Clear()
-            dgvBusqueda.Rows.Clear()
+
+
             Dim dt As DataTable = Nothing
 
             If rbUsuario.Checked Then
@@ -163,12 +170,33 @@ Public Class frm_Usuario
             ElseIf rbNombre.Checked Then
                 dt = BLL_Usuario.ConsultarUsuarioPorNombre(txtBusqueda.Text, mensaje)
             End If
-
-            If IsNothing(dt) Then
-                dgvBusqueda.DataSource = dt
-            Else
-                MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
-            End If
+            Try
+                If dt.Rows.Count <> 0 Then
+                    dgvBusqueda.DataSource = dt
+                    dgvBusqueda.Columns("Id").Visible = False
+                Else
+                    MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+                End If
+            Catch ex As Exception
+            End Try
+            
         End If
     End Sub
+
+    Private Sub dgvBusqueda_CellContentClick(sender As Object, e As Windows.Forms.DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
+        Dim dr As DataGridViewRow = dgvBusqueda.Rows(e.RowIndex)
+        Dim dt As DataTable = BLL_Usuario.ConsultarUsuarioPorId(dr.Cells("Id").Value, mensaje)
+        idUsuario = dt.Rows(0)("idUsuario")
+        txtNombre.Text = dt.Rows(0)("nombre")
+        txtApellido.Text = dt.Rows(0)("apellido")
+        txtUsuario.Text = dt.Rows(0)("usuario")
+        txtcontrasena.Text = dt.Rows(0)("contrasena")
+        cbRol.SelectedValue = dt.Rows(0)("idRol")
+        If dt.Rows(0)("estado") = 1 Then
+            cbEstado.Checked = True
+        End If
+        dgvBusqueda.Columns.Clear()
+        tslModificar_Click(Nothing, Nothing)
+    End Sub
+
 End Class

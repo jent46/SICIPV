@@ -54,9 +54,55 @@ Public Class DLL_Factura
         Return estado
     End Function
 
-    Public Function modificarBD(ByVal pfactura As ClsFactura, ByVal mensaje As String) As Boolean
+    Public Function modificarBD(ByVal factura As ClsFactura, ByVal mensaje As String) As Boolean
+        getConexion()
+        Dim comando As New MySqlCommand
+        Dim estado As Boolean = False
+        comando.CommandType = CommandType.StoredProcedure
+        comando.CommandText = "UPD_Factura"
 
-        Return True
+        comando.Parameters.AddWithValue("_idFactura", factura.IdFactura)
+        comando.Parameters.AddWithValue("_idTipoVenta", factura.IdTipoVenta)
+        comando.Parameters.AddWithValue("_idPersona", factura.IdPersona)
+        comando.Parameters.AddWithValue("_idGarante", factura.IdGarante)
+        comando.Parameters.AddWithValue("_idUsuarioCreacion", factura.IdUsuarioCreacion)
+        comando.Parameters.AddWithValue("_idUsuarioModificacion", factura.IdUsuarioModificacion)
+        comando.Parameters.AddWithValue("_numeroFactura", factura.NumeroFactura)
+        comando.Parameters.AddWithValue("_numeroContrato", factura.NumeroContrato)
+        comando.Parameters.AddWithValue("_fechaVenta", factura.FechaVenta)
+        comando.Parameters.AddWithValue("_subtotal", factura.Subtotal)
+        comando.Parameters.AddWithValue("_iva", factura.Iva)
+        comando.Parameters.AddWithValue("_porcentajeDescuento", factura.PorcentajeDescuento)
+        comando.Parameters.AddWithValue("_descuento", factura.Descuento)
+        comando.Parameters.AddWithValue("_estado", factura.Estado)
+        comando.Parameters.AddWithValue("_cuotas", factura.Cuotas)
+        comando.Parameters.AddWithValue("_clienteNombre", factura.ClienteNombre)
+        comando.Parameters.AddWithValue("_clienteCedula", factura.ClienteCedula)
+        comando.Parameters.AddWithValue("_clienteTelefono", factura.ClienteTelefono)
+        comando.Parameters.AddWithValue("_clienteDireccion", factura.ClienteDireccion)
+        comando.Parameters.AddWithValue("_garanteNombre", factura.GaranteNombre)
+        comando.Parameters.AddWithValue("_garanteCedula", factura.GaranteCedula)
+        comando.Parameters.AddWithValue("_garanteTelefono", factura.GaranteTelefono)
+        comando.Parameters.AddWithValue("_garanteDireccion", factura.GaranteDireccion)
+        comando.Parameters.AddWithValue("_fechaCreacion", factura.FechaCreacion)
+        comando.Parameters.AddWithValue("_fechaModificacion", factura.FechaModificacion)
+
+
+
+        Try
+            comando.Connection = conn
+            conn.Open()
+            comando.ExecuteNonQuery()
+            estado = True
+        Catch ex As Exception
+            estado = False
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
+
+        Return estado
     End Function
 
     Public Function ConsultarFacturasPorNombreCliente(ByVal nombre As String, ByRef mensaje As String) As DataTable
