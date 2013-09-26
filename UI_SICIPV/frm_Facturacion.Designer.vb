@@ -47,6 +47,7 @@ Partial Class frm_Facturacion
         Me.gbInfoGeneral = New System.Windows.Forms.GroupBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txtCedula = New System.Windows.Forms.TextBox()
+        Me.btnEditarCliente = New System.Windows.Forms.Button()
         Me.btnBuscarCliente = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.cbTipoVenta = New System.Windows.Forms.ComboBox()
@@ -81,6 +82,7 @@ Partial Class frm_Facturacion
         Me.gbGarante = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtCedulaGarante = New System.Windows.Forms.TextBox()
+        Me.btnEditarGarante = New System.Windows.Forms.Button()
         Me.btnBuscarGarante = New System.Windows.Forms.Button()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.txtGarante = New System.Windows.Forms.TextBox()
@@ -89,6 +91,11 @@ Partial Class frm_Facturacion
         Me.txtDireccionGarante = New System.Windows.Forms.TextBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
+        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ValorUnitario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ValorToral = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gbProductos.SuspendLayout()
         CType(Me.dgvProductos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -146,6 +153,7 @@ Partial Class frm_Facturacion
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.Size = New System.Drawing.Size(145, 20)
         Me.txtTotal.TabIndex = 11
+        Me.txtTotal.Text = "0"
         '
         'Label13
         '
@@ -163,6 +171,7 @@ Partial Class frm_Facturacion
         Me.txtIva.Name = "txtIva"
         Me.txtIva.Size = New System.Drawing.Size(145, 20)
         Me.txtIva.TabIndex = 9
+        Me.txtIva.Text = "0"
         '
         'Label14
         '
@@ -180,6 +189,7 @@ Partial Class frm_Facturacion
         Me.txtDescuento.Name = "txtDescuento"
         Me.txtDescuento.Size = New System.Drawing.Size(145, 20)
         Me.txtDescuento.TabIndex = 7
+        Me.txtDescuento.Text = "0"
         '
         'Label12
         '
@@ -197,6 +207,7 @@ Partial Class frm_Facturacion
         Me.txtSubtotal.Name = "txtSubtotal"
         Me.txtSubtotal.Size = New System.Drawing.Size(145, 20)
         Me.txtSubtotal.TabIndex = 5
+        Me.txtSubtotal.Text = "0"
         '
         'Label11
         '
@@ -212,6 +223,7 @@ Partial Class frm_Facturacion
         Me.dgvProductos.AllowUserToAddRows = False
         Me.dgvProductos.AllowUserToDeleteRows = False
         Me.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvProductos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.Cantidad, Me.Descripcion, Me.ValorUnitario, Me.ValorToral})
         Me.dgvProductos.Location = New System.Drawing.Point(40, 34)
         Me.dgvProductos.Name = "dgvProductos"
         Me.dgvProductos.ReadOnly = True
@@ -288,6 +300,7 @@ Partial Class frm_Facturacion
         '
         Me.gbInfoGeneral.Controls.Add(Me.Label17)
         Me.gbInfoGeneral.Controls.Add(Me.txtCedula)
+        Me.gbInfoGeneral.Controls.Add(Me.btnEditarCliente)
         Me.gbInfoGeneral.Controls.Add(Me.btnBuscarCliente)
         Me.gbInfoGeneral.Controls.Add(Me.Label16)
         Me.gbInfoGeneral.Controls.Add(Me.cbTipoVenta)
@@ -332,6 +345,15 @@ Partial Class frm_Facturacion
         Me.txtCedula.Name = "txtCedula"
         Me.txtCedula.Size = New System.Drawing.Size(161, 20)
         Me.txtCedula.TabIndex = 5
+        '
+        'btnEditarCliente
+        '
+        Me.btnEditarCliente.Location = New System.Drawing.Point(295, 48)
+        Me.btnEditarCliente.Name = "btnEditarCliente"
+        Me.btnEditarCliente.Size = New System.Drawing.Size(28, 23)
+        Me.btnEditarCliente.TabIndex = 12
+        Me.btnEditarCliente.Text = "E"
+        Me.btnEditarCliente.UseVisualStyleBackColor = True
         '
         'btnBuscarCliente
         '
@@ -611,6 +633,7 @@ Partial Class frm_Facturacion
         '
         Me.gbGarante.Controls.Add(Me.Label2)
         Me.gbGarante.Controls.Add(Me.txtCedulaGarante)
+        Me.gbGarante.Controls.Add(Me.btnEditarGarante)
         Me.gbGarante.Controls.Add(Me.btnBuscarGarante)
         Me.gbGarante.Controls.Add(Me.Label18)
         Me.gbGarante.Controls.Add(Me.txtGarante)
@@ -641,6 +664,15 @@ Partial Class frm_Facturacion
         Me.txtCedulaGarante.Name = "txtCedulaGarante"
         Me.txtCedulaGarante.Size = New System.Drawing.Size(161, 20)
         Me.txtCedulaGarante.TabIndex = 5
+        '
+        'btnEditarGarante
+        '
+        Me.btnEditarGarante.Location = New System.Drawing.Point(290, 19)
+        Me.btnEditarGarante.Name = "btnEditarGarante"
+        Me.btnEditarGarante.Size = New System.Drawing.Size(28, 23)
+        Me.btnEditarGarante.TabIndex = 12
+        Me.btnEditarGarante.Text = "E"
+        Me.btnEditarGarante.UseVisualStyleBackColor = True
         '
         'btnBuscarGarante
         '
@@ -711,6 +743,39 @@ Partial Class frm_Facturacion
         Me.Label28.Size = New System.Drawing.Size(48, 13)
         Me.Label28.TabIndex = 0
         Me.Label28.Text = "Garante:"
+        '
+        'id
+        '
+        Me.id.HeaderText = "Id"
+        Me.id.Name = "id"
+        Me.id.ReadOnly = True
+        Me.id.Visible = False
+        '
+        'Cantidad
+        '
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 70
+        '
+        'Descripcion
+        '
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 505
+        '
+        'ValorUnitario
+        '
+        Me.ValorUnitario.HeaderText = "Valor Unitario"
+        Me.ValorUnitario.Name = "ValorUnitario"
+        Me.ValorUnitario.ReadOnly = True
+        '
+        'ValorToral
+        '
+        Me.ValorToral.HeaderText = "Valor Toral"
+        Me.ValorToral.Name = "ValorToral"
+        Me.ValorToral.ReadOnly = True
         '
         'frm_Facturacion
         '
@@ -812,4 +877,11 @@ Partial Class frm_Facturacion
     Friend WithEvents Label27 As System.Windows.Forms.Label
     Friend WithEvents Label28 As System.Windows.Forms.Label
     Public WithEvents txtCedulaGarante As System.Windows.Forms.TextBox
+    Friend WithEvents btnEditarCliente As System.Windows.Forms.Button
+    Friend WithEvents btnEditarGarante As System.Windows.Forms.Button
+    Friend WithEvents id As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ValorUnitario As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ValorToral As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

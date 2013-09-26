@@ -178,35 +178,48 @@ Public Class frm_Facturacion
 
         Dim dt As DataTable = Nothing
 
-        If txtCedula.Text = "" Or Integer.TryParse(txtCedula.Text, New Integer) Or txtCedula.TextLength = 10 Or txtCedula.TextLength = 13 Then
+        If txtCedula.Text = "" Or Not Long.TryParse(txtCedula.Text, New Long) Or (txtCedula.TextLength <> 10 And txtCedula.TextLength <> 13) Then
             ErrorProvider1.SetError(txtCedula, "Cedula es requerido")
         Else
             ErrorProvider1.Clear()
             dt = BLL_Persona.ConsultarPersonasPorCedula(txtCedula.Text, mensaje)
+            Try
+                If dt.Rows.Count <> 1 Then
+                    MsgBox("No existen Clientes con esa cedula", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+                Else
+                    txtCedula.Enabled = False
+                    txtCliente.Text = dt.Rows(0)("nombre")
+                    txtTelefono.Text = dt.Rows(0)("telefono")
+                    txtDireccion.Text = dt.Rows(0)("direccion")
+                End If
+            Catch ex As Exception
+                MsgBox("No existen Clientes con esa cedula", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+            End Try
         End If
 
-        If IsNothing(dt) Then
-
-        Else
-            MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
-        End If
 
     End Sub
 
     Private Sub btnBuscarGarante_Click(sender As Object, e As EventArgs) Handles btnBuscarGarante.Click
         Dim dt As DataTable = Nothing
 
-        If txtCedulaGarante.Text = "" Or Integer.TryParse(txtCedulaGarante.Text, New Integer) Or txtCedulaGarante.TextLength = 10 Or txtCedulaGarante.TextLength = 13 Then
+        If txtCedula.Text = "" Or Not Long.TryParse(txtCedula.Text, New Long) Or (txtCedula.TextLength <> 10 And txtCedula.TextLength <> 13) Then
             ErrorProvider1.SetError(txtCedula, "Cedula es requerido")
         Else
             ErrorProvider1.Clear()
             dt = BLL_Persona.ConsultarPersonasPorCedula(txtCedula.Text, mensaje)
-        End If
-
-        If IsNothing(dt) Then
-
-        Else
-            MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+            Try
+                If dt.Rows.Count <> 1 Then
+                    MsgBox("No existen Clientes con esa cedula", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+                Else
+                    txtGarante.Enabled = False
+                    txtGarante.Text = dt.Rows(0)("nombre")
+                    txtTelefonoGarante.Text = dt.Rows(0)("telefono")
+                    txtDireccionGarante.Text = dt.Rows(0)("direccion")
+                End If
+            Catch ex As Exception
+                MsgBox("No existen Clientes con esa cedula", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+            End Try
         End If
     End Sub
 
@@ -242,6 +255,38 @@ Public Class frm_Facturacion
                 MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
             End If
         End If
+
+    End Sub
+
+    Private Sub btnEditarCliente_Click(sender As Object, e As EventArgs) Handles btnEditarCliente.Click
+        txtCliente.Enabled = True
+        txtCliente.Text = String.Empty
+        txtTelefono.Text = String.Empty
+        txtDireccion.Text = String.Empty
+
+    End Sub
+
+    Private Sub btnEditarGarante_Click(sender As Object, e As EventArgs) Handles btnEditarGarante.Click
+        txtGarante.Enabled = True
+        txtGarante.Text = String.Empty
+        txtTelefonoGarante.Text = String.Empty
+        txtDireccionGarante.Text = String.Empty
+    End Sub
+
+    Private Sub btnAnadir_Click(sender As Object, e As EventArgs) Handles btnAnadir.Click
+        frm_IngresarProductoFactura.MdiParent = Me.MdiParent
+        frm_IngresarProductoFactura.Show()
+    End Sub
+
+    Public Sub agregarProducto(ByVal prod As ClsProducto)
+        dgvProductos.Rows.Add(prod.Valor, 1, prod.Pvp, prod.Pvp)
+        txtSubtotal.Text = CDbl(txtSubtotal.Text) + prod.Pvp
+        txtDescuento.Text = CDbl(txtSubtotal.Text) * CDbl(txtDsctoPorcentaje.Text) / 100
+        txtIva.Text = CDbl(txtIva.Text) * 0.12
+        txtTotal.Text = CDbl(txtSubtotal.Text) - CDbl(txtDescuento.Text) + CDbl(txtIva.Text)
+    End Sub
+
+    Private Sub dgvProductos_CellContentClick(sender As Object, e As Windows.Forms.DataGridViewCellEventArgs) Handles dgvProductos.CellValueChanged
 
     End Sub
 End Class

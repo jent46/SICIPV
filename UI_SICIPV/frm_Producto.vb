@@ -238,4 +238,6 @@ Public Class frm_Producto
     Private Sub txtBusqueda_TextChanged(sender As Object, e As EventArgs) Handles txtBusqueda.KeyUp
         btnBuscar_Click(Nothing, Nothing)
     End Sub
+
+
 End Class
