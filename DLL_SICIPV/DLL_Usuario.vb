@@ -62,6 +62,7 @@ Public Class DLL_Usuario
                     usuario.Nombre = item("nombre")
                     usuario.Apellido = item("apellido")
                 Next
+                mensaje = "Ingreso Exitosamente!!"
 
             End If
 

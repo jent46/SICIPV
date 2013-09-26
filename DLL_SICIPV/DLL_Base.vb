@@ -11,8 +11,8 @@ Public Class DLL_Base
             cadena.Database = "base"
             cadena.Server = "localhost"
             cadena.UserID = "root"
-            cadena.Password = "1234"
-            cadena.Port = "3305"
+            cadena.Password = "root"
+            cadena.Port = "3306"
 
             conn = New MySqlConnection(cadena.ConnectionString)
         End If

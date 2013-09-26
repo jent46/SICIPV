@@ -9,7 +9,7 @@
     Private _idUsuarioModificacion As ClsUsuario
     Private _nombre As String
     Private _apellido As String
-    Private _cedula As Integer
+    Private _cedula As String
     Private _telefono As String
     Private _direccion As String
     Private _fechaNacimiento As Date
@@ -72,11 +72,11 @@
         End Set
     End Property
 
-    Public Property Cedula() As Integer
+    Public Property Cedula() As String
         Get
             Return _cedula
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As String)
             _cedula = value
         End Set
     End Property

@@ -5,16 +5,17 @@ Public Class DLL_Persona
     Inherits DLL_Base
 
 
-    Public Function ingresarBD(ByVal persona As ClsPersona, ByVal mensaje As String) As Boolean
+    Public Function ingresarBD(ByVal persona As ClsPersona, ByRef mensaje As String) As Boolean
         getConexion()
+
         Dim comando As New MySqlCommand
         Dim estado As Boolean = False
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "INS_Persona"
 
-        comando.Parameters.AddWithValue("_idEstadoCivil", persona.IdEstadoCivil)
-        comando.Parameters.AddWithValue("_idUsuarioCreacion", persona.IdUsuarioCreacion)
-        comando.Parameters.AddWithValue("_idUsuarioModificacion", persona.IdUsuarioModificacion)
+        comando.Parameters.AddWithValue("_idEstadoCivil", persona.IdEstadoCivil.IdEstadoCivil)
+        comando.Parameters.AddWithValue("_idUsuarioCreacion", persona.IdUsuarioCreacion.IdUsuario)
+        comando.Parameters.AddWithValue("_idUsuarioModificacion", persona.IdUsuarioModificacion.IdUsuario)
         comando.Parameters.AddWithValue("_nombre", persona.Nombre)
         comando.Parameters.AddWithValue("_apellido", persona.Apellido)
         comando.Parameters.AddWithValue("_cedula", persona.Cedula)
@@ -26,12 +27,15 @@ Public Class DLL_Persona
         comando.Parameters.AddWithValue("_fechaModificacion", persona.FechaModificacion)
 
         Try
+            mensaje = ""
             comando.Connection = conn
             conn.Open()
             comando.ExecuteNonQuery()
             estado = True
+            mensaje = "Ingresado Exitosamente!"
         Catch ex As Exception
             estado = False
+            mensaje = "Ocurrió un error no se pudo ingresar!"
         Finally
             If conn.State = ConnectionState.Open Then
                 conn.Close()
@@ -41,7 +45,7 @@ Public Class DLL_Persona
         Return estado
     End Function
 
-    Public Function modificarBD(ByVal ppersona As ClsPersona, ByVal mensaje As String) As Boolean
+    Public Function modificarBD(ByVal ppersona As ClsPersona, ByRef mensaje As String) As Boolean
 
         Return True
     End Function
@@ -77,7 +81,7 @@ Public Class DLL_Persona
         Return dt
     End Function
 
-    Public Function ConsultarPersonasPorCedula(ByVal cedula As Integer, ByRef mensaje As String) As DataTable
+    Public Function ConsultarPersonasPorCedula(ByVal cedula As String, ByRef mensaje As String) As DataTable
         getConexion()
         Dim comando As New MySqlCommand
         comando.CommandType = CommandType.StoredProcedure

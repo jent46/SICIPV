@@ -6,16 +6,17 @@ Public Class frm_principal
     Dim mensaje As String = "Usuario correcto"
     Private Sub frm_principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         gbIngreso.Visible = True
-        deshabilitar()
+        ''deshabilitar()
 
     End Sub
 
     Private Sub btnIngresar_Click(sender As Object, e As EventArgs) Handles btnIngresar.Click
+        mensaje = ""
         usuario = BLL_Usuario.login(txtUsuario.Text, txtClave.Text, mensaje)
         ''frm_Persona.MdiParent = Me
         ''frm_Persona.Show()
         If IsNothing(usuario) Then
-            MsgBox("usuario no se pudo logear", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+            MsgBox(mensaje, MsgBoxStyle.Critical, My.Settings.NOMBREAPP)
             txtClave.Text = String.Empty
             txtUsuario.Text = String.Empty
         Else
@@ -38,6 +39,7 @@ Public Class frm_principal
     Private Sub ClienteToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ClienteToolStripMenuItem1.Click
         frm_Persona.MdiParent = Me
         frm_Persona.Show()
+        frm_Persona.usuario = Me.usuario
     End Sub
 
     Private Sub ProductoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductoToolStripMenuItem.Click

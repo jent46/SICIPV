@@ -4,7 +4,7 @@ Imports System.Windows.Forms
 
 Public Class frm_Persona
 
-
+    Public usuario As ClsUsuario
     Private operacion As String = ""
     Private mensaje As String = ""
 
@@ -35,6 +35,7 @@ Public Class frm_Persona
             tslConsultar.Enabled = True
             btnAceptar.Enabled = True
             operacion = ""
+            limpiarCampos()
         End If
 
     End Sub
@@ -74,8 +75,9 @@ Public Class frm_Persona
         txtCedula.Text = String.Empty
         txtTelefono.Text = String.Empty
         txtDireccion.Text = String.Empty
-        cbEstadoCivil.SelectedValue = String.Empty
-
+        cbEstadoCivil.SelectedValue = -1
+        dgvBusqueda.Columns.Clear()
+        txtBusqueda.Text = String.Empty
     End Sub
 
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
@@ -87,7 +89,8 @@ Public Class frm_Persona
             persona.Telefono = txtTelefono.Text
             persona.Direccion = txtDireccion.Text
             persona.FechaNacimiento = dtpFechaNacimiento.Value.Date
-            persona.IdEstadoCivil = cbEstadoCivil.SelectedValue
+            persona.IdEstadoCivil = New ClsEstadoCivil()
+            persona.IdEstadoCivil.IdEstadoCivil = cbEstadoCivil.SelectedValue
             persona.FechaModificacion = Date.Now
 
             If cbEstado.Checked Then
@@ -98,18 +101,23 @@ Public Class frm_Persona
 
             Select Case operacion
                 Case "I"
+                    persona.IdUsuarioCreacion = usuario
+                    persona.IdUsuarioModificacion = usuario
                     persona.FechaCreacion = Now
                     If BLL_Persona.ingresarBD(persona, mensaje) Then
                         limpiarCampos()
-                        MsgBox("Cliente ingresado correctamente", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
                     End If
+                    MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+
                 Case "M"
+                    persona.IdUsuarioModificacion = usuario
                     If BLL_Persona.modificarBD(persona, mensaje) Then
-
+                        limpiarCampos()
                     End If
-            End Select
+                    MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
 
-            MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+            End Select
+            
 
         End If
     End Sub
@@ -134,17 +142,17 @@ Public Class frm_Persona
             resultado = False
         End If
 
-        If (txtCedula.Text.Length <> 10) Then
-            MessageBox.Show("LA CEDULA CONTIENE 10 DIGITOS", "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            txtCedula.Text = String.Empty
+        'If (txtCedula.Text.Length <> 10) Then
+        '    MessageBox.Show("LA CEDULA CONTIENE 10 DIGITOS", "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        '    txtCedula.Text = String.Empty
+        '    ErrorProvider1.SetError(txtCedula, "Cedula es requerido")
+        '    Return False
+        'End If
+        Dim b As Boolean = Long.TryParse(txtCedula.Text, New Long)
+        If txtCedula.Text = "" Or Not Long.TryParse(txtCedula.Text, New Long) Or (txtCedula.TextLength <> 10 And txtCedula.TextLength <> 13) Then
             ErrorProvider1.SetError(txtCedula, "Cedula es requerido")
-            Return False
+            resultado = False
         End If
-
-        ''If txtCedula.Text = "" Or Integer.TryParse(txtCedula.Text, New Integer) Or txtCedula.TextLength = 10 Or txtCedula.TextLength = 13 Then
-        ''ErrorProvider1.SetError(txtCedula, "Cedula es requerido")
-        ''resultado = False
-        ''End If
 
         If txtDireccion.Text = "" Then
             ErrorProvider1.SetError(txtDireccion, "Direccion es requerido")
@@ -161,7 +169,7 @@ Public Class frm_Persona
             resultado = False
         End If
 
-        If cbEstadoCivil.SelectedIndex <> -1 Then
+        If cbEstadoCivil.SelectedIndex = -1 Then
             ErrorProvider1.SetError(cbEstadoCivil, "Estado Civil es requerido")
             resultado = False
         End If
@@ -170,7 +178,7 @@ Public Class frm_Persona
     End Function
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
-
+        Dim dc As DataColumn
         If txtBusqueda.Text = "" Then
             ErrorProvider1.SetError(txtBusqueda, "Este campo no puede estar vacio")
         ElseIf rbCedula.Checked And Not Integer.TryParse(txtBusqueda.Text, New Integer) Then
@@ -178,7 +186,6 @@ Public Class frm_Persona
         Else
             ErrorProvider1.Clear()
             dgvBusqueda.Columns.Clear()
-            dgvBusqueda.Rows.Clear()
             Dim dt As DataTable = Nothing
 
             If rbCedula.Checked Then
@@ -186,12 +193,17 @@ Public Class frm_Persona
             ElseIf rbNombre.Checked Then
                 dt = BLL_Persona.ConsultarPersonasPorNombre(txtBusqueda.Text, mensaje)
             End If
-
-            If IsNothing(dt) Then
-                dgvBusqueda.DataSource = dt
-            Else
+            Try
+                If dt.Rows.Count <> 0 Then
+                    dgvBusqueda.DataSource = dt
+                    dgvBusqueda.Columns("Id").Visible = False
+                Else
+                    MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+                End If
+            Catch
                 MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
-            End If
+            End Try
+
         End If
 
     End Sub
@@ -199,6 +211,23 @@ Public Class frm_Persona
 
     Private Sub frm_Persona_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.SetBounds(0, 0, 527, 482)
+        cbEstadoCivil.DataSource = BLL_EstadoCivil.ConsultarEstadoCivilTodos(mensaje)
+        cbEstadoCivil.DisplayMember = "descripcion"
+        cbEstadoCivil.ValueMember = "idEstadoCivil"
+        cbEstadoCivil.SelectedIndex = -1
     End Sub
 
+
+    Private Sub rbCedula_CheckedChanged(sender As Object, e As EventArgs) Handles rbCedula.CheckedChanged, rbNombre.CheckedChanged
+        txtBusqueda.Text = String.Empty
+    End Sub
+
+    Private Sub dgvBusqueda_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
+        Dim dr As DataGridViewRow = dgvBusqueda.Rows(e.RowIndex)
+        MsgBox(dr.Cells(0).Value, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+
+        Dim persona As New ClsPersona()
+
+
+    End Sub
 End Class
