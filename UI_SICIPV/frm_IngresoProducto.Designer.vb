@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frm_Producto
+Partial Class frm_IngresoProducto
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -29,33 +29,30 @@ Partial Class frm_Producto
         Me.tslModificar = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.tslConsultar = New System.Windows.Forms.ToolStripLabel()
-        Me.gbProducto = New System.Windows.Forms.GroupBox()
-        Me.cbEstado = New System.Windows.Forms.CheckBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtStock = New System.Windows.Forms.TextBox()
-        Me.txtPvp = New System.Windows.Forms.TextBox()
-        Me.txtValor = New System.Windows.Forms.TextBox()
-        Me.txtDescripcion = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.gbBuscar = New System.Windows.Forms.GroupBox()
         Me.dgvBusqueda = New System.Windows.Forms.DataGridView()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.btnBuscar = New System.Windows.Forms.Button()
         Me.txtBusqueda = New System.Windows.Forms.TextBox()
+        Me.gbProducto = New System.Windows.Forms.GroupBox()
+        Me.cbProducto = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
+        Me.cbEstado = New System.Windows.Forms.CheckBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtCantidad = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlBotones = New System.Windows.Forms.Panel()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.btnAceptar = New System.Windows.Forms.Button()
-        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ToolStrip1.SuspendLayout()
-        Me.gbProducto.SuspendLayout()
+        Me.FlowLayoutPanel1.SuspendLayout()
         Me.gbBuscar.SuspendLayout()
         CType(Me.dgvBusqueda, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbProducto.SuspendLayout()
         Me.pnlBotones.SuspendLayout()
-        Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -64,8 +61,8 @@ Partial Class frm_Producto
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tslIngresar, Me.ToolStripSeparator1, Me.tslModificar, Me.ToolStripSeparator2, Me.tslConsultar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(551, 25)
-        Me.ToolStrip1.TabIndex = 22
+        Me.ToolStrip1.Size = New System.Drawing.Size(522, 25)
+        Me.ToolStrip1.TabIndex = 28
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'tslIngresar
@@ -97,114 +94,20 @@ Partial Class frm_Producto
         Me.tslConsultar.Size = New System.Drawing.Size(58, 22)
         Me.tslConsultar.Text = "Consultar"
         '
-        'gbProducto
+        'FlowLayoutPanel1
         '
-        Me.gbProducto.Controls.Add(Me.cbEstado)
-        Me.gbProducto.Controls.Add(Me.Label8)
-        Me.gbProducto.Controls.Add(Me.txtStock)
-        Me.gbProducto.Controls.Add(Me.txtPvp)
-        Me.gbProducto.Controls.Add(Me.txtValor)
-        Me.gbProducto.Controls.Add(Me.txtDescripcion)
-        Me.gbProducto.Controls.Add(Me.Label4)
-        Me.gbProducto.Controls.Add(Me.Label3)
-        Me.gbProducto.Controls.Add(Me.Label2)
-        Me.gbProducto.Controls.Add(Me.Label1)
-        Me.gbProducto.Location = New System.Drawing.Point(3, 324)
-        Me.gbProducto.Name = "gbProducto"
-        Me.gbProducto.Size = New System.Drawing.Size(464, 164)
-        Me.gbProducto.TabIndex = 23
-        Me.gbProducto.TabStop = False
-        Me.gbProducto.Text = "Informacion Producto"
-        Me.gbProducto.Visible = False
-        '
-        'cbEstado
-        '
-        Me.cbEstado.AutoSize = True
-        Me.cbEstado.Location = New System.Drawing.Point(91, 126)
-        Me.cbEstado.Name = "cbEstado"
-        Me.cbEstado.Size = New System.Drawing.Size(73, 17)
-        Me.cbEstado.TabIndex = 5
-        Me.cbEstado.Text = "Habilitado"
-        Me.cbEstado.UseVisualStyleBackColor = True
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(19, 131)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(40, 13)
-        Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Estado"
-        '
-        'txtStock
-        '
-        Me.txtStock.Location = New System.Drawing.Point(91, 100)
-        Me.txtStock.Name = "txtStock"
-        Me.txtStock.Size = New System.Drawing.Size(73, 20)
-        Me.txtStock.TabIndex = 4
-        '
-        'txtPvp
-        '
-        Me.txtPvp.Location = New System.Drawing.Point(91, 77)
-        Me.txtPvp.Name = "txtPvp"
-        Me.txtPvp.Size = New System.Drawing.Size(73, 20)
-        Me.txtPvp.TabIndex = 3
-        '
-        'txtValor
-        '
-        Me.txtValor.Location = New System.Drawing.Point(91, 53)
-        Me.txtValor.Name = "txtValor"
-        Me.txtValor.Size = New System.Drawing.Size(73, 20)
-        Me.txtValor.TabIndex = 2
-        '
-        'txtDescripcion
-        '
-        Me.txtDescripcion.Location = New System.Drawing.Point(91, 28)
-        Me.txtDescripcion.Name = "txtDescripcion"
-        Me.txtDescripcion.Size = New System.Drawing.Size(356, 20)
-        Me.txtDescripcion.TabIndex = 1
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(19, 107)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(38, 13)
-        Me.Label4.TabIndex = 0
-        Me.Label4.Text = "Stock:"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(19, 84)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(31, 13)
-        Me.Label3.TabIndex = 0
-        Me.Label3.Text = "PVP:"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(19, 60)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(34, 13)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Valor:"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(19, 36)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(66, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Descripcion:"
+        Me.FlowLayoutPanel1.Controls.Add(Me.gbBuscar)
+        Me.FlowLayoutPanel1.Controls.Add(Me.gbProducto)
+        Me.FlowLayoutPanel1.Controls.Add(Me.pnlBotones)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 28)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(471, 568)
+        Me.FlowLayoutPanel1.TabIndex = 29
         '
         'gbBuscar
         '
         Me.gbBuscar.Controls.Add(Me.dgvBusqueda)
         Me.gbBuscar.Controls.Add(Me.Label5)
-        Me.gbBuscar.Controls.Add(Me.btnBuscar)
         Me.gbBuscar.Controls.Add(Me.txtBusqueda)
         Me.gbBuscar.Enabled = False
         Me.gbBuscar.Location = New System.Drawing.Point(3, 3)
@@ -235,21 +138,99 @@ Partial Class frm_Producto
         Me.Label5.TabIndex = 22
         Me.Label5.Text = "Producto:"
         '
-        'btnBuscar
-        '
-        Me.btnBuscar.Location = New System.Drawing.Point(405, 28)
-        Me.btnBuscar.Name = "btnBuscar"
-        Me.btnBuscar.Size = New System.Drawing.Size(26, 23)
-        Me.btnBuscar.TabIndex = 4
-        Me.btnBuscar.Text = "..."
-        Me.btnBuscar.UseVisualStyleBackColor = True
-        '
         'txtBusqueda
         '
         Me.txtBusqueda.Location = New System.Drawing.Point(74, 31)
         Me.txtBusqueda.Name = "txtBusqueda"
         Me.txtBusqueda.Size = New System.Drawing.Size(313, 20)
         Me.txtBusqueda.TabIndex = 3
+        '
+        'gbProducto
+        '
+        Me.gbProducto.Controls.Add(Me.cbProducto)
+        Me.gbProducto.Controls.Add(Me.Label3)
+        Me.gbProducto.Controls.Add(Me.dtpFecha)
+        Me.gbProducto.Controls.Add(Me.cbEstado)
+        Me.gbProducto.Controls.Add(Me.Label8)
+        Me.gbProducto.Controls.Add(Me.txtCantidad)
+        Me.gbProducto.Controls.Add(Me.Label2)
+        Me.gbProducto.Controls.Add(Me.Label1)
+        Me.gbProducto.Location = New System.Drawing.Point(3, 324)
+        Me.gbProducto.Name = "gbProducto"
+        Me.gbProducto.Size = New System.Drawing.Size(464, 164)
+        Me.gbProducto.TabIndex = 23
+        Me.gbProducto.TabStop = False
+        Me.gbProducto.Text = "Ingreso de Producto"
+        Me.gbProducto.Visible = False
+        '
+        'cbProducto
+        '
+        Me.cbProducto.FormattingEnabled = True
+        Me.cbProducto.Location = New System.Drawing.Point(89, 32)
+        Me.cbProducto.Name = "cbProducto"
+        Me.cbProducto.Size = New System.Drawing.Size(238, 21)
+        Me.cbProducto.TabIndex = 25
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(16, 32)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(56, 13)
+        Me.Label3.TabIndex = 24
+        Me.Label3.Text = "Producto :"
+        '
+        'dtpFecha
+        '
+        Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFecha.Location = New System.Drawing.Point(89, 103)
+        Me.dtpFecha.Name = "dtpFecha"
+        Me.dtpFecha.Size = New System.Drawing.Size(106, 20)
+        Me.dtpFecha.TabIndex = 23
+        '
+        'cbEstado
+        '
+        Me.cbEstado.AutoSize = True
+        Me.cbEstado.Location = New System.Drawing.Point(89, 141)
+        Me.cbEstado.Name = "cbEstado"
+        Me.cbEstado.Size = New System.Drawing.Size(73, 17)
+        Me.cbEstado.TabIndex = 5
+        Me.cbEstado.Text = "Habilitado"
+        Me.cbEstado.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(16, 141)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(40, 13)
+        Me.Label8.TabIndex = 22
+        Me.Label8.Text = "Estado"
+        '
+        'txtCantidad
+        '
+        Me.txtCantidad.Location = New System.Drawing.Point(89, 60)
+        Me.txtCantidad.Name = "txtCantidad"
+        Me.txtCantidad.Size = New System.Drawing.Size(73, 20)
+        Me.txtCantidad.TabIndex = 1
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(16, 103)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(40, 13)
+        Me.Label2.TabIndex = 0
+        Me.Label2.Text = "Fecha:"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(16, 63)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(52, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Cantidad:"
         '
         'pnlBotones
         '
@@ -258,7 +239,7 @@ Partial Class frm_Producto
         Me.pnlBotones.Enabled = False
         Me.pnlBotones.Location = New System.Drawing.Point(3, 494)
         Me.pnlBotones.Name = "pnlBotones"
-        Me.pnlBotones.Size = New System.Drawing.Size(464, 55)
+        Me.pnlBotones.Size = New System.Drawing.Size(464, 63)
         Me.pnlBotones.TabIndex = 26
         Me.pnlBotones.Visible = False
         '
@@ -280,39 +261,29 @@ Partial Class frm_Producto
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
-        'FlowLayoutPanel1
-        '
-        Me.FlowLayoutPanel1.Controls.Add(Me.gbBuscar)
-        Me.FlowLayoutPanel1.Controls.Add(Me.gbProducto)
-        Me.FlowLayoutPanel1.Controls.Add(Me.pnlBotones)
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 28)
-        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(485, 586)
-        Me.FlowLayoutPanel1.TabIndex = 27
-        '
         'ErrorProvider1
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'frm_Producto
+        'frm_IngresoProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(551, 634)
+        Me.ClientSize = New System.Drawing.Size(522, 648)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
-        Me.Name = "frm_Producto"
+        Me.Name = "frm_IngresoProducto"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = ".:: Productos ::."
+        Me.Text = "frm_IngresoProducto"
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        Me.gbProducto.ResumeLayout(False)
-        Me.gbProducto.PerformLayout()
+        Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.gbBuscar.ResumeLayout(False)
         Me.gbBuscar.PerformLayout()
         CType(Me.dgvBusqueda, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbProducto.ResumeLayout(False)
+        Me.gbProducto.PerformLayout()
         Me.pnlBotones.ResumeLayout(False)
-        Me.FlowLayoutPanel1.ResumeLayout(False)
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -324,25 +295,22 @@ Partial Class frm_Producto
     Friend WithEvents tslModificar As System.Windows.Forms.ToolStripLabel
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents tslConsultar As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents gbProducto As System.Windows.Forms.GroupBox
-    Friend WithEvents txtStock As System.Windows.Forms.TextBox
-    Friend WithEvents txtPvp As System.Windows.Forms.TextBox
-    Friend WithEvents txtValor As System.Windows.Forms.TextBox
-    Friend WithEvents txtDescripcion As System.Windows.Forms.TextBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents cbEstado As System.Windows.Forms.CheckBox
-    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents gbBuscar As System.Windows.Forms.GroupBox
     Friend WithEvents dgvBusqueda As System.Windows.Forms.DataGridView
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents btnBuscar As System.Windows.Forms.Button
     Friend WithEvents txtBusqueda As System.Windows.Forms.TextBox
+    Friend WithEvents gbProducto As System.Windows.Forms.GroupBox
+    Friend WithEvents cbEstado As System.Windows.Forms.CheckBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents txtCantidad As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents pnlBotones As System.Windows.Forms.Panel
     Friend WithEvents btnCancelar As System.Windows.Forms.Button
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
-    Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
+    Friend WithEvents dtpFecha As System.Windows.Forms.DateTimePicker
     Friend WithEvents ErrorProvider1 As System.Windows.Forms.ErrorProvider
+    Friend WithEvents cbProducto As System.Windows.Forms.ComboBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
 End Class

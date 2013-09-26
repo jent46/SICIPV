@@ -297,6 +297,8 @@ Partial Class frm_Persona
         '
         Me.dgvBusqueda.AllowUserToAddRows = False
         Me.dgvBusqueda.AllowUserToDeleteRows = False
+        Me.dgvBusqueda.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvBusqueda.Location = New System.Drawing.Point(16, 90)
         Me.dgvBusqueda.Name = "dgvBusqueda"
@@ -324,7 +326,7 @@ Partial Class frm_Persona
         '
         Me.rbCedula.AutoSize = True
         Me.rbCedula.Checked = True
-        Me.rbCedula.Location = New System.Drawing.Point(215, 20)
+        Me.rbCedula.Location = New System.Drawing.Point(128, 19)
         Me.rbCedula.Name = "rbCedula"
         Me.rbCedula.Size = New System.Drawing.Size(58, 17)
         Me.rbCedula.TabIndex = 2
@@ -335,7 +337,7 @@ Partial Class frm_Persona
         'rbNombre
         '
         Me.rbNombre.AutoSize = True
-        Me.rbNombre.Location = New System.Drawing.Point(132, 19)
+        Me.rbNombre.Location = New System.Drawing.Point(225, 19)
         Me.rbNombre.Name = "rbNombre"
         Me.rbNombre.Size = New System.Drawing.Size(62, 17)
         Me.rbNombre.TabIndex = 0

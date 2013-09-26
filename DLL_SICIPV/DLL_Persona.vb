@@ -54,9 +54,8 @@ Public Class DLL_Persona
         comando.CommandType = CommandType.StoredProcedure
 
         comando.Parameters.AddWithValue("_idPersona", persona.IdPersona)
-        comando.Parameters.AddWithValue("_idEstadoCivil", persona.IdEstadoCivil)
-        comando.Parameters.AddWithValue("_idUsuarioCreacion", persona.IdUsuarioCreacion)
-        comando.Parameters.AddWithValue("_idUsuarioModificacion", persona.IdUsuarioModificacion)
+        comando.Parameters.AddWithValue("_idEstadoCivil", persona.IdEstadoCivil.IdEstadoCivil)
+        comando.Parameters.AddWithValue("_idUsuarioModificacion", persona.IdUsuarioModificacion.IdUsuario)
         comando.Parameters.AddWithValue("_nombre", persona.Nombre)
         comando.Parameters.AddWithValue("_apellido", persona.Apellido)
         comando.Parameters.AddWithValue("_cedula", persona.Cedula)
@@ -64,7 +63,6 @@ Public Class DLL_Persona
         comando.Parameters.AddWithValue("_direccion", persona.Direccion)
         comando.Parameters.AddWithValue("_estado", persona.Estado)
         comando.Parameters.AddWithValue("_fechaNacimiento", persona.FechaNacimiento)
-        comando.Parameters.AddWithValue("_fechaCreacion", persona.FechaCreacion)
         comando.Parameters.AddWithValue("_fechaModificacion", persona.FechaModificacion)
 
         Try
@@ -74,6 +72,7 @@ Public Class DLL_Persona
             estado = True
         Catch ex As Exception
             estado = False
+            mensaje = ex.Message
         Finally
             If conn.State = ConnectionState.Open Then
                 conn.Close()
