@@ -33,7 +33,8 @@ Public Class frm_IngresarProductoFactura
         btnBuscar_Click(Nothing, Nothing)
     End Sub
 
-    Private Sub dgvBusqueda_CellContentClick(sender As Object, e As Windows.Forms.DataGridViewCellEventArgs) Handles dgvBusqueda.DoubleClick
+  
+    Private Sub dgvBusqueda_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
         Dim dr As DataGridViewRow = dgvBusqueda.Rows(e.RowIndex)
         Dim dt As DataTable = BLL_Producto.ConsultarProductosPorId(dr.Cells("Id").Value, mensaje)
         Dim prod As New ClsProducto()
@@ -45,6 +46,5 @@ Public Class frm_IngresarProductoFactura
         dgvBusqueda.Columns.Clear()
         frm_Facturacion.agregarProducto(prod)
         Me.Hide()
-
     End Sub
 End Class

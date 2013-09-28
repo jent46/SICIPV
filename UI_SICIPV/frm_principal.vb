@@ -34,7 +34,7 @@ Public Class frm_principal
     Private Sub FacturacionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturacionToolStripMenuItem.Click
         frm_Facturacion.MdiParent = Me
         frm_Facturacion.Show()
-
+        frm_Facturacion.usuario = Me.usuario
     End Sub
 
     Private Sub ClienteToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ClienteToolStripMenuItem1.Click

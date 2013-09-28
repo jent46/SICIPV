@@ -215,7 +215,7 @@ Public Class frm_Persona
 
     Private Sub frm_Persona_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.SetBounds(0, 0, 527, 482)
-        cbEstadoCivil.DataSource = BLL_IngreoProducto.ListaProducto(mensaje)
+        cbEstadoCivil.DataSource = BLL_EstadoCivil.ConsultarEstadoCivilTodos(mensaje)
         cbEstadoCivil.DisplayMember = "descripcion"
         cbEstadoCivil.ValueMember = "idEstadoCivil"
         cbEstadoCivil.SelectedIndex = -1

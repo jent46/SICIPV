@@ -24,7 +24,6 @@ Partial Class frm_Facturacion
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.gbProductos = New System.Windows.Forms.GroupBox()
-        Me.btnEliminar = New System.Windows.Forms.Button()
         Me.btnAnadir = New System.Windows.Forms.Button()
         Me.txtTotal = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -45,6 +44,8 @@ Partial Class frm_Facturacion
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.pnlBotones = New System.Windows.Forms.Panel()
         Me.gbInfoGeneral = New System.Windows.Forms.GroupBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txtCedula = New System.Windows.Forms.TextBox()
         Me.btnEditarCliente = New System.Windows.Forms.Button()
@@ -53,11 +54,8 @@ Partial Class frm_Facturacion
         Me.cbTipoVenta = New System.Windows.Forms.ComboBox()
         Me.txtNoFactura = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtInteres = New System.Windows.Forms.TextBox()
-        Me.txtCuotas = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtCliente = New System.Windows.Forms.TextBox()
-        Me.txtDsctoPorcentaje = New System.Windows.Forms.TextBox()
         Me.txtTelefono = New System.Windows.Forms.TextBox()
         Me.txtNoContrato = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -91,11 +89,16 @@ Partial Class frm_Facturacion
         Me.txtDireccionGarante = New System.Windows.Forms.TextBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
+        Me.txtInteres = New System.Windows.Forms.NumericUpDown()
+        Me.txtCuotas = New System.Windows.Forms.NumericUpDown()
+        Me.txtPorcentajeDscto = New System.Windows.Forms.NumericUpDown()
+        Me.btnEliminar = New System.Windows.Forms.Button()
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Costo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ValorUnitario = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ValorToral = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ValorTotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gbProductos.SuspendLayout()
         CType(Me.dgvProductos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -105,6 +108,9 @@ Partial Class frm_Facturacion
         CType(Me.dgvBusqueda, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbGarante.SuspendLayout()
+        CType(Me.txtInteres, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtCuotas, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtPorcentajeDscto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'gbProductos
@@ -128,21 +134,12 @@ Partial Class frm_Facturacion
         Me.gbProductos.Text = "Productos"
         Me.gbProductos.Visible = False
         '
-        'btnEliminar
-        '
-        Me.btnEliminar.Location = New System.Drawing.Point(6, 63)
-        Me.btnEliminar.Name = "btnEliminar"
-        Me.btnEliminar.Size = New System.Drawing.Size(28, 23)
-        Me.btnEliminar.TabIndex = 12
-        Me.btnEliminar.Text = "-"
-        Me.btnEliminar.UseVisualStyleBackColor = True
-        '
         'btnAnadir
         '
         Me.btnAnadir.Location = New System.Drawing.Point(6, 34)
         Me.btnAnadir.Name = "btnAnadir"
         Me.btnAnadir.Size = New System.Drawing.Size(28, 23)
-        Me.btnAnadir.TabIndex = 12
+        Me.btnAnadir.TabIndex = 21
         Me.btnAnadir.Text = "+"
         Me.btnAnadir.UseVisualStyleBackColor = True
         '
@@ -153,7 +150,7 @@ Partial Class frm_Facturacion
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.Size = New System.Drawing.Size(145, 20)
         Me.txtTotal.TabIndex = 11
-        Me.txtTotal.Text = "0"
+        Me.txtTotal.Text = "0.00"
         '
         'Label13
         '
@@ -171,7 +168,7 @@ Partial Class frm_Facturacion
         Me.txtIva.Name = "txtIva"
         Me.txtIva.Size = New System.Drawing.Size(145, 20)
         Me.txtIva.TabIndex = 9
-        Me.txtIva.Text = "0"
+        Me.txtIva.Text = "0.00"
         '
         'Label14
         '
@@ -189,7 +186,7 @@ Partial Class frm_Facturacion
         Me.txtDescuento.Name = "txtDescuento"
         Me.txtDescuento.Size = New System.Drawing.Size(145, 20)
         Me.txtDescuento.TabIndex = 7
-        Me.txtDescuento.Text = "0"
+        Me.txtDescuento.Text = "0.00"
         '
         'Label12
         '
@@ -207,7 +204,7 @@ Partial Class frm_Facturacion
         Me.txtSubtotal.Name = "txtSubtotal"
         Me.txtSubtotal.Size = New System.Drawing.Size(145, 20)
         Me.txtSubtotal.TabIndex = 5
-        Me.txtSubtotal.Text = "0"
+        Me.txtSubtotal.Text = "0.00"
         '
         'Label11
         '
@@ -223,10 +220,9 @@ Partial Class frm_Facturacion
         Me.dgvProductos.AllowUserToAddRows = False
         Me.dgvProductos.AllowUserToDeleteRows = False
         Me.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvProductos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.Cantidad, Me.Descripcion, Me.ValorUnitario, Me.ValorToral})
+        Me.dgvProductos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.Cantidad, Me.Costo, Me.Descripcion, Me.ValorUnitario, Me.ValorTotal})
         Me.dgvProductos.Location = New System.Drawing.Point(40, 34)
         Me.dgvProductos.Name = "dgvProductos"
-        Me.dgvProductos.ReadOnly = True
         Me.dgvProductos.Size = New System.Drawing.Size(820, 159)
         Me.dgvProductos.TabIndex = 0
         '
@@ -235,7 +231,7 @@ Partial Class frm_Facturacion
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tslIngresar, Me.ToolStripSeparator1, Me.tslModificar, Me.ToolStripSeparator2, Me.tslConsultar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(913, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(904, 25)
         Me.ToolStrip1.TabIndex = 22
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -274,7 +270,7 @@ Partial Class frm_Facturacion
         Me.btnAceptar.Name = "btnAceptar"
         Me.btnAceptar.Size = New System.Drawing.Size(75, 23)
         Me.btnAceptar.TabIndex = 5
-        Me.btnAceptar.Text = "Aceptar"
+        Me.btnAceptar.Text = " Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
         'btnCancelar
@@ -298,6 +294,11 @@ Partial Class frm_Facturacion
         '
         'gbInfoGeneral
         '
+        Me.gbInfoGeneral.Controls.Add(Me.txtCuotas)
+        Me.gbInfoGeneral.Controls.Add(Me.txtPorcentajeDscto)
+        Me.gbInfoGeneral.Controls.Add(Me.txtInteres)
+        Me.gbInfoGeneral.Controls.Add(Me.Label20)
+        Me.gbInfoGeneral.Controls.Add(Me.Label19)
         Me.gbInfoGeneral.Controls.Add(Me.Label17)
         Me.gbInfoGeneral.Controls.Add(Me.txtCedula)
         Me.gbInfoGeneral.Controls.Add(Me.btnEditarCliente)
@@ -306,11 +307,8 @@ Partial Class frm_Facturacion
         Me.gbInfoGeneral.Controls.Add(Me.cbTipoVenta)
         Me.gbInfoGeneral.Controls.Add(Me.txtNoFactura)
         Me.gbInfoGeneral.Controls.Add(Me.Label5)
-        Me.gbInfoGeneral.Controls.Add(Me.txtInteres)
-        Me.gbInfoGeneral.Controls.Add(Me.txtCuotas)
         Me.gbInfoGeneral.Controls.Add(Me.Label6)
         Me.gbInfoGeneral.Controls.Add(Me.txtCliente)
-        Me.gbInfoGeneral.Controls.Add(Me.txtDsctoPorcentaje)
         Me.gbInfoGeneral.Controls.Add(Me.txtTelefono)
         Me.gbInfoGeneral.Controls.Add(Me.txtNoContrato)
         Me.gbInfoGeneral.Controls.Add(Me.Label7)
@@ -331,6 +329,26 @@ Partial Class frm_Facturacion
         Me.gbInfoGeneral.Text = "Información General"
         Me.gbInfoGeneral.Visible = False
         '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(851, 74)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(20, 16)
+        Me.Label20.TabIndex = 15
+        Me.Label20.Text = "%"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(850, 29)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(20, 16)
+        Me.Label19.TabIndex = 14
+        Me.Label19.Text = "%"
+        '
         'Label17
         '
         Me.Label17.AutoSize = True
@@ -344,14 +362,14 @@ Partial Class frm_Facturacion
         Me.txtCedula.Location = New System.Drawing.Point(94, 50)
         Me.txtCedula.Name = "txtCedula"
         Me.txtCedula.Size = New System.Drawing.Size(161, 20)
-        Me.txtCedula.TabIndex = 5
+        Me.txtCedula.TabIndex = 3
         '
         'btnEditarCliente
         '
         Me.btnEditarCliente.Location = New System.Drawing.Point(295, 48)
         Me.btnEditarCliente.Name = "btnEditarCliente"
         Me.btnEditarCliente.Size = New System.Drawing.Size(28, 23)
-        Me.btnEditarCliente.TabIndex = 12
+        Me.btnEditarCliente.TabIndex = 5
         Me.btnEditarCliente.Text = "E"
         Me.btnEditarCliente.UseVisualStyleBackColor = True
         '
@@ -360,7 +378,7 @@ Partial Class frm_Facturacion
         Me.btnBuscarCliente.Location = New System.Drawing.Point(261, 48)
         Me.btnBuscarCliente.Name = "btnBuscarCliente"
         Me.btnBuscarCliente.Size = New System.Drawing.Size(28, 23)
-        Me.btnBuscarCliente.TabIndex = 12
+        Me.btnBuscarCliente.TabIndex = 4
         Me.btnBuscarCliente.Text = "..."
         Me.btnBuscarCliente.UseVisualStyleBackColor = True
         '
@@ -375,11 +393,12 @@ Partial Class frm_Facturacion
         '
         'cbTipoVenta
         '
+        Me.cbTipoVenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbTipoVenta.FormattingEnabled = True
         Me.cbTipoVenta.Location = New System.Drawing.Point(493, 49)
         Me.cbTipoVenta.Name = "cbTipoVenta"
         Me.cbTipoVenta.Size = New System.Drawing.Size(205, 21)
-        Me.cbTipoVenta.TabIndex = 3
+        Me.cbTipoVenta.TabIndex = 9
         '
         'txtNoFactura
         '
@@ -397,20 +416,6 @@ Partial Class frm_Facturacion
         Me.Label5.TabIndex = 0
         Me.Label5.Text = "No. Contrato:"
         '
-        'txtInteres
-        '
-        Me.txtInteres.Location = New System.Drawing.Point(807, 73)
-        Me.txtInteres.Name = "txtInteres"
-        Me.txtInteres.Size = New System.Drawing.Size(54, 20)
-        Me.txtInteres.TabIndex = 2
-        '
-        'txtCuotas
-        '
-        Me.txtCuotas.Location = New System.Drawing.Point(807, 49)
-        Me.txtCuotas.Name = "txtCuotas"
-        Me.txtCuotas.Size = New System.Drawing.Size(54, 20)
-        Me.txtCuotas.TabIndex = 2
-        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -426,14 +431,7 @@ Partial Class frm_Facturacion
         Me.txtCliente.Location = New System.Drawing.Point(94, 72)
         Me.txtCliente.Name = "txtCliente"
         Me.txtCliente.Size = New System.Drawing.Size(301, 20)
-        Me.txtCliente.TabIndex = 2
-        '
-        'txtDsctoPorcentaje
-        '
-        Me.txtDsctoPorcentaje.Location = New System.Drawing.Point(807, 26)
-        Me.txtDsctoPorcentaje.Name = "txtDsctoPorcentaje"
-        Me.txtDsctoPorcentaje.Size = New System.Drawing.Size(54, 20)
-        Me.txtDsctoPorcentaje.TabIndex = 2
+        Me.txtCliente.TabIndex = 6
         '
         'txtTelefono
         '
@@ -441,14 +439,14 @@ Partial Class frm_Facturacion
         Me.txtTelefono.Location = New System.Drawing.Point(493, 72)
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(205, 20)
-        Me.txtTelefono.TabIndex = 2
+        Me.txtTelefono.TabIndex = 10
         '
         'txtNoContrato
         '
         Me.txtNoContrato.Location = New System.Drawing.Point(493, 26)
         Me.txtNoContrato.Name = "txtNoContrato"
         Me.txtNoContrato.Size = New System.Drawing.Size(205, 20)
-        Me.txtNoContrato.TabIndex = 2
+        Me.txtNoContrato.TabIndex = 8
         '
         'Label7
         '
@@ -466,14 +464,14 @@ Partial Class frm_Facturacion
         Me.txtDireccion.Multiline = True
         Me.txtDireccion.Name = "txtDireccion"
         Me.txtDireccion.Size = New System.Drawing.Size(301, 43)
-        Me.txtDireccion.TabIndex = 2
+        Me.txtDireccion.TabIndex = 7
         '
         'dtpFecha
         '
         Me.dtpFecha.Location = New System.Drawing.Point(493, 95)
         Me.dtpFecha.Name = "dtpFecha"
         Me.dtpFecha.Size = New System.Drawing.Size(205, 20)
-        Me.dtpFecha.TabIndex = 1
+        Me.dtpFecha.TabIndex = 11
         '
         'Label3
         '
@@ -663,14 +661,14 @@ Partial Class frm_Facturacion
         Me.txtCedulaGarante.Location = New System.Drawing.Point(89, 21)
         Me.txtCedulaGarante.Name = "txtCedulaGarante"
         Me.txtCedulaGarante.Size = New System.Drawing.Size(161, 20)
-        Me.txtCedulaGarante.TabIndex = 5
+        Me.txtCedulaGarante.TabIndex = 15
         '
         'btnEditarGarante
         '
         Me.btnEditarGarante.Location = New System.Drawing.Point(290, 19)
         Me.btnEditarGarante.Name = "btnEditarGarante"
         Me.btnEditarGarante.Size = New System.Drawing.Size(28, 23)
-        Me.btnEditarGarante.TabIndex = 12
+        Me.btnEditarGarante.TabIndex = 17
         Me.btnEditarGarante.Text = "E"
         Me.btnEditarGarante.UseVisualStyleBackColor = True
         '
@@ -679,7 +677,7 @@ Partial Class frm_Facturacion
         Me.btnBuscarGarante.Location = New System.Drawing.Point(256, 19)
         Me.btnBuscarGarante.Name = "btnBuscarGarante"
         Me.btnBuscarGarante.Size = New System.Drawing.Size(28, 23)
-        Me.btnBuscarGarante.TabIndex = 12
+        Me.btnBuscarGarante.TabIndex = 16
         Me.btnBuscarGarante.Text = "..."
         Me.btnBuscarGarante.UseVisualStyleBackColor = True
         '
@@ -698,7 +696,7 @@ Partial Class frm_Facturacion
         Me.txtGarante.Location = New System.Drawing.Point(89, 43)
         Me.txtGarante.Name = "txtGarante"
         Me.txtGarante.Size = New System.Drawing.Size(301, 20)
-        Me.txtGarante.TabIndex = 2
+        Me.txtGarante.TabIndex = 18
         '
         'txtTelefonoGarante
         '
@@ -706,7 +704,7 @@ Partial Class frm_Facturacion
         Me.txtTelefonoGarante.Location = New System.Drawing.Point(493, 19)
         Me.txtTelefonoGarante.Name = "txtTelefonoGarante"
         Me.txtTelefonoGarante.Size = New System.Drawing.Size(205, 20)
-        Me.txtTelefonoGarante.TabIndex = 2
+        Me.txtTelefonoGarante.TabIndex = 19
         '
         'Label21
         '
@@ -724,7 +722,7 @@ Partial Class frm_Facturacion
         Me.txtDireccionGarante.Multiline = True
         Me.txtDireccionGarante.Name = "txtDireccionGarante"
         Me.txtDireccionGarante.Size = New System.Drawing.Size(301, 43)
-        Me.txtDireccionGarante.TabIndex = 2
+        Me.txtDireccionGarante.TabIndex = 20
         '
         'Label27
         '
@@ -744,19 +742,55 @@ Partial Class frm_Facturacion
         Me.Label28.TabIndex = 0
         Me.Label28.Text = "Garante:"
         '
+        'txtInteres
+        '
+        Me.txtInteres.DecimalPlaces = 2
+        Me.txtInteres.Location = New System.Drawing.Point(791, 74)
+        Me.txtInteres.Name = "txtInteres"
+        Me.txtInteres.Size = New System.Drawing.Size(58, 20)
+        Me.txtInteres.TabIndex = 35
+        '
+        'txtCuotas
+        '
+        Me.txtCuotas.Location = New System.Drawing.Point(792, 51)
+        Me.txtCuotas.Name = "txtCuotas"
+        Me.txtCuotas.Size = New System.Drawing.Size(57, 20)
+        Me.txtCuotas.TabIndex = 35
+        '
+        'txtPorcentajeDscto
+        '
+        Me.txtPorcentajeDscto.DecimalPlaces = 2
+        Me.txtPorcentajeDscto.Location = New System.Drawing.Point(791, 29)
+        Me.txtPorcentajeDscto.Name = "txtPorcentajeDscto"
+        Me.txtPorcentajeDscto.Size = New System.Drawing.Size(58, 20)
+        Me.txtPorcentajeDscto.TabIndex = 36
+        '
+        'btnEliminar
+        '
+        Me.btnEliminar.Location = New System.Drawing.Point(6, 63)
+        Me.btnEliminar.Name = "btnEliminar"
+        Me.btnEliminar.Size = New System.Drawing.Size(28, 23)
+        Me.btnEliminar.TabIndex = 22
+        Me.btnEliminar.Text = "-"
+        Me.btnEliminar.UseVisualStyleBackColor = True
+        '
         'id
         '
         Me.id.HeaderText = "Id"
         Me.id.Name = "id"
-        Me.id.ReadOnly = True
         Me.id.Visible = False
         '
         'Cantidad
         '
         Me.Cantidad.HeaderText = "Cantidad"
         Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.ReadOnly = True
         Me.Cantidad.Width = 70
+        '
+        'Costo
+        '
+        Me.Costo.HeaderText = "Costo"
+        Me.Costo.Name = "Costo"
+        Me.Costo.Visible = False
         '
         'Descripcion
         '
@@ -771,18 +805,18 @@ Partial Class frm_Facturacion
         Me.ValorUnitario.Name = "ValorUnitario"
         Me.ValorUnitario.ReadOnly = True
         '
-        'ValorToral
+        'ValorTotal
         '
-        Me.ValorToral.HeaderText = "Valor Toral"
-        Me.ValorToral.Name = "ValorToral"
-        Me.ValorToral.ReadOnly = True
+        Me.ValorTotal.HeaderText = "Valor Toral"
+        Me.ValorTotal.Name = "ValorTotal"
+        Me.ValorTotal.ReadOnly = True
         '
         'frm_Facturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(913, 750)
+        Me.ClientSize = New System.Drawing.Size(904, 750)
         Me.Controls.Add(Me.gbBuscar)
         Me.Controls.Add(Me.gbGarante)
         Me.Controls.Add(Me.gbInfoGeneral)
@@ -807,12 +841,14 @@ Partial Class frm_Facturacion
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbGarante.ResumeLayout(False)
         Me.gbGarante.PerformLayout()
+        CType(Me.txtInteres, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtCuotas, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtPorcentajeDscto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents gbProductos As System.Windows.Forms.GroupBox
-    Friend WithEvents btnEliminar As System.Windows.Forms.Button
     Friend WithEvents btnAnadir As System.Windows.Forms.Button
     Friend WithEvents txtTotal As System.Windows.Forms.TextBox
     Friend WithEvents Label13 As System.Windows.Forms.Label
@@ -838,11 +874,8 @@ Partial Class frm_Facturacion
     Friend WithEvents cbTipoVenta As System.Windows.Forms.ComboBox
     Friend WithEvents txtNoFactura As System.Windows.Forms.TextBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents txtInteres As System.Windows.Forms.TextBox
-    Friend WithEvents txtCuotas As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents txtCliente As System.Windows.Forms.TextBox
-    Friend WithEvents txtDsctoPorcentaje As System.Windows.Forms.TextBox
     Friend WithEvents txtTelefono As System.Windows.Forms.TextBox
     Friend WithEvents txtNoContrato As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
@@ -879,9 +912,16 @@ Partial Class frm_Facturacion
     Public WithEvents txtCedulaGarante As System.Windows.Forms.TextBox
     Friend WithEvents btnEditarCliente As System.Windows.Forms.Button
     Friend WithEvents btnEditarGarante As System.Windows.Forms.Button
+    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents txtInteres As System.Windows.Forms.NumericUpDown
+    Friend WithEvents txtCuotas As System.Windows.Forms.NumericUpDown
+    Friend WithEvents txtPorcentajeDscto As System.Windows.Forms.NumericUpDown
+    Friend WithEvents btnEliminar As System.Windows.Forms.Button
     Friend WithEvents id As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Costo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ValorUnitario As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ValorToral As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ValorTotal As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

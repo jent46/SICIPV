@@ -17,6 +17,17 @@
     Private _descuento As Double
     Private _totalVenta As Double
     Private _estado As Integer
+    Private _itemsProductos As List(Of ClsItemFactura)
+    Public Property ItemsProductos() As List(Of ClsItemFactura)
+        Get
+            Return _itemsProductos
+        End Get
+        Set(ByVal value As List(Of ClsItemFactura))
+            _itemsProductos = value
+        End Set
+    End Property
+
+
 
 
     Public Property IdFactura() As Integer

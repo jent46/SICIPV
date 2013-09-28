@@ -3,19 +3,20 @@ Imports MySql.Data.MySqlClient
 
 Public Class DLL_Factura
     Inherits DLL_Base
+    'Nuevo
 
-    Public Function ingresarBD(ByVal factura As ClsFactura, ByVal mensaje As String) As Boolean
+    Public Function ingresarBD(ByVal factura As ClsFactura, ByRef mensaje As String) As Boolean
         getConexion()
         Dim comando As New MySqlCommand
         Dim estado As Boolean = False
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "INS_Factura"
 
-        comando.Parameters.AddWithValue("_idTipoVenta", factura.IdTipoVenta)
-        comando.Parameters.AddWithValue("_idPersona", factura.IdPersona)
-        comando.Parameters.AddWithValue("_idGarante", factura.IdGarante)
-        comando.Parameters.AddWithValue("_idUsuarioCreacion", factura.IdUsuarioCreacion)
-        comando.Parameters.AddWithValue("_idUsuarioModificacion", factura.IdUsuarioModificacion)
+        comando.Parameters.AddWithValue("_idTipoVenta", factura.IdTipoVenta.IdTipoVenta)
+        comando.Parameters.AddWithValue("_idPersona", factura.IdPersona.IdPersona)
+        comando.Parameters.AddWithValue("_idGarante", factura.IdGarante.IdPersona)
+        comando.Parameters.AddWithValue("_idUsuarioCreacion", factura.IdUsuarioCreacion.IdUsuario)
+        comando.Parameters.AddWithValue("_idUsuarioModificacion", factura.IdUsuarioModificacion.IdUsuario)
         comando.Parameters.AddWithValue("_numeroFactura", factura.NumeroFactura)
         comando.Parameters.AddWithValue("_numeroContrato", factura.NumeroContrato)
         comando.Parameters.AddWithValue("_fechaVenta", factura.FechaVenta)
@@ -23,6 +24,7 @@ Public Class DLL_Factura
         comando.Parameters.AddWithValue("_iva", factura.Iva)
         comando.Parameters.AddWithValue("_porcentajeDescuento", factura.PorcentajeDescuento)
         comando.Parameters.AddWithValue("_descuento", factura.Descuento)
+        comando.Parameters.AddWithValue("_totalVenta", factura.TotalVenta)
         comando.Parameters.AddWithValue("_estado", factura.Estado)
         comando.Parameters.AddWithValue("_cuotas", factura.Cuotas)
         comando.Parameters.AddWithValue("_clienteNombre", factura.ClienteNombre)
@@ -35,7 +37,7 @@ Public Class DLL_Factura
         comando.Parameters.AddWithValue("_garanteDireccion", factura.GaranteDireccion)
         comando.Parameters.AddWithValue("_fechaCreacion", factura.FechaCreacion)
         comando.Parameters.AddWithValue("_fechaModificacion", factura.FechaModificacion)
-       
+
 
 
         Try
@@ -54,7 +56,9 @@ Public Class DLL_Factura
         Return estado
     End Function
 
-    Public Function modificarBD(ByVal factura As ClsFactura, ByVal mensaje As String) As Boolean
+    'Modificacion
+
+    Public Function modificarBD(ByVal factura As ClsFactura, ByRef mensaje As String) As Boolean
         getConexion()
         Dim comando As New MySqlCommand
         Dim estado As Boolean = False
@@ -105,6 +109,39 @@ Public Class DLL_Factura
         Return estado
     End Function
 
+    'Consultas
+
+    Public Function ConsultarFacturasPorCedula(ByVal pcedula As Integer, ByRef mensaje As String) As DataTable
+        getConexion()
+        Dim comando As New MySqlCommand
+        comando.CommandType = CommandType.StoredProcedure
+        comando.CommandText = "QRY_ConsultarFacturasPorCedula"
+        comando.Parameters.AddWithValue("_cedula", pcedula)
+
+        Dim da As New MySqlDataAdapter
+        Dim dt As New DataTable
+
+        comando.Connection = conn
+        da.SelectCommand = comando
+
+        Try
+            da.Fill(dt)
+            If dt.Rows.Count = 0 Then
+                dt = Nothing
+                mensaje = "No existen Facturas con esa cedula de cliente"
+            End If
+        Catch ex As Exception
+            dt = Nothing
+            mensaje = ex.Message
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
+
+        Return dt
+    End Function
+
     Public Function ConsultarFacturasPorNombreCliente(ByVal nombre As String, ByRef mensaje As String) As DataTable
         getConexion()
         Dim comando As New MySqlCommand
@@ -136,36 +173,7 @@ Public Class DLL_Factura
         Return dt
     End Function
 
-    Public Function ConsultarFacturasPorCedula(ByVal pcedula As Integer, ByRef mensaje As String) As DataTable
-        getConexion()
-        Dim comando As New MySqlCommand
-        comando.CommandType = CommandType.StoredProcedure
-        comando.CommandText = "QRY_ConsultarFacturasPorCedula"
-        comando.Parameters.AddWithValue("pcedula", pcedula)
-
-        Dim da As New MySqlDataAdapter
-        Dim dt As New DataTable
-
-        comando.Connection = conn
-        da.SelectCommand = comando
-
-        Try
-            da.Fill(dt)
-            If dt.Rows.Count = 0 Then
-                dt = Nothing
-                mensaje = "No existen Facturas con esa cedula de cliente"
-            End If
-        Catch ex As Exception
-            dt = Nothing
-            mensaje = ex.Message
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
-
-        Return dt
-    End Function
+    
 
     Public Function ConsultarFacturasPorNumeroContrato(ByVal contrato As Integer, ByRef mensaje As String) As DataTable
         getConexion()
