@@ -7,46 +7,93 @@ Public Class DLL_Factura
 
     Public Function ingresarBD(ByVal factura As ClsFactura, ByRef mensaje As String) As Boolean
         getConexion()
+        conn.Open()
         Dim comando As New MySqlCommand
+        Dim transaction As MySqlTransaction
         Dim estado As Boolean = False
+        Dim idFactura As Integer
+
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "INS_Factura"
 
-        comando.Parameters.AddWithValue("_idTipoVenta", factura.IdTipoVenta.IdTipoVenta)
-        comando.Parameters.AddWithValue("_idPersona", factura.IdPersona.IdPersona)
-        comando.Parameters.AddWithValue("_idGarante", factura.IdGarante.IdPersona)
-        comando.Parameters.AddWithValue("_idUsuarioCreacion", factura.IdUsuarioCreacion.IdUsuario)
-        comando.Parameters.AddWithValue("_idUsuarioModificacion", factura.IdUsuarioModificacion.IdUsuario)
-        comando.Parameters.AddWithValue("_numeroFactura", factura.NumeroFactura)
-        comando.Parameters.AddWithValue("_numeroContrato", factura.NumeroContrato)
-        comando.Parameters.AddWithValue("_fechaVenta", factura.FechaVenta)
-        comando.Parameters.AddWithValue("_subtotal", factura.Subtotal)
-        comando.Parameters.AddWithValue("_iva", factura.Iva)
-        comando.Parameters.AddWithValue("_porcentajeDescuento", factura.PorcentajeDescuento)
-        comando.Parameters.AddWithValue("_descuento", factura.Descuento)
-        comando.Parameters.AddWithValue("_totalVenta", factura.TotalVenta)
-        comando.Parameters.AddWithValue("_estado", factura.Estado)
-        comando.Parameters.AddWithValue("_cuotas", factura.Cuotas)
-        comando.Parameters.AddWithValue("_clienteNombre", factura.ClienteNombre)
-        comando.Parameters.AddWithValue("_clienteCedula", factura.ClienteCedula)
-        comando.Parameters.AddWithValue("_clienteTelefono", factura.ClienteTelefono)
-        comando.Parameters.AddWithValue("_clienteDireccion", factura.ClienteDireccion)
-        comando.Parameters.AddWithValue("_garanteNombre", factura.GaranteNombre)
-        comando.Parameters.AddWithValue("_garanteCedula", factura.GaranteCedula)
-        comando.Parameters.AddWithValue("_garanteTelefono", factura.GaranteTelefono)
-        comando.Parameters.AddWithValue("_garanteDireccion", factura.GaranteDireccion)
-        comando.Parameters.AddWithValue("_fechaCreacion", factura.FechaCreacion)
-        comando.Parameters.AddWithValue("_fechaModificacion", factura.FechaModificacion)
-
-
-
         Try
+            transaction = conn.BeginTransaction()
+            comando.Transaction = transaction
+            'comando = conn.CreateCommand()
             comando.Connection = conn
-            conn.Open()
+            comando.Parameters.AddWithValue("_idTipoVenta", factura.IdTipoVenta.IdTipoVenta)
+            comando.Parameters.AddWithValue("_idPersona", factura.IdPersona.IdPersona)
+            comando.Parameters.AddWithValue("_idGarante", factura.IdGarante.IdPersona)
+            comando.Parameters.AddWithValue("_idUsuarioCreacion", factura.IdUsuarioCreacion.IdUsuario)
+            comando.Parameters.AddWithValue("_idUsuarioModificacion", factura.IdUsuarioModificacion.IdUsuario)
+            comando.Parameters.AddWithValue("_numeroFactura", factura.NumeroFactura)
+            comando.Parameters.AddWithValue("_numeroContrato", factura.NumeroContrato)
+            comando.Parameters.AddWithValue("_fechaVenta", factura.FechaVenta)
+            comando.Parameters.AddWithValue("_subtotal", factura.Subtotal)
+            comando.Parameters.AddWithValue("_iva", factura.Iva)
+            comando.Parameters.AddWithValue("_porcentajeDescuento", factura.PorcentajeDescuento)
+            comando.Parameters.AddWithValue("_descuento", factura.Descuento)
+            comando.Parameters.AddWithValue("_totalVenta", factura.TotalVenta)
+            comando.Parameters.AddWithValue("_estado", factura.Estado)
+            comando.Parameters.AddWithValue("_cuotas", factura.Cuotas)
+            comando.Parameters.AddWithValue("_clienteNombre", factura.ClienteNombre)
+            comando.Parameters.AddWithValue("_clienteCedula", factura.ClienteCedula)
+            comando.Parameters.AddWithValue("_clienteTelefono", factura.ClienteTelefono)
+            comando.Parameters.AddWithValue("_clienteDireccion", factura.ClienteDireccion)
+            comando.Parameters.AddWithValue("_garanteNombre", factura.GaranteNombre)
+            comando.Parameters.AddWithValue("_garanteCedula", factura.GaranteCedula)
+            comando.Parameters.AddWithValue("_garanteTelefono", factura.GaranteTelefono)
+            comando.Parameters.AddWithValue("_garanteDireccion", factura.GaranteDireccion)
+            comando.Parameters.AddWithValue("_fechaCreacion", factura.FechaCreacion)
+            comando.Parameters.AddWithValue("_fechaModificacion", factura.FechaModificacion)
+            comando.Parameters.Add("_idFactura", MySqlDbType.Int16)
+
+
             comando.ExecuteNonQuery()
+            idFactura = comando.Parameters("_idFactura").Value.ToString()
+
+            For Each item As ClsItemFactura In factura.ItemsProductos
+                comando = New MySqlCommand
+                comando.Connection = conn
+                comando.CommandType = CommandType.StoredProcedure
+                comando.CommandText = "INS_ItemFactura"
+                comando.Parameters.AddWithValue("_idFactura", idFactura)
+                comando.Parameters.AddWithValue("_idProducto", item.IdProducto.IdProducto)
+                comando.Parameters.AddWithValue("_idUsuarioCreacion", item.IdUsuarioCreacion.IdUsuario)
+                comando.Parameters.AddWithValue("_idUsuarioModificacion", item.IdUsuarioModificacion.IdUsuario)
+                comando.Parameters.AddWithValue("_precioUnitario", item.PrecioUnitario)
+                comando.Parameters.AddWithValue("_cantidad", item.Cantidad)
+                comando.Parameters.AddWithValue("_precioTotal", item.PrecioTotal)
+                comando.Parameters.AddWithValue("_descripcionProducto", item.DescripcionProducto)
+                comando.Parameters.AddWithValue("_costoProducto", item.CostoProducto)
+                comando.Parameters.AddWithValue("_estado", item.Estado)
+                comando.Parameters.AddWithValue("_fechaCreacion", item.FechaCreacion)
+                comando.Parameters.AddWithValue("_fechaModificacion", item.FechaModificacion)
+                comando.Transaction = transaction
+                comando.ExecuteNonQuery()
+
+            Next
+
+            transaction.Commit()
             estado = True
         Catch ex As Exception
+            mensaje = ex.Message
             estado = False
+            If Not transaction Is Nothing Then
+                transaction.Rollback()
+            End If
+
+            ''Intento de confirmar la transacción.
+            'Try
+            '    transaction.Rollback()
+            'Catch ex2 As Exception
+            '    'Este bloque try catch se encargará de todos los errores que se hayan podido producir
+            '    'en el servidor y que implicaría la reversión al fracaso, como
+            '    'una conexión cerrada.
+            '    mensaje = ex2.Message
+            'End Try
+
+
         Finally
             If conn.State = ConnectionState.Open Then
                 conn.Close()
@@ -60,46 +107,68 @@ Public Class DLL_Factura
 
     Public Function modificarBD(ByVal factura As ClsFactura, ByRef mensaje As String) As Boolean
         getConexion()
+        conn.Open()
+        Dim transaction As MySqlTransaction
         Dim comando As New MySqlCommand
         Dim estado As Boolean = False
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "UPD_Factura"
-
-        comando.Parameters.AddWithValue("_idFactura", factura.IdFactura)
-        comando.Parameters.AddWithValue("_idTipoVenta", factura.IdTipoVenta)
-        comando.Parameters.AddWithValue("_idPersona", factura.IdPersona)
-        comando.Parameters.AddWithValue("_idGarante", factura.IdGarante)
-        comando.Parameters.AddWithValue("_idUsuarioCreacion", factura.IdUsuarioCreacion)
-        comando.Parameters.AddWithValue("_idUsuarioModificacion", factura.IdUsuarioModificacion)
-        comando.Parameters.AddWithValue("_numeroFactura", factura.NumeroFactura)
-        comando.Parameters.AddWithValue("_numeroContrato", factura.NumeroContrato)
-        comando.Parameters.AddWithValue("_fechaVenta", factura.FechaVenta)
-        comando.Parameters.AddWithValue("_subtotal", factura.Subtotal)
-        comando.Parameters.AddWithValue("_iva", factura.Iva)
-        comando.Parameters.AddWithValue("_porcentajeDescuento", factura.PorcentajeDescuento)
-        comando.Parameters.AddWithValue("_descuento", factura.Descuento)
-        comando.Parameters.AddWithValue("_estado", factura.Estado)
-        comando.Parameters.AddWithValue("_cuotas", factura.Cuotas)
-        comando.Parameters.AddWithValue("_clienteNombre", factura.ClienteNombre)
-        comando.Parameters.AddWithValue("_clienteCedula", factura.ClienteCedula)
-        comando.Parameters.AddWithValue("_clienteTelefono", factura.ClienteTelefono)
-        comando.Parameters.AddWithValue("_clienteDireccion", factura.ClienteDireccion)
-        comando.Parameters.AddWithValue("_garanteNombre", factura.GaranteNombre)
-        comando.Parameters.AddWithValue("_garanteCedula", factura.GaranteCedula)
-        comando.Parameters.AddWithValue("_garanteTelefono", factura.GaranteTelefono)
-        comando.Parameters.AddWithValue("_garanteDireccion", factura.GaranteDireccion)
-        comando.Parameters.AddWithValue("_fechaCreacion", factura.FechaCreacion)
-        comando.Parameters.AddWithValue("_fechaModificacion", factura.FechaModificacion)
-
-
-
         Try
+            transaction = conn.BeginTransaction()
+            comando.Transaction = transaction
             comando.Connection = conn
-            conn.Open()
+            comando.Parameters.AddWithValue("_idFactura", factura.IdFactura)
+            comando.Parameters.AddWithValue("_idTipoVenta", factura.IdTipoVenta)
+            comando.Parameters.AddWithValue("_idPersona", factura.IdPersona)
+            comando.Parameters.AddWithValue("_idGarante", factura.IdGarante)
+            comando.Parameters.AddWithValue("_idUsuarioModificacion", factura.IdUsuarioModificacion)
+            comando.Parameters.AddWithValue("_numeroFactura", factura.NumeroFactura)
+            comando.Parameters.AddWithValue("_numeroContrato", factura.NumeroContrato)
+            comando.Parameters.AddWithValue("_fechaVenta", factura.FechaVenta)
+            comando.Parameters.AddWithValue("_subtotal", factura.Subtotal)
+            comando.Parameters.AddWithValue("_iva", factura.Iva)
+            comando.Parameters.AddWithValue("_porcentajeDescuento", factura.PorcentajeDescuento)
+            comando.Parameters.AddWithValue("_descuento", factura.Descuento)
+            comando.Parameters.AddWithValue("_estado", factura.Estado)
+            comando.Parameters.AddWithValue("_cuotas", factura.Cuotas)
+            comando.Parameters.AddWithValue("_clienteNombre", factura.ClienteNombre)
+            comando.Parameters.AddWithValue("_clienteCedula", factura.ClienteCedula)
+            comando.Parameters.AddWithValue("_clienteTelefono", factura.ClienteTelefono)
+            comando.Parameters.AddWithValue("_clienteDireccion", factura.ClienteDireccion)
+            comando.Parameters.AddWithValue("_garanteNombre", factura.GaranteNombre)
+            comando.Parameters.AddWithValue("_garanteCedula", factura.GaranteCedula)
+            comando.Parameters.AddWithValue("_garanteTelefono", factura.GaranteTelefono)
+            comando.Parameters.AddWithValue("_garanteDireccion", factura.GaranteDireccion)
+            comando.Parameters.AddWithValue("_fechaModificacion", factura.FechaModificacion)
             comando.ExecuteNonQuery()
+
+            For Each item As ClsItemFactura In factura.ItemsProductos
+                comando = New MySqlCommand
+                comando.Connection = conn
+                comando.CommandType = CommandType.StoredProcedure
+                comando.CommandText = "UPD_ItemFactura"
+                comando.Parameters.AddWithValue("_idFactura", item.IdFactura.IdFactura)
+                comando.Parameters.AddWithValue("_idProducto", item.IdProducto.IdProducto)
+                comando.Parameters.AddWithValue("_idUsuarioModificacion", item.IdUsuarioModificacion.IdUsuario)
+                comando.Parameters.AddWithValue("_precioUnitario", item.PrecioUnitario)
+                comando.Parameters.AddWithValue("_cantidad", item.Cantidad)
+                comando.Parameters.AddWithValue("_precioTotal", item.PrecioTotal)
+                comando.Parameters.AddWithValue("_descripcionProducto", item.DescripcionProducto)
+                comando.Parameters.AddWithValue("_costoProducto", item.CostoProducto)
+                comando.Parameters.AddWithValue("_estado", item.Estado)
+                comando.Parameters.AddWithValue("_fechaModificacion", item.FechaModificacion)
+                comando.Transaction = transaction
+                comando.ExecuteNonQuery()
+            Next
+
+            transaction.Commit()
             estado = True
         Catch ex As Exception
             estado = False
+            mensaje = ex.Message
+            If Not transaction Is Nothing Then
+                transaction.Rollback()
+            End If
         Finally
             If conn.State = ConnectionState.Open Then
                 conn.Close()

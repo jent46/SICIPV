@@ -126,7 +126,6 @@ Public Class frm_Facturacion
 
             factura.IdTipoVenta = New ClsTipoVenta()
             factura.IdTipoVenta.IdTipoVenta = cbTipoVenta.SelectedValue
-
             factura.IdPersona = New ClsPersona()
             factura.IdPersona.IdPersona = Me.idPersona
             factura.IdGarante = New ClsPersona()
@@ -135,6 +134,7 @@ Public Class frm_Facturacion
             factura.NumeroFactura = CInt(txtNoFactura.Text)
             factura.NumeroContrato = CInt(txtNoContrato.Text)
             factura.FechaVenta = dtpFecha.Value.Date
+            factura.Subtotal = CDbl(txtSubtotal.Text)
             factura.Iva = CDbl(txtIva.Text)
             factura.PorcentajeDescuento = CDbl(txtPorcentajeDscto.Text)
             factura.Descuento = CDbl(txtDescuento.Text)
@@ -162,14 +162,19 @@ Public Class frm_Facturacion
                 Dim producto As ClsProducto = New ClsProducto()
 
                 producto.IdProducto = dgvProductos.Rows(index).Cells("Id").Value
-                item.IdProducto = producto
 
+                'idFactura
+                item.IdFactura = factura
+                item.IdProducto = producto
+                item.IdUsuarioCreacion = usuario
+                item.IdUsuarioModificacion = usuario
                 item.PrecioUnitario = dgvProductos.Rows(index).Cells("valorUnitario").Value
                 item.Cantidad = dgvProductos.Rows(index).Cells("cantidad").Value
                 item.PrecioTotal = dgvProductos.Rows(index).Cells("valorTotal").Value
                 item.DescripcionProducto = dgvProductos.Rows(index).Cells("descripcion").Value
                 item.CostoProducto = dgvProductos.Rows(index).Cells("costo").Value
-
+                item.FechaCreacion = Date.Now
+                item.FechaModificacion = Date.Now
                 factura.ItemsProductos.Add(item)
             Next
 
