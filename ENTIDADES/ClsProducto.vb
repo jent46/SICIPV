@@ -60,6 +60,16 @@
             _descripcion = value
         End Set
     End Property
+    Private _modelo As String
+    Public Property Modelo() As String
+        Get
+            Return _modelo
+        End Get
+        Set(ByVal value As String)
+            _modelo = value
+        End Set
+    End Property
+
 
     Public Property Valor() As Double
         Get

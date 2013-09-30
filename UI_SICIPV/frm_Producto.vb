@@ -97,8 +97,6 @@ Public Class frm_Producto
         End If
     End Sub
 
-
-
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
         If validarCampos() Then
             Dim producto As ClsProducto = New ClsProducto
@@ -109,6 +107,7 @@ Public Class frm_Producto
 
 
             producto.Descripcion = txtDescripcion.Text
+            producto.Modelo = txtModelo.Text
             producto.Valor = CDbl(txtValor.Text)
             producto.Pvp = CDbl(txtPvp.Text)
             producto.Stock = CInt(txtStock.Text)
@@ -138,14 +137,15 @@ Public Class frm_Producto
             MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
         End If
     End Sub
+
     Private Sub limpiarCampos()
         txtDescripcion.Text = String.Empty
+        txtModelo.Text = String.Empty
         txtValor.Text = String.Empty
         txtPvp.Text = String.Empty
         txtStock.Text = String.Empty
         cbEstado.Checked = False
     End Sub
-
 
     Private Function validarCampos() As Boolean
         Dim resultado As Boolean = True
@@ -214,16 +214,22 @@ Public Class frm_Producto
         End If
     End Sub
 
-
     Private Sub txtStock_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtStock.KeyPress
         If Not (Char.IsNumber(e.KeyChar) Or Char.IsControl(e.KeyChar)) Then e.Handled = True
     End Sub
 
     Private Sub dgvBusqueda_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
-        Dim dr As DataGridViewRow = dgvBusqueda.Rows(e.RowIndex)
+        Dim dr As DataGridViewRow
+        Try
+            dr = dgvBusqueda.Rows(e.RowIndex)
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+        End Try
+
         Dim dt As DataTable = BLL_Producto.ConsultarProductosPorId(dr.Cells("Id").Value, mensaje)
-        idProducto = dt.Rows(0)("idProducto")
+        Me.idProducto = dt.Rows(0)("idProducto")
         txtDescripcion.Text = dt.Rows(0)("descripcion")
+        txtModelo.Text = dt.Rows(0)("modelo")
         txtPvp.Text = dt.Rows(0)("pvp")
         txtStock.Text = dt.Rows(0)("stock")
         txtValor.Text = dt.Rows(0)("valor")

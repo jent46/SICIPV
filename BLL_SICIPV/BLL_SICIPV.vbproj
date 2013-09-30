@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL_EstadoCivil.vb" />
+    <Compile Include="BLL_Gasto.vb" />
     <Compile Include="BLL_IngreoProducto.vb" />
     <Compile Include="BLL_Persona.vb" />
     <Compile Include="BLL_Producto.vb" />

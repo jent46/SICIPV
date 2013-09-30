@@ -50,6 +50,8 @@ Partial Class frm_Producto
         Me.btnAceptar = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtModelo = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         Me.gbProducto.SuspendLayout()
         Me.gbBuscar.SuspendLayout()
@@ -99,6 +101,8 @@ Partial Class frm_Producto
         '
         'gbProducto
         '
+        Me.gbProducto.Controls.Add(Me.txtModelo)
+        Me.gbProducto.Controls.Add(Me.Label6)
         Me.gbProducto.Controls.Add(Me.cbEstado)
         Me.gbProducto.Controls.Add(Me.Label8)
         Me.gbProducto.Controls.Add(Me.txtStock)
@@ -120,7 +124,7 @@ Partial Class frm_Producto
         'cbEstado
         '
         Me.cbEstado.AutoSize = True
-        Me.cbEstado.Location = New System.Drawing.Point(91, 126)
+        Me.cbEstado.Location = New System.Drawing.Point(271, 124)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(73, 17)
         Me.cbEstado.TabIndex = 5
@@ -130,7 +134,7 @@ Partial Class frm_Producto
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(19, 131)
+        Me.Label8.Location = New System.Drawing.Point(199, 129)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(40, 13)
         Me.Label8.TabIndex = 22
@@ -138,21 +142,21 @@ Partial Class frm_Producto
         '
         'txtStock
         '
-        Me.txtStock.Location = New System.Drawing.Point(91, 100)
+        Me.txtStock.Location = New System.Drawing.Point(91, 124)
         Me.txtStock.Name = "txtStock"
         Me.txtStock.Size = New System.Drawing.Size(73, 20)
         Me.txtStock.TabIndex = 4
         '
         'txtPvp
         '
-        Me.txtPvp.Location = New System.Drawing.Point(91, 77)
+        Me.txtPvp.Location = New System.Drawing.Point(91, 101)
         Me.txtPvp.Name = "txtPvp"
         Me.txtPvp.Size = New System.Drawing.Size(73, 20)
         Me.txtPvp.TabIndex = 3
         '
         'txtValor
         '
-        Me.txtValor.Location = New System.Drawing.Point(91, 53)
+        Me.txtValor.Location = New System.Drawing.Point(91, 77)
         Me.txtValor.Name = "txtValor"
         Me.txtValor.Size = New System.Drawing.Size(73, 20)
         Me.txtValor.TabIndex = 2
@@ -167,7 +171,7 @@ Partial Class frm_Producto
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(19, 107)
+        Me.Label4.Location = New System.Drawing.Point(26, 131)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(38, 13)
         Me.Label4.TabIndex = 0
@@ -176,7 +180,7 @@ Partial Class frm_Producto
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(19, 84)
+        Me.Label3.Location = New System.Drawing.Point(33, 108)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(31, 13)
         Me.Label3.TabIndex = 0
@@ -185,7 +189,7 @@ Partial Class frm_Producto
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(19, 60)
+        Me.Label2.Location = New System.Drawing.Point(30, 84)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(34, 13)
         Me.Label2.TabIndex = 0
@@ -194,7 +198,7 @@ Partial Class frm_Producto
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(19, 36)
+        Me.Label1.Location = New System.Drawing.Point(-2, 36)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(66, 13)
         Me.Label1.TabIndex = 0
@@ -294,6 +298,22 @@ Partial Class frm_Producto
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(22, 58)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(45, 13)
+        Me.Label6.TabIndex = 23
+        Me.Label6.Text = "Modelo:"
+        '
+        'txtModelo
+        '
+        Me.txtModelo.Location = New System.Drawing.Point(91, 51)
+        Me.txtModelo.Name = "txtModelo"
+        Me.txtModelo.Size = New System.Drawing.Size(356, 20)
+        Me.txtModelo.TabIndex = 24
+        '
         'frm_Producto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -345,4 +365,6 @@ Partial Class frm_Producto
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents ErrorProvider1 As System.Windows.Forms.ErrorProvider
+    Friend WithEvents txtModelo As System.Windows.Forms.TextBox
+    Friend WithEvents Label6 As System.Windows.Forms.Label
 End Class

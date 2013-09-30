@@ -66,4 +66,10 @@ Public Class frm_principal
         frm_IngresoProducto.Show()
         frm_IngresoProducto.usuario = Me.usuario
     End Sub
+
+    Private Sub GastoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GastoToolStripMenuItem.Click
+        frm_Gasto.MdiParent = Me
+        frm_Gasto.Show()
+        frm_Gasto.usuario = Me.usuario
+    End Sub
 End Class

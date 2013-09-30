@@ -66,6 +66,7 @@
     <Compile Include="ClsCuota.vb" />
     <Compile Include="ClsEstadoCivil.vb" />
     <Compile Include="ClsFactura.vb" />
+    <Compile Include="ClsGasto.vb" />
     <Compile Include="ClsIngresoProducto.vb" />
     <Compile Include="ClsItemFactura.vb" />
     <Compile Include="ClsProducto.vb" />

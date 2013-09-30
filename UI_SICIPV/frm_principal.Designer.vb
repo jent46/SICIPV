@@ -36,6 +36,7 @@ Partial Class frm_principal
         Me.ClienteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.IngresoProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GastoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gbIngreso.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -111,7 +112,7 @@ Partial Class frm_principal
         '
         'AdministradorToolStripMenuItem
         '
-        Me.AdministradorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturacionToolStripMenuItem, Me.AbonoToolStripMenuItem, Me.ProductoToolStripMenuItem, Me.ClienteToolStripMenuItem1, Me.UsuarioToolStripMenuItem, Me.IngresoProductoToolStripMenuItem})
+        Me.AdministradorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturacionToolStripMenuItem, Me.AbonoToolStripMenuItem, Me.ProductoToolStripMenuItem, Me.ClienteToolStripMenuItem1, Me.UsuarioToolStripMenuItem, Me.IngresoProductoToolStripMenuItem, Me.GastoToolStripMenuItem})
         Me.AdministradorToolStripMenuItem.Name = "AdministradorToolStripMenuItem"
         Me.AdministradorToolStripMenuItem.Size = New System.Drawing.Size(95, 20)
         Me.AdministradorToolStripMenuItem.Text = "Administrador"
@@ -152,6 +153,12 @@ Partial Class frm_principal
         Me.IngresoProductoToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.IngresoProductoToolStripMenuItem.Text = "IngresoProducto"
         '
+        'GastoToolStripMenuItem
+        '
+        Me.GastoToolStripMenuItem.Name = "GastoToolStripMenuItem"
+        Me.GastoToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.GastoToolStripMenuItem.Text = "Gasto"
+        '
         'frm_principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -187,4 +194,5 @@ Partial Class frm_principal
     Friend WithEvents ClienteToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents UsuarioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents IngresoProductoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GastoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

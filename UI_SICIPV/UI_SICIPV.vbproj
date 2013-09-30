@@ -69,11 +69,17 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_Gasto.designer.vb">
+      <DependentUpon>frm_Gasto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Gasto.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_IngresoProducto.Designer.vb">
       <DependentUpon>frm_IngresoProducto.vb</DependentUpon>
     </Compile>
     <Compile Include="frm_IngresoProducto.vb">
-    <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_IngresarProductoFactura.Designer.vb">
       <DependentUpon>frm_IngresarProductoFactura.vb</DependentUpon>
@@ -134,11 +140,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-
+    <EmbeddedResource Include="frm_Gasto.resx">
+      <DependentUpon>frm_Gasto.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_IngresarProductoFactura.resx">
       <DependentUpon>frm_IngresarProductoFactura.vb</DependentUpon>
-</EmbeddedResource>        
-<EmbeddedResource Include="frm_IngresoProducto.resx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_IngresoProducto.resx">
       <DependentUpon>frm_IngresoProducto.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Producto.resx">

@@ -10,7 +10,6 @@ Public Class frm_Facturacion
     Dim idPersona As Integer
     Dim idGarante As Integer
 
-
     Private Sub frm_Facturacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         gbBuscar.SetBounds(11, 40, gbBuscar.Width, gbBuscar.Height)
         Me.SetBounds(0, 0, 918, 637)
@@ -119,7 +118,6 @@ Public Class frm_Facturacion
         txtDireccion.Enabled = True
         dgvProductos.Columns.Clear()
     End Sub
-
 
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
         If validarCampos() Then
@@ -325,8 +323,6 @@ Public Class frm_Facturacion
         Return True
     End Function
 
-
-
     Private Sub btnBuscarGarante_Click(sender As Object, e As EventArgs) Handles btnBuscarGarante.Click
         Dim dt As DataTable = Nothing
 
@@ -404,6 +400,7 @@ Public Class frm_Facturacion
     Private Sub btnAnadir_Click(sender As Object, e As EventArgs) Handles btnAnadir.Click
         frm_IngresarProductoFactura.ShowDialog()
     End Sub
+
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
         For index = 0 To dgvProductos.SelectedRows.Count - 1
             Dim valorTotal As Double = dgvProductos.SelectedRows(index).Cells("ValorTotal").Value
@@ -460,12 +457,12 @@ Public Class frm_Facturacion
                 'txtIva.Text = CDbl(txtIva.Text) * 0.12
                 'txtTotal.Text = CDbl(txtSubtotal.Text) - CDbl(txtDescuento.Text) + CDbl(txtIva.Text)
     End Sub
+
     Sub actualizarValoresFactura()
-        txtDescuento.Text = CDbl(txtSubtotal.Text) * CDbl(txtPorcentajeDscto.Text) / 100
+        txtDescuento.Text = (CDbl(txtSubtotal.Text) * CDbl(txtPorcentajeDscto.Text)) / 100
         txtIva.Text = (CDbl(txtSubtotal.Text) - CDbl(txtDescuento.Text)) * 0.12
         txtTotal.Text = CDbl(txtSubtotal.Text) - CDbl(txtDescuento.Text) + CDbl(txtIva.Text)
     End Sub
-
 
     Sub Valida(Data As TextBox)
         If Data.Text = sep Then
@@ -503,8 +500,6 @@ Public Class frm_Facturacion
         Valida(sender)
     End Sub
 
-
-
     Private Sub txtDsctoPorcentaje_KeyDown(sender As Object, e As KeyEventArgs)
         If e.KeyCode = 13 Then
             Aplica(sender)
@@ -513,7 +508,7 @@ Public Class frm_Facturacion
 
     Private Sub dgvProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellValueChanged
         If e.ColumnIndex = 1 Then
-            If dgvProductos.Rows.Count <> 0 Then
+            If dgvProductos.Rows.Count <> 0 Then 'Preguntamos si el datagridview de productos esta lleno con al menos un producto
                 Dim dr As DataGridViewRow = dgvProductos.Rows(e.RowIndex)
                 Dim valorTotal As Double = dr.Cells("ValorTotal").Value
                 Dim cantidad As Integer
@@ -528,9 +523,9 @@ Public Class frm_Facturacion
                     cantidad = 1
                 End If
 
-                Dim nuevTotal As Double = cantidad * dr.Cells("ValorUnitario").Value
-                dr.Cells("ValorTotal").Value = nuevTotal
-                txtSubtotal.Text = CDbl(txtSubtotal.Text) + nuevTotal - valorTotal
+                Dim nuevoTotal As Double = cantidad * dr.Cells("ValorUnitario").Value
+                dr.Cells("ValorTotal").Value = nuevoTotal
+                txtSubtotal.Text = CDbl(txtSubtotal.Text) + nuevoTotal - valorTotal
                 actualizarValoresFactura()
             End If
 

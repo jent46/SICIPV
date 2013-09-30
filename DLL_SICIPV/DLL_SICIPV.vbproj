@@ -68,6 +68,7 @@
     <Compile Include="DLL_Cuota.vb" />
     <Compile Include="DLL_EstadoCivil.vb" />
     <Compile Include="DLL_Factura.vb" />
+    <Compile Include="DLL_Gasto.vb" />
     <Compile Include="DLL_IngresoProducto.vb" />
     <Compile Include="DLL_ItemFactura.vb" />
     <Compile Include="DLL_Persona.vb" />
