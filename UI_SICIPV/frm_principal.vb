@@ -6,8 +6,7 @@ Public Class frm_principal
     Dim mensaje As String = "Usuario correcto"
     Private Sub frm_principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         gbIngreso.Visible = True
-        ''deshabilitar()
-        'deshabilitar()
+        deshabilitar()
 
     End Sub
 
@@ -23,6 +22,8 @@ Public Class frm_principal
         Else
             ''MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
             gbIngreso.Visible = False
+            txtClave.Text = String.Empty
+            txtUsuario.Text = String.Empty
             habilitarAdministrador()
             ''gbIngreso.Visible = False
 
@@ -71,5 +72,10 @@ Public Class frm_principal
         frm_Gasto.MdiParent = Me
         frm_Gasto.Show()
         frm_Gasto.usuario = Me.usuario
+    End Sub
+
+    Private Sub CambiarDeUsuarioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CambiarDeUsuarioToolStripMenuItem.Click
+        gbIngreso.Visible = True
+        deshabilitar()
     End Sub
 End Class

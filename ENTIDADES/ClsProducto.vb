@@ -88,6 +88,16 @@
             _pvp = value
         End Set
     End Property
+    Private _gravaIva As Integer
+    Public Property GravaIva() As String
+        Get
+            Return _gravaIva
+        End Get
+        Set(ByVal value As String)
+            _gravaIva = value
+        End Set
+    End Property
+
 
     Public Property Stock() As Integer
         Get

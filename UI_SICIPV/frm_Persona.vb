@@ -74,9 +74,11 @@ Public Class frm_Persona
         txtNombre.Text = String.Empty
         txtApellido.Text = String.Empty
         txtCedula.Text = String.Empty
+        txtCodigoCliente.Text = String.Empty
         txtTelefono.Text = String.Empty
         txtDireccion.Text = String.Empty
         cbEstadoCivil.SelectedValue = -1
+        cbEstado.Checked = False
         dgvBusqueda.Columns.Clear()
         txtBusqueda.Text = String.Empty
     End Sub
@@ -89,6 +91,7 @@ Public Class frm_Persona
             persona.Apellido = txtApellido.Text
             persona.Cedula = txtCedula.Text
             persona.Telefono = txtTelefono.Text
+            persona.CodigoPersona = txtCodigoCliente.Text
             persona.Direccion = txtDireccion.Text
             persona.FechaNacimiento = dtpFechaNacimiento.Value.Date
 
@@ -106,6 +109,7 @@ Public Class frm_Persona
             Select Case operacion
                 Case "I"
                     persona.IdUsuarioCreacion = usuario
+                    persona.IdUsuarioModificacion = usuario
                     persona.FechaCreacion = Now
                     If BLL_Persona.ingresarBD(persona, mensaje) Then
                         limpiarCampos()
@@ -146,6 +150,10 @@ Public Class frm_Persona
             resultado = False
         End If
 
+        If txtCodigoCliente.Text = "" Then
+            ErrorProvider1.SetError(txtApellido, "CodigoCliente es requerido")
+            resultado = False
+        End If
         'If (txtCedula.Text.Length <> 10) Then
         '    MessageBox.Show("LA CEDULA CONTIENE 10 DIGITOS", "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         '    txtCedula.Text = String.Empty
@@ -214,7 +222,7 @@ Public Class frm_Persona
 
 
     Private Sub frm_Persona_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.SetBounds(0, 0, 527, 482)
+        Me.SetBounds(400, 0, 516, 465)
         cbEstadoCivil.DataSource = BLL_EstadoCivil.ConsultarEstadoCivilTodos(mensaje)
         cbEstadoCivil.DisplayMember = "descripcion"
         cbEstadoCivil.ValueMember = "idEstadoCivil"

@@ -80,6 +80,16 @@
             _cedula = value
         End Set
     End Property
+    Private _codigoPersona As String
+    Public Property CodigoPersona() As String
+        Get
+            Return _codigoPersona
+        End Get
+        Set(ByVal value As String)
+            _codigoPersona = value
+        End Set
+    End Property
+
 
     Public Property FechaNacimiento() As Date
         Get

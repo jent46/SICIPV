@@ -5,8 +5,8 @@
     ''' <remarks></remarks>
     Private _idCuota As Integer
     Private _idFactura As ClsFactura
-    Private _usuarioCreacion As ClsPersona
-    Private _usuarioModificacion As ClsPersona
+    Private _usuarioCreacion As ClsUsuario
+    Private _usuarioModificacion As ClsUsuario
 
     Public Property IdCuota() As Integer
         Get
@@ -26,20 +26,20 @@
         End Set
     End Property
 
-    Public Property IdUsuarioCreacion() As ClsPersona
+    Public Property IdUsuarioCreacion() As ClsUsuario
         Get
             Return _usuarioCreacion
         End Get
-        Set(ByVal value As ClsPersona)
+        Set(ByVal value As ClsUsuario)
             _usuarioCreacion = value
         End Set
     End Property
 
-    Public Property IdUsuarioModificacion() As ClsPersona
+    Public Property IdUsuarioModificacion() As ClsUsuario
         Get
             Return _usuarioModificacion
         End Get
-        Set(ByVal value As ClsPersona)
+        Set(ByVal value As ClsUsuario)
             _usuarioModificacion = value
         End Set
     End Property

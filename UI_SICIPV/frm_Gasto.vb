@@ -131,7 +131,7 @@ Public Class frm_Gasto
 
 
     Private Sub frm_Gasto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.SetBounds(0, 0, 527, 482)
+        Me.SetBounds(400, 0, 516, 465)
         sep = Application.CurrentCulture.NumberFormat.NumberDecimalSeparator
     End Sub
 

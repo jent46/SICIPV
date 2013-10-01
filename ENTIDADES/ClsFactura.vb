@@ -29,6 +29,16 @@
         End Set
     End Property
 
+    Private _listaCuotas As New List(Of ClsCuota)
+    Public Property ListaCuotas() As List(Of ClsCuota)
+        Get
+            Return _listaCuotas
+        End Get
+        Set(ByVal value As List(Of ClsCuota))
+            _listaCuotas = value
+        End Set
+    End Property
+
 
 
 

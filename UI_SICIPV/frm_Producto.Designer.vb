@@ -30,6 +30,11 @@ Partial Class frm_Producto
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.tslConsultar = New System.Windows.Forms.ToolStripLabel()
         Me.gbProducto = New System.Windows.Forms.GroupBox()
+        Me.cb0 = New System.Windows.Forms.CheckBox()
+        Me.cb12 = New System.Windows.Forms.CheckBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtModelo = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.cbEstado = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.txtStock = New System.Windows.Forms.TextBox()
@@ -50,8 +55,8 @@ Partial Class frm_Producto
         Me.btnAceptar = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtModelo = New System.Windows.Forms.TextBox()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.gbProducto.SuspendLayout()
         Me.gbBuscar.SuspendLayout()
@@ -59,6 +64,7 @@ Partial Class frm_Producto
         Me.pnlBotones.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -66,7 +72,7 @@ Partial Class frm_Producto
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tslIngresar, Me.ToolStripSeparator1, Me.tslModificar, Me.ToolStripSeparator2, Me.tslConsultar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(551, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(513, 25)
         Me.ToolStrip1.TabIndex = 22
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -101,6 +107,11 @@ Partial Class frm_Producto
         '
         'gbProducto
         '
+        Me.gbProducto.Controls.Add(Me.Label9)
+        Me.gbProducto.Controls.Add(Me.NumericUpDown1)
+        Me.gbProducto.Controls.Add(Me.cb0)
+        Me.gbProducto.Controls.Add(Me.cb12)
+        Me.gbProducto.Controls.Add(Me.Label7)
         Me.gbProducto.Controls.Add(Me.txtModelo)
         Me.gbProducto.Controls.Add(Me.Label6)
         Me.gbProducto.Controls.Add(Me.cbEstado)
@@ -121,10 +132,55 @@ Partial Class frm_Producto
         Me.gbProducto.Text = "Informacion Producto"
         Me.gbProducto.Visible = False
         '
+        'cb0
+        '
+        Me.cb0.AutoSize = True
+        Me.cb0.Location = New System.Drawing.Point(376, 115)
+        Me.cb0.Name = "cb0"
+        Me.cb0.Size = New System.Drawing.Size(40, 17)
+        Me.cb0.TabIndex = 27
+        Me.cb0.Text = "0%"
+        Me.cb0.UseVisualStyleBackColor = True
+        '
+        'cb12
+        '
+        Me.cb12.AutoSize = True
+        Me.cb12.Location = New System.Drawing.Point(324, 116)
+        Me.cb12.Name = "cb12"
+        Me.cb12.Size = New System.Drawing.Size(46, 17)
+        Me.cb12.TabIndex = 26
+        Me.cb12.Text = "12%"
+        Me.cb12.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(290, 116)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(28, 13)
+        Me.Label7.TabIndex = 25
+        Me.Label7.Text = "Iva :"
+        '
+        'txtModelo
+        '
+        Me.txtModelo.Location = New System.Drawing.Point(91, 45)
+        Me.txtModelo.Name = "txtModelo"
+        Me.txtModelo.Size = New System.Drawing.Size(356, 20)
+        Me.txtModelo.TabIndex = 24
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(40, 52)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(45, 13)
+        Me.Label6.TabIndex = 23
+        Me.Label6.Text = "Modelo:"
+        '
         'cbEstado
         '
         Me.cbEstado.AutoSize = True
-        Me.cbEstado.Location = New System.Drawing.Point(271, 124)
+        Me.cbEstado.Location = New System.Drawing.Point(324, 141)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(73, 17)
         Me.cbEstado.TabIndex = 5
@@ -134,36 +190,38 @@ Partial Class frm_Producto
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(199, 129)
+        Me.Label8.Location = New System.Drawing.Point(278, 145)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(40, 13)
+        Me.Label8.Size = New System.Drawing.Size(46, 13)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Estado"
+        Me.Label8.Text = "Estado :"
         '
         'txtStock
         '
-        Me.txtStock.Location = New System.Drawing.Point(91, 124)
+        Me.txtStock.Enabled = False
+        Me.txtStock.Location = New System.Drawing.Point(91, 138)
         Me.txtStock.Name = "txtStock"
         Me.txtStock.Size = New System.Drawing.Size(73, 20)
         Me.txtStock.TabIndex = 4
+        Me.txtStock.Text = "0"
         '
         'txtPvp
         '
-        Me.txtPvp.Location = New System.Drawing.Point(91, 101)
+        Me.txtPvp.Location = New System.Drawing.Point(186, 90)
         Me.txtPvp.Name = "txtPvp"
         Me.txtPvp.Size = New System.Drawing.Size(73, 20)
         Me.txtPvp.TabIndex = 3
         '
         'txtValor
         '
-        Me.txtValor.Location = New System.Drawing.Point(91, 77)
+        Me.txtValor.Location = New System.Drawing.Point(91, 68)
         Me.txtValor.Name = "txtValor"
         Me.txtValor.Size = New System.Drawing.Size(73, 20)
         Me.txtValor.TabIndex = 2
         '
         'txtDescripcion
         '
-        Me.txtDescripcion.Location = New System.Drawing.Point(91, 28)
+        Me.txtDescripcion.Location = New System.Drawing.Point(91, 22)
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(356, 20)
         Me.txtDescripcion.TabIndex = 1
@@ -171,7 +229,7 @@ Partial Class frm_Producto
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(26, 131)
+        Me.Label4.Location = New System.Drawing.Point(47, 145)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(38, 13)
         Me.Label4.TabIndex = 0
@@ -180,7 +238,7 @@ Partial Class frm_Producto
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(33, 108)
+        Me.Label3.Location = New System.Drawing.Point(149, 97)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(31, 13)
         Me.Label3.TabIndex = 0
@@ -189,7 +247,7 @@ Partial Class frm_Producto
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(30, 84)
+        Me.Label2.Location = New System.Drawing.Point(51, 75)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(34, 13)
         Me.Label2.TabIndex = 0
@@ -198,7 +256,7 @@ Partial Class frm_Producto
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(-2, 36)
+        Me.Label1.Location = New System.Drawing.Point(19, 29)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(66, 13)
         Me.Label1.TabIndex = 0
@@ -298,27 +356,27 @@ Partial Class frm_Producto
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'Label6
+        'NumericUpDown1
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(22, 58)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(45, 13)
-        Me.Label6.TabIndex = 23
-        Me.Label6.Text = "Modelo:"
+        Me.NumericUpDown1.Location = New System.Drawing.Point(74, 95)
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(56, 20)
+        Me.NumericUpDown1.TabIndex = 28
         '
-        'txtModelo
+        'Label9
         '
-        Me.txtModelo.Location = New System.Drawing.Point(91, 51)
-        Me.txtModelo.Name = "txtModelo"
-        Me.txtModelo.Size = New System.Drawing.Size(356, 20)
-        Me.txtModelo.TabIndex = 24
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(10, 97)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(58, 13)
+        Me.Label9.TabIndex = 29
+        Me.Label9.Text = "Porcentaje"
         '
         'frm_Producto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(551, 634)
+        Me.ClientSize = New System.Drawing.Size(513, 634)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Name = "frm_Producto"
@@ -334,6 +392,7 @@ Partial Class frm_Producto
         Me.pnlBotones.ResumeLayout(False)
         Me.FlowLayoutPanel1.ResumeLayout(False)
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -367,4 +426,9 @@ Partial Class frm_Producto
     Friend WithEvents ErrorProvider1 As System.Windows.Forms.ErrorProvider
     Friend WithEvents txtModelo As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents cb0 As System.Windows.Forms.CheckBox
+    Friend WithEvents cb12 As System.Windows.Forms.CheckBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
 End Class

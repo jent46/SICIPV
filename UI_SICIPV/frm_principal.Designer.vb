@@ -37,6 +37,7 @@ Partial Class frm_principal
         Me.UsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.IngresoProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GastoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CambiarDeUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gbIngreso.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -112,7 +113,7 @@ Partial Class frm_principal
         '
         'AdministradorToolStripMenuItem
         '
-        Me.AdministradorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturacionToolStripMenuItem, Me.AbonoToolStripMenuItem, Me.ProductoToolStripMenuItem, Me.ClienteToolStripMenuItem1, Me.UsuarioToolStripMenuItem, Me.IngresoProductoToolStripMenuItem, Me.GastoToolStripMenuItem})
+        Me.AdministradorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturacionToolStripMenuItem, Me.AbonoToolStripMenuItem, Me.ProductoToolStripMenuItem, Me.ClienteToolStripMenuItem1, Me.UsuarioToolStripMenuItem, Me.IngresoProductoToolStripMenuItem, Me.GastoToolStripMenuItem, Me.CambiarDeUsuarioToolStripMenuItem})
         Me.AdministradorToolStripMenuItem.Name = "AdministradorToolStripMenuItem"
         Me.AdministradorToolStripMenuItem.Size = New System.Drawing.Size(95, 20)
         Me.AdministradorToolStripMenuItem.Text = "Administrador"
@@ -120,44 +121,50 @@ Partial Class frm_principal
         'FacturacionToolStripMenuItem
         '
         Me.FacturacionToolStripMenuItem.Name = "FacturacionToolStripMenuItem"
-        Me.FacturacionToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.FacturacionToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.FacturacionToolStripMenuItem.Text = "Facturacion"
         '
         'AbonoToolStripMenuItem
         '
         Me.AbonoToolStripMenuItem.Name = "AbonoToolStripMenuItem"
-        Me.AbonoToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.AbonoToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.AbonoToolStripMenuItem.Text = "Abono"
         '
         'ProductoToolStripMenuItem
         '
         Me.ProductoToolStripMenuItem.Name = "ProductoToolStripMenuItem"
-        Me.ProductoToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.ProductoToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.ProductoToolStripMenuItem.Text = "Producto"
         '
         'ClienteToolStripMenuItem1
         '
         Me.ClienteToolStripMenuItem1.Name = "ClienteToolStripMenuItem1"
-        Me.ClienteToolStripMenuItem1.Size = New System.Drawing.Size(162, 22)
+        Me.ClienteToolStripMenuItem1.Size = New System.Drawing.Size(177, 22)
         Me.ClienteToolStripMenuItem1.Text = "Cliente"
         '
         'UsuarioToolStripMenuItem
         '
         Me.UsuarioToolStripMenuItem.Name = "UsuarioToolStripMenuItem"
-        Me.UsuarioToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.UsuarioToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.UsuarioToolStripMenuItem.Text = "Usuario"
         '
         'IngresoProductoToolStripMenuItem
         '
         Me.IngresoProductoToolStripMenuItem.Name = "IngresoProductoToolStripMenuItem"
-        Me.IngresoProductoToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.IngresoProductoToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.IngresoProductoToolStripMenuItem.Text = "IngresoProducto"
         '
         'GastoToolStripMenuItem
         '
         Me.GastoToolStripMenuItem.Name = "GastoToolStripMenuItem"
-        Me.GastoToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.GastoToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.GastoToolStripMenuItem.Text = "Gasto"
+        '
+        'CambiarDeUsuarioToolStripMenuItem
+        '
+        Me.CambiarDeUsuarioToolStripMenuItem.Name = "CambiarDeUsuarioToolStripMenuItem"
+        Me.CambiarDeUsuarioToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.CambiarDeUsuarioToolStripMenuItem.Text = "Cambiar de usuario"
         '
         'frm_principal
         '
@@ -195,4 +202,5 @@ Partial Class frm_principal
     Friend WithEvents UsuarioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents IngresoProductoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GastoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CambiarDeUsuarioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

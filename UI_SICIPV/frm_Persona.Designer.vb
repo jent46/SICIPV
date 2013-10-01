@@ -57,6 +57,8 @@ Partial Class frm_Persona
         Me.pnlBotones = New System.Windows.Forms.Panel()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.btnAceptar = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtCodigoCliente = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowLayoutPanel1.SuspendLayout()
@@ -120,6 +122,8 @@ Partial Class frm_Persona
         '
         'gbDatos
         '
+        Me.gbDatos.Controls.Add(Me.txtCodigoCliente)
+        Me.gbDatos.Controls.Add(Me.Label9)
         Me.gbDatos.Controls.Add(Me.cbEstado)
         Me.gbDatos.Controls.Add(Me.Label8)
         Me.gbDatos.Controls.Add(Me.dtpFechaNacimiento)
@@ -141,13 +145,13 @@ Partial Class frm_Persona
         Me.gbDatos.Size = New System.Drawing.Size(464, 315)
         Me.gbDatos.TabIndex = 23
         Me.gbDatos.TabStop = False
-        Me.gbDatos.Text = "Datos Persona"
+        Me.gbDatos.Text = "Datos Cliente"
         Me.gbDatos.Visible = False
         '
         'cbEstado
         '
         Me.cbEstado.AutoSize = True
-        Me.cbEstado.Location = New System.Drawing.Point(174, 249)
+        Me.cbEstado.Location = New System.Drawing.Point(144, 277)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(73, 17)
         Me.cbEstado.TabIndex = 23
@@ -157,7 +161,7 @@ Partial Class frm_Persona
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(53, 254)
+        Me.Label8.Location = New System.Drawing.Point(85, 281)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(40, 13)
         Me.Label8.TabIndex = 20
@@ -165,29 +169,29 @@ Partial Class frm_Persona
         '
         'dtpFechaNacimiento
         '
-        Me.dtpFechaNacimiento.Location = New System.Drawing.Point(174, 194)
+        Me.dtpFechaNacimiento.Location = New System.Drawing.Point(144, 224)
         Me.dtpFechaNacimiento.Name = "dtpFechaNacimiento"
-        Me.dtpFechaNacimiento.Size = New System.Drawing.Size(200, 20)
+        Me.dtpFechaNacimiento.Size = New System.Drawing.Size(221, 20)
         Me.dtpFechaNacimiento.TabIndex = 21
         '
         'cbEstadoCivil
         '
         Me.cbEstadoCivil.FormattingEnabled = True
-        Me.cbEstadoCivil.Location = New System.Drawing.Point(174, 217)
+        Me.cbEstadoCivil.Location = New System.Drawing.Point(144, 250)
         Me.cbEstadoCivil.Name = "cbEstadoCivil"
         Me.cbEstadoCivil.Size = New System.Drawing.Size(121, 21)
         Me.cbEstadoCivil.TabIndex = 22
         '
         'txtTelefono
         '
-        Me.txtTelefono.Location = New System.Drawing.Point(174, 167)
+        Me.txtTelefono.Location = New System.Drawing.Point(144, 198)
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(221, 20)
         Me.txtTelefono.TabIndex = 20
         '
         'txtDireccion
         '
-        Me.txtDireccion.Location = New System.Drawing.Point(174, 115)
+        Me.txtDireccion.Location = New System.Drawing.Point(144, 146)
         Me.txtDireccion.Multiline = True
         Me.txtDireccion.Name = "txtDireccion"
         Me.txtDireccion.Size = New System.Drawing.Size(221, 46)
@@ -195,21 +199,21 @@ Partial Class frm_Persona
         '
         'txtCedula
         '
-        Me.txtCedula.Location = New System.Drawing.Point(174, 91)
+        Me.txtCedula.Location = New System.Drawing.Point(144, 83)
         Me.txtCedula.Name = "txtCedula"
         Me.txtCedula.Size = New System.Drawing.Size(221, 20)
         Me.txtCedula.TabIndex = 18
         '
         'txtApellido
         '
-        Me.txtApellido.Location = New System.Drawing.Point(174, 66)
+        Me.txtApellido.Location = New System.Drawing.Point(144, 51)
         Me.txtApellido.Name = "txtApellido"
         Me.txtApellido.Size = New System.Drawing.Size(221, 20)
         Me.txtApellido.TabIndex = 17
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(174, 41)
+        Me.txtNombre.Location = New System.Drawing.Point(144, 19)
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(221, 20)
         Me.txtNombre.TabIndex = 16
@@ -217,7 +221,7 @@ Partial Class frm_Persona
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(53, 98)
+        Me.Label7.Location = New System.Drawing.Point(85, 90)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(40, 13)
         Me.Label7.TabIndex = 11
@@ -226,7 +230,7 @@ Partial Class frm_Persona
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(53, 225)
+        Me.Label6.Location = New System.Drawing.Point(63, 258)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(62, 13)
         Me.Label6.TabIndex = 5
@@ -235,7 +239,7 @@ Partial Class frm_Persona
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(53, 174)
+        Me.Label5.Location = New System.Drawing.Point(76, 205)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(49, 13)
         Me.Label5.TabIndex = 6
@@ -244,7 +248,7 @@ Partial Class frm_Persona
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(53, 122)
+        Me.Label4.Location = New System.Drawing.Point(73, 179)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(52, 13)
         Me.Label4.TabIndex = 7
@@ -253,7 +257,7 @@ Partial Class frm_Persona
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(53, 199)
+        Me.Label3.Location = New System.Drawing.Point(17, 231)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(108, 13)
         Me.Label3.TabIndex = 8
@@ -262,7 +266,7 @@ Partial Class frm_Persona
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(53, 73)
+        Me.Label2.Location = New System.Drawing.Point(81, 58)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(44, 13)
         Me.Label2.TabIndex = 9
@@ -271,7 +275,7 @@ Partial Class frm_Persona
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(53, 48)
+        Me.Label1.Location = New System.Drawing.Point(81, 26)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(44, 13)
         Me.Label1.TabIndex = 10
@@ -373,6 +377,22 @@ Partial Class frm_Persona
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(53, 122)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(72, 13)
+        Me.Label9.TabIndex = 24
+        Me.Label9.Text = "CodigoCliente"
+        '
+        'txtCodigoCliente
+        '
+        Me.txtCodigoCliente.Location = New System.Drawing.Point(144, 115)
+        Me.txtCodigoCliente.Name = "txtCodigoCliente"
+        Me.txtCodigoCliente.Size = New System.Drawing.Size(221, 20)
+        Me.txtCodigoCliente.TabIndex = 25
+        '
         'frm_Persona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -382,7 +402,7 @@ Partial Class frm_Persona
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "frm_Persona"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = ".:: Persona ::."
+        Me.Text = ".:: Cliente ::."
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -431,4 +451,6 @@ Partial Class frm_Persona
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents txtApellido As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents txtCodigoCliente As System.Windows.Forms.TextBox
+    Friend WithEvents Label9 As System.Windows.Forms.Label
 End Class

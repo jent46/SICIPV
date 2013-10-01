@@ -10,7 +10,7 @@ Public Class frm_Producto
     Dim sep As Char
 
     Private Sub frmProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.SetBounds(0, 0, 516, 465)
+        Me.SetBounds(400, 0, 516, 465)
         'Detectar el separador decimal de la aplicación.
         Sep = Application.CurrentCulture.NumberFormat.NumberDecimalSeparator
     End Sub
@@ -111,6 +111,11 @@ Public Class frm_Producto
             producto.Valor = CDbl(txtValor.Text)
             producto.Pvp = CDbl(txtPvp.Text)
             producto.Stock = CInt(txtStock.Text)
+            If cb12.Checked Then
+                producto.GravaIva = 1
+            ElseIf cb0.Checked Then
+                producto.GravaIva = 0
+            End If
             producto.FechaModificacion = Now()
 
             If cbEstado.Checked Then
@@ -145,6 +150,8 @@ Public Class frm_Producto
         txtPvp.Text = String.Empty
         txtStock.Text = String.Empty
         cbEstado.Checked = False
+        cb0.Checked = False
+        cb12.Checked = False
     End Sub
 
     Private Function validarCampos() As Boolean
@@ -172,6 +179,15 @@ Public Class frm_Producto
             resultado = False
         End If
 
+        If ((cb0.Checked = False And cb12.Checked = False)) Then
+            ErrorProvider1.SetError(cb0, "Se necesita saber si es tarifa 0% o 12%")
+            ErrorProvider1.SetError(cb12, "Se necesita saber si es tarifa 0% o 12%")
+            resultado = False
+        End If
+        If ((cb0.Checked = True And cb12.Checked = True)) Then
+            ErrorProvider1.SetError(cb0, "Debe elegir una sola opcion")
+            resultado = False
+        End If
         Return resultado
 
     End Function
@@ -229,12 +245,23 @@ Public Class frm_Producto
         Dim dt As DataTable = BLL_Producto.ConsultarProductosPorId(dr.Cells("Id").Value, mensaje)
         Me.idProducto = dt.Rows(0)("idProducto")
         txtDescripcion.Text = dt.Rows(0)("descripcion")
-        txtModelo.Text = dt.Rows(0)("modelo")
+
+        If (dt.Rows(0)("modelo") Is DBNull.Value) Then
+            txtModelo.Text = ""
+        Else
+            txtModelo.Text = dt.Rows(0)("modelo")
+        End If
+
         txtPvp.Text = dt.Rows(0)("pvp")
         txtStock.Text = dt.Rows(0)("stock")
         txtValor.Text = dt.Rows(0)("valor")
         If (dt.Rows(0)("estado")) = 1 Then
             cbEstado.Checked = True
+        End If
+        If (dt.Rows(0)("gravaIva")) = 1 Then
+            cb12.Checked = True
+        ElseIf (dt.Rows(0)("gravaIva")) = 0 Then
+            cb0.Checked = True
         End If
         txtBusqueda.Text = String.Empty
         dgvBusqueda.Columns.Clear()

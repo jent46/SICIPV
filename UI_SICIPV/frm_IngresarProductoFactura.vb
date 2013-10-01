@@ -42,7 +42,7 @@ Public Class frm_IngresarProductoFactura
         prod.Descripcion = dt.Rows(0)("descripcion")
         prod.Pvp = dt.Rows(0)("pvp")
         prod.Stock = dt.Rows(0)("stock")
-        prod.Valor = dt.Rows(0)("valor")
+        prod.Valor = dt.Rows(0)("valor") 'Costo
         dgvBusqueda.Columns.Clear()
         frm_Facturacion.agregarProducto(prod)
         Me.Hide()

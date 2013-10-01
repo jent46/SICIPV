@@ -66,7 +66,7 @@ Public Class frm_IngresoProducto
     End Sub
 
     Private Sub frm_IngresoProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.SetBounds(0, 0, 516, 465)
+        Me.SetBounds(400, 0, 516, 465)
         cbProducto.DataSource = BLL_IngreoProducto.ListaProducto(mensaje)
         cbProducto.DisplayMember = "Descripcion"
         cbProducto.ValueMember = "Id"
@@ -122,9 +122,9 @@ Public Class frm_IngresoProducto
                     ingresoProducto.IdUsuarioCreacion = usuario
                     ingresoProducto.IdUsuarioModificacion = usuario
                     ingresoProducto.FechaCreacion = Date.Now
-
                     If BLL_IngreoProducto.ingresarBD(ingresoProducto, mensaje) Then
                         limpiarCampos()
+
                     End If
                 Case "M"
                     ingresoProducto.IdUsuarioModificacion = usuario

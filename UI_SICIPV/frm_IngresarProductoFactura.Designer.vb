@@ -94,6 +94,7 @@ Partial Class frm_IngresarProductoFactura
         Me.ClientSize = New System.Drawing.Size(477, 328)
         Me.Controls.Add(Me.gbBuscar)
         Me.Name = "frm_IngresarProductoFactura"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frm_IngresarProductoFactura"
         Me.gbBuscar.ResumeLayout(False)
         Me.gbBuscar.PerformLayout()

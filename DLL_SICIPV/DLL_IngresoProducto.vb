@@ -19,12 +19,14 @@ Public Class DLL_IngresoProducto
         comando.Parameters.AddWithValue("_estado", ingresoProducto.Estado)
         comando.Parameters.AddWithValue("_fechaCreacion", ingresoProducto.FechaCreacion)
         comando.Parameters.AddWithValue("_fechaModificacion", ingresoProducto.FechaModificacion)
+        comando.Parameters.AddWithValue("_stock", ingresoProducto.Cantidad) 'Actualiza el stock de la tabla Producto
 
         Try
             comando.Connection = conn
             conn.Open()
             comando.ExecuteNonQuery()
             estado = True
+            mensaje = "Producto ingresado exitosamente"
         Catch ex As Exception
             estado = False
             mensaje = ex.Message

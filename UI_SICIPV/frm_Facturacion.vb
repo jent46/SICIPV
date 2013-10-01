@@ -12,7 +12,7 @@ Public Class frm_Facturacion
 
     Private Sub frm_Facturacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         gbBuscar.SetBounds(11, 40, gbBuscar.Width, gbBuscar.Height)
-        Me.SetBounds(0, 0, 918, 637)
+        Me.SetBounds(200, 0, 918, 637)
         sep = Application.CurrentCulture.NumberFormat.NumberDecimalSeparator
         cbTipoVenta.DataSource = BLL_TipoVenta.ConsultarTipoVentaTodos(mensaje)
         cbTipoVenta.DisplayMember = "descripcion"
@@ -34,7 +34,7 @@ Public Class frm_Facturacion
         tslIngresar.Enabled = False
         tslConsultar.Enabled = False
         tslModificar.Enabled = False
-        pnlBotones.SetBounds(1, 620, 874, 70)
+        pnlBotones.SetBounds(1, 600, 874, 70)
         operacion = "I"
     End Sub
 
@@ -114,7 +114,7 @@ Public Class frm_Facturacion
         txtGarante.Enabled = True
         txtTelefonoGarante.Text = String.Empty
         txtTelefonoGarante.Enabled = True
-        txtDireccion.Text = String.Empty
+        txtDireccionGarante.Text = String.Empty
         txtDireccion.Enabled = True
         dgvProductos.Columns.Clear()
     End Sub
@@ -160,8 +160,9 @@ Public Class frm_Facturacion
             For index = 0 To dgvProductos.Rows.Count - 1
                 Dim item As ClsItemFactura = New ClsItemFactura()
                 Dim producto As ClsProducto = New ClsProducto()
-
+                'dgvProductos -> *Id | Stock |Cantidad |* Costo | Descripcion | ValorUnitario | ValorTotal
                 producto.IdProducto = dgvProductos.Rows(index).Cells("Id").Value
+                producto.Stock = dgvProductos.Rows(index).Cells("stock").Value
 
                 'idFactura
                 item.IdFactura = factura
@@ -175,9 +176,29 @@ Public Class frm_Facturacion
                 item.CostoProducto = dgvProductos.Rows(index).Cells("costo").Value
                 item.FechaCreacion = Date.Now
                 item.FechaModificacion = Date.Now
+                'Actualizo la cantidad de los productos que fueron ingresados en la venta
+                item.IdProducto.Stock = producto.Stock - dgvProductos.Rows(index).Cells("cantidad").Value
                 factura.ItemsProductos.Add(item)
             Next
 
+            For index = 0 To txtCuotas.Value - 1
+                Dim cuota As ClsCuota = New ClsCuota()
+                cuota.IdFactura = factura
+                cuota.IdUsuarioCreacion = usuario
+                cuota.IdUsuarioModificacion = usuario
+                cuota.Fecha = Date.Now.AddMonths(index + 1) 'Se va sumando un mes a cada cuota
+                cuota.Saldo = factura.TotalVenta
+                cuota.ValorCuota = factura.TotalVenta / factura.Cuotas
+                cuota.PorcentajeInteres = CDbl(txtInteres.Value) / 100
+                cuota.InteresFactura = cuota.PorcentajeInteres * factura.Subtotal
+                cuota.InteresMora = 0.0
+                cuota.ValorTotal = cuota.InteresFactura + cuota.ValorCuota
+                cuota.Comentario = ""
+                cuota.Estado = 1
+                cuota.FechaCreacion = Date.Now
+                cuota.FechaModificacion = Date.Now
+                factura.ListaCuotas.Add(cuota)
+            Next
 
             Select Case operacion
                 Case "I"
@@ -186,6 +207,14 @@ Public Class frm_Facturacion
                     factura.FechaCreacion = Now
                     If BLL_Factura.ingresarBD(factura, mensaje) Then
                         limpiarCampos()
+                        gbInfoGeneral.Visible = False
+                        gbGarante.Visible = False
+                        gbProductos.Visible = False
+                        pnlBotones.Visible = False
+
+                        tslModificar.Enabled = False
+                        tslIngresar.Enabled = True
+                        tslConsultar.Enabled = True
                     End If
                     MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
 
@@ -416,51 +445,55 @@ Public Class frm_Facturacion
     End Sub
 
     Public Sub agregarProducto(ByVal prod As ClsProducto)
+        'dgvProductos -> *Id |Stock| Cantidad |* Costo | Descripcion | ValorUnitario | ValorTotal
+
         Dim id As Integer = prod.IdProducto
         Dim cantidad As Integer = 1
-        'dgvProductos.CurrentRow.Cells("Cantidad").Value
+        Dim costo As Double = prod.Valor
+        Dim stock As Integer = prod.Stock
         Dim descripcion As String = prod.Descripcion
         Dim valorUnitario As Double = prod.Pvp
         Dim valorTotal As Double = cantidad * valorUnitario
-        Dim costo As Double = prod.Valor
 
-        Dim flat As Boolean = True
 
-        If dgvProductos.Rows.Count <> 0 Then
-            For index = 0 To dgvProductos.Rows.Count - 1
-                If (dgvProductos.Rows(index).Cells("id").Value = id) Then
+        Dim flag As Boolean = True
+
+        If dgvProductos.Rows.Count <> 0 Then 'Pregunto si hay filas en dgvProductos
+            For index = 0 To dgvProductos.Rows.Count - 1    'Recorro todas las filas que hay
+                If (dgvProductos.Rows(index).Cells("id").Value = id) Then 'Si en el dgvProductos hay algun producto con ese mismo id
                     MessageBox.Show("Producto ya fue ingresado")
-                    flat = False
-                    index = dgvProductos.Rows.Count
+                    flag = False
+                    index = dgvProductos.Rows.Count 'Pongo al tope el index para que termine
                 End If
             Next
         End If
 
-        If flat Then
-            dgvProductos.Rows.Add(id, cantidad, costo, descripcion, valorUnitario, valorTotal)
+        If flag Then
+            dgvProductos.Rows.Add(id, stock, cantidad, costo, descripcion, valorUnitario, valorTotal)
             txtSubtotal.Text = CDbl(txtSubtotal.Text) + valorTotal
+            txtDescuento.Text = CDbl(txtSubtotal.Text) * (CDbl(txtDescuento.Text) / 100)
             actualizarValoresFactura()
 
         End If
 
 
-                'If dgvProductos.Rows.Count <> 0 Then
-                '    For index = 0 To dgvProductos.Rows.Count - 1
-                '        If (dgvProductos.Rows(index).Cells("id").Value = id) Then
-                '            MessageBox.Show("Producto ya fue ingresado")
-                '        End If
-                '    Next
-                'Else
-                '    dgvProductos.Rows.Add(id, cantidad, descripcion, valorUnitario, valorTotal)
-                'End If
+        'If dgvProductos.Rows.Count <> 0 Then
+        '    For index = 0 To dgvProductos.Rows.Count - 1
+        '        If (dgvProductos.Rows(index).Cells("id").Value = id) Then
+        '            MessageBox.Show("Producto ya fue ingresado")
+        '        End If
+        '    Next
+        'Else
+        '    dgvProductos.Rows.Add(id, cantidad, descripcion, valorUnitario, valorTotal)
+        'End If
 
 
 
         'dgvProductos.Rows.Add(prod.Valor, 1, prod.Pvp, prod.Pvp)
-                'txtSubtotal.Text = CDbl(txtSubtotal.Text) + prod.Pvp
-                'txtDescuento.Text = CDbl(txtSubtotal.Text) * CDbl(txtDsctoPorcentaje.Text) / 100
-                'txtIva.Text = CDbl(txtIva.Text) * 0.12
-                'txtTotal.Text = CDbl(txtSubtotal.Text) - CDbl(txtDescuento.Text) + CDbl(txtIva.Text)
+        'txtSubtotal.Text = CDbl(txtSubtotal.Text) + prod.Pvp
+        'txtDescuento.Text = CDbl(txtSubtotal.Text) * CDbl(txtDsctoPorcentaje.Text) / 100
+        'txtIva.Text = CDbl(txtIva.Text) * 0.12
+        'txtTotal.Text = CDbl(txtSubtotal.Text) - CDbl(txtDescuento.Text) + CDbl(txtIva.Text)
     End Sub
 
     Sub actualizarValoresFactura()
@@ -511,6 +544,7 @@ Public Class frm_Facturacion
         End If
     End Sub
 
+
     Private Sub dgvProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellValueChanged
         If e.ColumnIndex = 1 Then
             If dgvProductos.Rows.Count <> 0 Then 'Preguntamos si el datagridview de productos esta lleno con al menos un producto
@@ -521,8 +555,9 @@ Public Class frm_Facturacion
                     cantidad = dr.Cells("Cantidad").Value
                     If cantidad = 0 Then
                         dr.Cells("Cantidad").Value = cantidad = 1
+                        MsgBox("Tiene que ingresar una cantidad mayor a cero", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
                     End If
-                    MsgBox("Tiene que ingresar una cantidad mayor a cero", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+
                 Else
                     dr.Cells("Cantidad").Value = 1
                     cantidad = 1

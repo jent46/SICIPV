@@ -11,7 +11,7 @@ Public Class DLL_Factura
         Dim comando As New MySqlCommand
         Dim transaction As MySqlTransaction
         Dim estado As Boolean = False
-        Dim idFactura As Integer
+        Dim idFactura As Integer = 1
 
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "INS_Factura"
@@ -21,7 +21,10 @@ Public Class DLL_Factura
             comando.Transaction = transaction
             'comando = conn.CreateCommand()
             comando.Connection = conn
+
             comando.Parameters.AddWithValue("_idTipoVenta", factura.IdTipoVenta.IdTipoVenta)
+            comando.Parameters.AddWithValue("_idFactura", idFactura)
+            comando.Parameters("_idFactura").Direction = ParameterDirection.Output
             comando.Parameters.AddWithValue("_idPersona", factura.IdPersona.IdPersona)
             comando.Parameters.AddWithValue("_idGarante", factura.IdGarante.IdPersona)
             comando.Parameters.AddWithValue("_idUsuarioCreacion", factura.IdUsuarioCreacion.IdUsuario)
@@ -46,9 +49,6 @@ Public Class DLL_Factura
             comando.Parameters.AddWithValue("_garanteDireccion", factura.GaranteDireccion)
             comando.Parameters.AddWithValue("_fechaCreacion", factura.FechaCreacion)
             comando.Parameters.AddWithValue("_fechaModificacion", factura.FechaModificacion)
-            comando.Parameters.Add("_idFactura", MySqlDbType.Int16)
-
-
             comando.ExecuteNonQuery()
             idFactura = comando.Parameters("_idFactura").Value.ToString()
 
@@ -69,10 +69,37 @@ Public Class DLL_Factura
                 comando.Parameters.AddWithValue("_estado", item.Estado)
                 comando.Parameters.AddWithValue("_fechaCreacion", item.FechaCreacion)
                 comando.Parameters.AddWithValue("_fechaModificacion", item.FechaModificacion)
+                'Actualiza stock
+                comando.Parameters.AddWithValue("_stock", item.IdProducto.Stock)
                 comando.Transaction = transaction
                 comando.ExecuteNonQuery()
 
             Next
+
+            For Each itemCuota As ClsCuota In factura.ListaCuotas
+                comando = New MySqlCommand
+                comando.Connection = conn
+                comando.CommandType = CommandType.StoredProcedure
+                comando.CommandText = "INS_Cuota"
+                comando.Parameters.AddWithValue("_idFactura", idFactura)
+                comando.Parameters.AddWithValue("_idUsuarioCreacion", itemCuota.IdUsuarioCreacion.IdUsuario)
+                comando.Parameters.AddWithValue("_idUsuarioModificacion", itemCuota.IdUsuarioModificacion.IdUsuario)
+                comando.Parameters.AddWithValue("_fecha", itemCuota.Fecha)
+                comando.Parameters.AddWithValue("_saldo", itemCuota.Saldo)
+                comando.Parameters.AddWithValue("_valorCuota", itemCuota.ValorCuota)
+                comando.Parameters.AddWithValue("_porcentajeInteres", itemCuota.PorcentajeInteres)
+                comando.Parameters.AddWithValue("_interesFactura", itemCuota.InteresFactura)
+                comando.Parameters.AddWithValue("_interesMora", itemCuota.InteresMora)
+                comando.Parameters.AddWithValue("_valorTotal", itemCuota.ValorTotal)
+                comando.Parameters.AddWithValue("_comentario", itemCuota.Comentario)
+                comando.Parameters.AddWithValue("_estado", itemCuota.Estado)
+                comando.Parameters.AddWithValue("_fechaCreacion", itemCuota.FechaCreacion)
+                comando.Parameters.AddWithValue("_fechaModificacion", itemCuota.FechaModificacion)
+                comando.Transaction = transaction
+                comando.ExecuteNonQuery()
+
+            Next
+
 
             transaction.Commit()
             estado = True

@@ -17,6 +17,7 @@ Public Class DLL_Producto
         comando.Parameters.AddWithValue("_modelo", producto.Modelo)
         comando.Parameters.AddWithValue("_valor", producto.Valor)
         comando.Parameters.AddWithValue("_pvp", producto.Pvp)
+        comando.Parameters.AddWithValue("_gravaIva", producto.GravaIva)
         comando.Parameters.AddWithValue("_stock", producto.Stock)
         comando.Parameters.AddWithValue("_estado", producto.Estado)
         comando.Parameters.AddWithValue("_fechaCreacion", producto.FechaCreacion)
@@ -60,6 +61,7 @@ Public Class DLL_Producto
             comando.Connection = conn
             conn.Open()
             comando.ExecuteNonQuery()
+            mensaje = "El producto fue modificado exitosamente!!!"
             estado = True
         Catch ex As Exception
             estado = False
