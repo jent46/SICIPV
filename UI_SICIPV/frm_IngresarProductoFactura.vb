@@ -16,16 +16,16 @@ Public Class frm_IngresarProductoFactura
             Dim dt As DataTable = Nothing
 
             Try
+
                 dt = BLL_Producto.ConsultarProductosPorDescripcion(txtBusqueda.Text, mensaje)
 
                 If dt.Rows.Count <> 0 Then
+                    'dgvBusqueda -> *Id |Descripcion | Modelo | Pvp | Stock
                     dgvBusqueda.DataSource = dt
                     dgvBusqueda.Columns("Id").Visible = False
                 End If
             Catch ex As Exception
             End Try
-
-
         End If
     End Sub
 
@@ -43,6 +43,7 @@ Public Class frm_IngresarProductoFactura
         prod.Pvp = dt.Rows(0)("pvp")
         prod.Stock = dt.Rows(0)("stock")
         prod.Valor = dt.Rows(0)("valor") 'Costo
+        prod.GravaIva = dt.Rows(0)("gravaIva")
         dgvBusqueda.Columns.Clear()
         frm_Facturacion.agregarProducto(prod)
         Me.Hide()

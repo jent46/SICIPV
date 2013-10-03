@@ -62,43 +62,73 @@ Public Class frm_Gasto
         txtValor.Text = String.Empty
     End Sub
 
+    Private Function validarCampos() As Boolean
+        Dim resultado As Boolean = True
+
+        ErrorProvider1.Clear()
+
+        If txtObservacion.Text = "" Then
+            ErrorProvider1.SetError(txtObservacion, "Observacion es requerido")
+            resultado = False
+        End If
+
+        If txtBeneficiario.Text = "" Then
+            ErrorProvider1.SetError(txtBeneficiario, "Beneficiario es requerido")
+            resultado = False
+        End If
+
+        If txtDetalle.Text = "" Then
+            ErrorProvider1.SetError(txtDetalle, "Detalle es requerido")
+            resultado = False
+        End If
+
+        If txtValor.Text = "" Then
+            ErrorProvider1.SetError(txtValor, "Valor es requerido")
+            resultado = False
+        End If
+
+        Return resultado
+    End Function
+
+
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
-        Dim gasto As ClsGasto = New ClsGasto()
+        If validarCampos() Then
+
+            Dim gasto As ClsGasto = New ClsGasto()
+            gasto.Observacion = txtObservacion.Text
+            gasto.Beneficiario = txtBeneficiario.Text
+            gasto.Detelle = txtDetalle.Text
+            gasto.NumFactura = txtNumFactura.Text
+            gasto.NumDocumento = txtNumDocumento.Text
+            gasto.NumRetencion = txtNumRetencion.Text
+            gasto.Valor = CDbl(txtValor.Text)
 
 
-        gasto.Observacion = txtObservacion.Text
-        gasto.Beneficiario = txtBeneficiario.Text
-        gasto.Detelle = txtDetalle.Text
-        gasto.NumFactura = txtNumFactura.Text
-        gasto.NumDocumento = txtNumDocumento.Text
-        gasto.NumRetencion = txtNumRetencion.Text
-        gasto.Valor = CDbl(txtValor.Text)
+            Select Case operacion
+                Case "I"
+                    gasto.IdUsuarioCreacion = usuario
+                    gasto.IdUsuarioModificacion = usuario
+                    gasto.Fecha = dtpFecha.Value
+                    If BLL_Gasto.ingresarBD(gasto, mensaje) Then
+                        limpiarCampos()
+                        gbDatos.Visible = False
+                        pnlBotones.Visible = False
+                        tslModificar.Enabled = False
+                        tslIngresar.Enabled = True
+                        tslConsultar.Enabled = True
+                    End If
+                    MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
 
+                Case "M"
+                    'gasto.IdPersona = idPersona
+                    'gasto.IdUsuarioModificacion = usuario
+                    'If BLL_Persona.modificarBD(persona, mensaje) Then
+                    '    limpiarCampos()
+                    'End If
+                    MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
 
-        Select Case operacion
-            Case "I"
-                gasto.IdUsuarioCreacion = usuario
-                gasto.IdUsuarioModificacion = usuario
-                gasto.Fecha = dtpFecha.Value
-                If BLL_Gasto.ingresarBD(gasto, mensaje) Then
-                    limpiarCampos()
-                    gbDatos.Visible = False
-                    pnlBotones.Visible = False
-                    tslModificar.Enabled = False
-                    tslIngresar.Enabled = True
-                    tslConsultar.Enabled = True
-                End If
-                MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
-
-            Case "M"
-                'gasto.IdPersona = idPersona
-                'gasto.IdUsuarioModificacion = usuario
-                'If BLL_Persona.modificarBD(persona, mensaje) Then
-                '    limpiarCampos()
-                'End If
-                MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
-
-        End Select
+            End Select
+        End If
     End Sub
 
     Sub Valida(Data As TextBox)

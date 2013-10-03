@@ -26,8 +26,6 @@ Partial Class frm_principal
         Me.btnIngresar = New System.Windows.Forms.Button()
         Me.txtClave = New System.Windows.Forms.TextBox()
         Me.txtUsuario = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.AdministradorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturacionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -38,6 +36,8 @@ Partial Class frm_principal
         Me.IngresoProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GastoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CambiarDeUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.gbIngreso.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -48,8 +48,8 @@ Partial Class frm_principal
         Me.gbIngreso.Controls.Add(Me.btnIngresar)
         Me.gbIngreso.Controls.Add(Me.txtClave)
         Me.gbIngreso.Controls.Add(Me.txtUsuario)
-        Me.gbIngreso.Controls.Add(Me.Label2)
         Me.gbIngreso.Controls.Add(Me.Label1)
+        Me.gbIngreso.Controls.Add(Me.Label2)
         Me.gbIngreso.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbIngreso.Location = New System.Drawing.Point(544, 260)
         Me.gbIngreso.Name = "gbIngreso"
@@ -81,26 +81,6 @@ Partial Class frm_principal
         Me.txtUsuario.Name = "txtUsuario"
         Me.txtUsuario.Size = New System.Drawing.Size(146, 20)
         Me.txtUsuario.TabIndex = 2
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(45, 109)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(54, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "CLAVE :"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(30, 51)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(71, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "USUARIO :"
         '
         'MenuStrip1
         '
@@ -165,6 +145,32 @@ Partial Class frm_principal
         Me.CambiarDeUsuarioToolStripMenuItem.Name = "CambiarDeUsuarioToolStripMenuItem"
         Me.CambiarDeUsuarioToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.CambiarDeUsuarioToolStripMenuItem.Text = "Cambiar de usuario"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Image = Global.UI_SICIPV.My.Resources.Resources.password
+        Me.Label2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label2.Location = New System.Drawing.Point(24, 110)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(114, 13)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "CLAVE :               "
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Image = Global.UI_SICIPV.My.Resources.Resources.user
+        Me.Label1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label1.Location = New System.Drawing.Point(19, 50)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(111, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "USUARIO :          "
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'frm_principal
         '

@@ -73,8 +73,9 @@ Partial Class frm_Usuario
         '
         'tslIngresar
         '
+        Me.tslIngresar.Image = Global.UI_SICIPV.My.Resources.Resources.ingresar
         Me.tslIngresar.Name = "tslIngresar"
-        Me.tslIngresar.Size = New System.Drawing.Size(49, 22)
+        Me.tslIngresar.Size = New System.Drawing.Size(65, 22)
         Me.tslIngresar.Text = "Ingresar"
         '
         'ToolStripSeparator1
@@ -85,8 +86,9 @@ Partial Class frm_Usuario
         'tslModificar
         '
         Me.tslModificar.Enabled = False
+        Me.tslModificar.Image = Global.UI_SICIPV.My.Resources.Resources.modificar
         Me.tslModificar.Name = "tslModificar"
-        Me.tslModificar.Size = New System.Drawing.Size(58, 22)
+        Me.tslModificar.Size = New System.Drawing.Size(74, 22)
         Me.tslModificar.Text = "Modificar"
         '
         'ToolStripSeparator2
@@ -96,8 +98,9 @@ Partial Class frm_Usuario
         '
         'tslConsultar
         '
+        Me.tslConsultar.Image = Global.UI_SICIPV.My.Resources.Resources.consultar
         Me.tslConsultar.Name = "tslConsultar"
-        Me.tslConsultar.Size = New System.Drawing.Size(58, 22)
+        Me.tslConsultar.Size = New System.Drawing.Size(74, 22)
         Me.tslConsultar.Text = "Consultar"
         '
         'gbDatos

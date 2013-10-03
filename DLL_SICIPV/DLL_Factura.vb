@@ -103,23 +103,13 @@ Public Class DLL_Factura
 
             transaction.Commit()
             estado = True
+            mensaje = "Factura ingresada exitosamente!"
         Catch ex As Exception
             mensaje = ex.Message
             estado = False
             If Not transaction Is Nothing Then
                 transaction.Rollback()
             End If
-
-            ''Intento de confirmar la transacción.
-            'Try
-            '    transaction.Rollback()
-            'Catch ex2 As Exception
-            '    'Este bloque try catch se encargará de todos los errores que se hayan podido producir
-            '    'en el servidor y que implicaría la reversión al fracaso, como
-            '    'una conexión cerrada.
-            '    mensaje = ex2.Message
-            'End Try
-
 
         Finally
             If conn.State = ConnectionState.Open Then

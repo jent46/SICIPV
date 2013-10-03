@@ -32,6 +32,8 @@ Partial Class frm_Persona
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.gbDatos = New System.Windows.Forms.GroupBox()
+        Me.txtCodigoCliente = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.cbEstado = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.dtpFechaNacimiento = New System.Windows.Forms.DateTimePicker()
@@ -57,8 +59,6 @@ Partial Class frm_Persona
         Me.pnlBotones = New System.Windows.Forms.Panel()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.btnAceptar = New System.Windows.Forms.Button()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.txtCodigoCliente = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowLayoutPanel1.SuspendLayout()
@@ -79,8 +79,9 @@ Partial Class frm_Persona
         '
         'tslIngresar
         '
+        Me.tslIngresar.Image = Global.UI_SICIPV.My.Resources.Resources.ingresar
         Me.tslIngresar.Name = "tslIngresar"
-        Me.tslIngresar.Size = New System.Drawing.Size(49, 22)
+        Me.tslIngresar.Size = New System.Drawing.Size(65, 22)
         Me.tslIngresar.Text = "Ingresar"
         '
         'ToolStripSeparator1
@@ -91,8 +92,9 @@ Partial Class frm_Persona
         'tslModificar
         '
         Me.tslModificar.Enabled = False
+        Me.tslModificar.Image = Global.UI_SICIPV.My.Resources.Resources.modificar
         Me.tslModificar.Name = "tslModificar"
-        Me.tslModificar.Size = New System.Drawing.Size(58, 22)
+        Me.tslModificar.Size = New System.Drawing.Size(74, 22)
         Me.tslModificar.Text = "Modificar"
         '
         'ToolStripSeparator2
@@ -102,8 +104,9 @@ Partial Class frm_Persona
         '
         'tslConsultar
         '
+        Me.tslConsultar.Image = Global.UI_SICIPV.My.Resources.Resources.consultar
         Me.tslConsultar.Name = "tslConsultar"
-        Me.tslConsultar.Size = New System.Drawing.Size(58, 22)
+        Me.tslConsultar.Size = New System.Drawing.Size(74, 22)
         Me.tslConsultar.Text = "Consultar"
         '
         'ErrorProvider1
@@ -147,6 +150,22 @@ Partial Class frm_Persona
         Me.gbDatos.TabStop = False
         Me.gbDatos.Text = "Datos Cliente"
         Me.gbDatos.Visible = False
+        '
+        'txtCodigoCliente
+        '
+        Me.txtCodigoCliente.Location = New System.Drawing.Point(144, 115)
+        Me.txtCodigoCliente.Name = "txtCodigoCliente"
+        Me.txtCodigoCliente.Size = New System.Drawing.Size(221, 20)
+        Me.txtCodigoCliente.TabIndex = 25
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(53, 122)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(72, 13)
+        Me.Label9.TabIndex = 24
+        Me.Label9.Text = "CodigoCliente"
         '
         'cbEstado
         '
@@ -376,22 +395,6 @@ Partial Class frm_Persona
         Me.btnAceptar.TabIndex = 24
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(53, 122)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(72, 13)
-        Me.Label9.TabIndex = 24
-        Me.Label9.Text = "CodigoCliente"
-        '
-        'txtCodigoCliente
-        '
-        Me.txtCodigoCliente.Location = New System.Drawing.Point(144, 115)
-        Me.txtCodigoCliente.Name = "txtCodigoCliente"
-        Me.txtCodigoCliente.Size = New System.Drawing.Size(221, 20)
-        Me.txtCodigoCliente.TabIndex = 25
         '
         'frm_Persona
         '

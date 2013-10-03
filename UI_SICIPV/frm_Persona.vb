@@ -125,8 +125,6 @@ Public Class frm_Persona
                     MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
 
             End Select
-            
-
         End If
     End Sub
 
@@ -190,7 +188,7 @@ Public Class frm_Persona
     End Function
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
-        Dim dc As DataColumn
+
         If txtBusqueda.Text = "" Then
             ErrorProvider1.SetError(txtBusqueda, "Este campo no puede estar vacio")
         ElseIf rbCedula.Checked And Not Integer.TryParse(txtBusqueda.Text, New Integer) Then

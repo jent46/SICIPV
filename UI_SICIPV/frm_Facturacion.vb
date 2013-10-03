@@ -106,7 +106,7 @@ Public Class frm_Facturacion
         txtTelefono.Text = String.Empty
         txtTelefono.Enabled = True
         dtpFecha.Value = Date.Now
-        txtDescuento.Text = 0
+        txtPorcentajeDscto.Value = 0.0
         txtCuotas.Text = 0
         txtInteres.Text = 0
         txtCedulaGarante.Text = String.Empty
@@ -116,121 +116,14 @@ Public Class frm_Facturacion
         txtTelefonoGarante.Enabled = True
         txtDireccionGarante.Text = String.Empty
         txtDireccion.Enabled = True
+        txtSubtotal.Text = 0.0
+        txtDescuento.Text = 0.0
+        txtTarifa0.Text = 0.0
+        txtTarifa12.Text = 0.0
+        txtIva.Text = 0.0
+        txtTotal.Text = 0.0
+        txtEntrada.Text = 0.0
         dgvProductos.Columns.Clear()
-    End Sub
-
-    Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
-        If validarCampos() Then
-
-            Dim factura As ClsFactura = New ClsFactura
-
-            factura.IdTipoVenta = New ClsTipoVenta()
-            factura.IdTipoVenta.IdTipoVenta = cbTipoVenta.SelectedValue
-            factura.IdPersona = New ClsPersona()
-            factura.IdPersona.IdPersona = Me.idPersona
-            factura.IdGarante = New ClsPersona()
-            factura.IdGarante.IdPersona = Me.idGarante
-
-            factura.NumeroFactura = CInt(txtNoFactura.Text)
-            factura.NumeroContrato = CInt(txtNoContrato.Text)
-            factura.FechaVenta = dtpFecha.Value.Date
-            factura.Subtotal = CDbl(txtSubtotal.Text)
-            factura.Iva = CDbl(txtIva.Text)
-            factura.PorcentajeDescuento = CDbl(txtPorcentajeDscto.Text)
-            factura.Descuento = CDbl(txtDescuento.Text)
-            factura.TotalVenta = CDbl(txtTotal.Text)
-            'If cbEstado.Checked Then
-            '    factura.Estado = 1
-            'Else
-            '    factura.Estado = 0
-            'End If
-            factura.Cuotas = CInt(txtCuotas.Text)
-            factura.ClienteNombre = txtCliente.Text
-            factura.ClienteCedula = txtCedula.Text
-            factura.ClienteTelefono = txtTelefono.Text
-            factura.ClienteDireccion = txtDireccion.Text
-            factura.GaranteNombre = txtGarante.Text
-            factura.GaranteCedula = txtCedulaGarante.Text
-            factura.GaranteTelefono = txtTelefonoGarante.Text
-            factura.GaranteDireccion = txtDireccionGarante.Text
-
-            factura.FechaCreacion = Date.Now
-            factura.FechaModificacion = Date.Now
-
-            For index = 0 To dgvProductos.Rows.Count - 1
-                Dim item As ClsItemFactura = New ClsItemFactura()
-                Dim producto As ClsProducto = New ClsProducto()
-                'dgvProductos -> *Id | Stock |Cantidad |* Costo | Descripcion | ValorUnitario | ValorTotal
-                producto.IdProducto = dgvProductos.Rows(index).Cells("Id").Value
-                producto.Stock = dgvProductos.Rows(index).Cells("stock").Value
-
-                'idFactura
-                item.IdFactura = factura
-                item.IdProducto = producto
-                item.IdUsuarioCreacion = usuario
-                item.IdUsuarioModificacion = usuario
-                item.PrecioUnitario = dgvProductos.Rows(index).Cells("valorUnitario").Value
-                item.Cantidad = dgvProductos.Rows(index).Cells("cantidad").Value
-                item.PrecioTotal = dgvProductos.Rows(index).Cells("valorTotal").Value
-                item.DescripcionProducto = dgvProductos.Rows(index).Cells("descripcion").Value
-                item.CostoProducto = dgvProductos.Rows(index).Cells("costo").Value
-                item.FechaCreacion = Date.Now
-                item.FechaModificacion = Date.Now
-                'Actualizo la cantidad de los productos que fueron ingresados en la venta
-                item.IdProducto.Stock = producto.Stock - dgvProductos.Rows(index).Cells("cantidad").Value
-                factura.ItemsProductos.Add(item)
-            Next
-
-            For index = 0 To txtCuotas.Value - 1
-                Dim cuota As ClsCuota = New ClsCuota()
-                cuota.IdFactura = factura
-                cuota.IdUsuarioCreacion = usuario
-                cuota.IdUsuarioModificacion = usuario
-                cuota.Fecha = Date.Now.AddMonths(index + 1) 'Se va sumando un mes a cada cuota
-                cuota.Saldo = factura.TotalVenta
-                cuota.ValorCuota = factura.TotalVenta / factura.Cuotas
-                cuota.PorcentajeInteres = CDbl(txtInteres.Value) / 100
-                cuota.InteresFactura = cuota.PorcentajeInteres * factura.Subtotal
-                cuota.InteresMora = 0.0
-                cuota.ValorTotal = cuota.InteresFactura + cuota.ValorCuota
-                cuota.Comentario = ""
-                cuota.Estado = 1
-                cuota.FechaCreacion = Date.Now
-                cuota.FechaModificacion = Date.Now
-                factura.ListaCuotas.Add(cuota)
-            Next
-
-            Select Case operacion
-                Case "I"
-                    factura.IdUsuarioCreacion = usuario
-                    factura.IdUsuarioModificacion = usuario
-                    factura.FechaCreacion = Now
-                    If BLL_Factura.ingresarBD(factura, mensaje) Then
-                        limpiarCampos()
-                        gbInfoGeneral.Visible = False
-                        gbGarante.Visible = False
-                        gbProductos.Visible = False
-                        pnlBotones.Visible = False
-
-                        tslModificar.Enabled = False
-                        tslIngresar.Enabled = True
-                        tslConsultar.Enabled = True
-                    End If
-                    MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
-
-                Case "M"
-                    'factura.IdPersona = idPersona
-                    factura.IdUsuarioModificacion = usuario
-                    factura.FechaModificacion = Date.Now
-                    If BLL_Factura.modificarBD(factura, mensaje) Then
-                        limpiarCampos()
-                    End If
-                    MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
-
-            End Select
-
-
-        End If
     End Sub
 
     Private Function validarCampos() As Boolean
@@ -321,6 +214,130 @@ Public Class frm_Facturacion
         Return resultado
     End Function
 
+    Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
+        If validarCampos() Then
+
+            Dim factura As ClsFactura = New ClsFactura
+
+            factura.IdTipoVenta = New ClsTipoVenta()
+            factura.IdTipoVenta.IdTipoVenta = cbTipoVenta.SelectedValue
+            factura.IdPersona = New ClsPersona()
+            factura.IdPersona.IdPersona = Me.idPersona
+            factura.IdGarante = New ClsPersona()
+            factura.IdGarante.IdPersona = Me.idGarante
+
+            factura.NumeroFactura = CInt(txtNoFactura.Text)
+            factura.NumeroContrato = CInt(txtNoContrato.Text)
+            factura.FechaVenta = dtpFecha.Value.Date
+            factura.Subtotal = CDbl(txtSubtotal.Text)
+            factura.Iva = CDbl(txtIva.Text)
+            factura.PorcentajeDescuento = CDbl(txtPorcentajeDscto.Text)
+            factura.Descuento = CDbl(txtDescuento.Text)
+            factura.TotalVenta = CDbl(txtTotal.Text)
+            'If cbEstado.Checked Then
+            '    factura.Estado = 1
+            'Else
+            '    factura.Estado = 0
+            'End If
+            factura.Cuotas = CInt(txtCuotas.Text)
+            factura.ClienteNombre = txtCliente.Text
+            factura.ClienteCedula = txtCedula.Text
+            factura.ClienteTelefono = txtTelefono.Text
+            factura.ClienteDireccion = txtDireccion.Text
+            factura.GaranteNombre = txtGarante.Text
+            factura.GaranteCedula = txtCedulaGarante.Text
+            factura.GaranteTelefono = txtTelefonoGarante.Text
+            factura.GaranteDireccion = txtDireccionGarante.Text
+
+            factura.FechaCreacion = Date.Now
+            factura.FechaModificacion = Date.Now
+
+            'Agrego los productos a la factura
+            For index = 0 To dgvProductos.Rows.Count - 1
+                Dim item As ClsItemFactura = New ClsItemFactura()
+                Dim producto As ClsProducto = New ClsProducto()
+                'dgvProductos -> *Id | Stock |Cantidad |* Costo | Descripcion | ValorUnitario | ValorTotal
+                producto.IdProducto = dgvProductos.Rows(index).Cells("Id").Value
+                producto.Stock = dgvProductos.Rows(index).Cells("stock").Value
+
+                item.IdFactura = factura
+                item.IdProducto = producto
+                item.IdUsuarioCreacion = usuario
+                item.IdUsuarioModificacion = usuario
+                item.PrecioUnitario = dgvProductos.Rows(index).Cells("valorUnitario").Value
+                item.Cantidad = dgvProductos.Rows(index).Cells("cantidad").Value
+                item.PrecioTotal = dgvProductos.Rows(index).Cells("valorTotal").Value
+                item.DescripcionProducto = dgvProductos.Rows(index).Cells("descripcion").Value
+                item.CostoProducto = dgvProductos.Rows(index).Cells("costo").Value
+                item.FechaCreacion = Date.Now
+                item.FechaModificacion = Date.Now
+                'Actualizo la cantidad de los productos que fueron ingresados en la venta
+                item.IdProducto.Stock = producto.Stock - dgvProductos.Rows(index).Cells("cantidad").Value
+                factura.ItemsProductos.Add(item)
+            Next
+
+
+            'Creo cada una de las cuotas
+            For index = 0 To txtCuotas.Value - 1
+                Dim cuota As ClsCuota = New ClsCuota()
+                Dim arrayInteresCuota As Double() = {30, 35, 2.17, 3.26, 4.35, 5.43, 6.52, 7.61, 8.69, 9.78, 10.87, 11.95, 13.04, 14.13, 15.21, 16.3, 18.29, 20.13}
+
+                Dim valorFinanciado As Double = factura.TotalVenta - txtEntrada.Text
+                Dim indice As Integer = factura.Cuotas - 1
+                Dim valorInteres As Double = (CDbl(arrayInteresCuota(indice)) / 100) * valorFinanciado
+                Dim valorCredito As Double = valorInteres + valorFinanciado
+                Dim valorPorCuota As Double = valorCredito / txtCuotas.Value
+                Dim valorFinal As Double = valorCredito + txtEntrada.Text
+
+                cuota.IdFactura = factura
+                cuota.IdUsuarioCreacion = usuario
+                cuota.IdUsuarioModificacion = usuario
+                cuota.Fecha = Date.Now.AddMonths(index + 1) 'Se va sumando un mes a cada cuota
+                cuota.Saldo = factura.TotalVenta
+                cuota.ValorCuota = valorPorCuota
+                cuota.PorcentajeInteres = arrayInteresCuota(txtCuotas.Value + 1)
+                cuota.InteresFactura = valorInteres
+                cuota.InteresMora = 0.0
+                cuota.ValorTotal = valorFinal
+                cuota.Comentario = ""
+                cuota.Estado = 1
+                cuota.FechaCreacion = Date.Now
+                cuota.FechaModificacion = Date.Now
+                factura.ListaCuotas.Add(cuota)
+            Next
+
+            Select Case operacion
+                Case "I"
+                    factura.IdUsuarioCreacion = usuario
+                    factura.IdUsuarioModificacion = usuario
+                    factura.FechaCreacion = Now
+                    If BLL_Factura.ingresarBD(factura, mensaje) Then
+                        limpiarCampos()
+                        'gbInfoGeneral.Visible = False
+                        'gbGarante.Visible = False
+                        'gbProductos.Visible = False
+                        'pnlBotones.Visible = False
+                        'tslModificar.Enabled = False
+                        'tslIngresar.Enabled = True
+                        'tslConsultar.Enabled = True
+                    End If
+                    MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+
+                Case "M"
+                    'factura.IdPersona = idPersona
+                    factura.IdUsuarioModificacion = usuario
+                    factura.FechaModificacion = Date.Now
+                    If BLL_Factura.modificarBD(factura, mensaje) Then
+                        limpiarCampos()
+                    End If
+                    MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+
+            End Select
+
+
+        End If
+    End Sub
+
     Private Sub btnBuscarCliente_Click(sender As Object, e As EventArgs) Handles btnBuscarCliente.Click
 
         Dim dt As DataTable = Nothing
@@ -349,14 +366,6 @@ Public Class frm_Facturacion
 
     End Sub
 
-    Function ValidarCedula() As Boolean
-        If (txtCedula.Text = txtCedulaGarante.Text) Then
-            MsgBox("Un cliente no puede ser garante al mismo tiempo!!", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
-            Return False
-        End If
-        Return True
-    End Function
-
     Private Sub btnBuscarGarante_Click(sender As Object, e As EventArgs) Handles btnBuscarGarante.Click
         Dim dt As DataTable = Nothing
 
@@ -380,6 +389,14 @@ Public Class frm_Facturacion
             End Try
         End If
     End Sub
+
+    Function ValidarCedula() As Boolean
+        If (txtCedula.Text = txtCedulaGarante.Text) Then
+            MsgBox("Un cliente no puede ser garante al mismo tiempo!!", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+            Return False
+        End If
+        Return True
+    End Function
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
 
@@ -452,9 +469,9 @@ Public Class frm_Facturacion
         Dim costo As Double = prod.Valor
         Dim stock As Integer = prod.Stock
         Dim descripcion As String = prod.Descripcion
-        Dim valorUnitario As Double = prod.Pvp
+        Dim valorUnitario As Double = prod.Pvp / 1.12
         Dim valorTotal As Double = cantidad * valorUnitario
-
+        Dim gravaIva As Integer = prod.GravaIva
 
         Dim flag As Boolean = True
 
@@ -469,37 +486,31 @@ Public Class frm_Facturacion
         End If
 
         If flag Then
-            dgvProductos.Rows.Add(id, stock, cantidad, costo, descripcion, valorUnitario, valorTotal)
-            txtSubtotal.Text = CDbl(txtSubtotal.Text) + valorTotal
-            txtDescuento.Text = CDbl(txtSubtotal.Text) * (CDbl(txtDescuento.Text) / 100)
+            dgvProductos.Rows.Add(id, gravaIva, stock, cantidad, costo, descripcion, valorUnitario, valorTotal)
+            Dim subtotal As Double = CDbl(txtSubtotal.Text) + valorTotal
+            Dim descuento As Double = CDbl(txtSubtotal.Text) * (CDbl(txtDescuento.Text) / 100)
+            txtSubtotal.Text = subtotal
+            txtDescuento.Text = descuento
+            If prod.GravaIva = 0 Then
+                txtTarifa0.Text = valorTotal
+            Else
+                txtTarifa12.Text = valorTotal
+            End If
             actualizarValoresFactura()
 
         End If
 
-
-        'If dgvProductos.Rows.Count <> 0 Then
-        '    For index = 0 To dgvProductos.Rows.Count - 1
-        '        If (dgvProductos.Rows(index).Cells("id").Value = id) Then
-        '            MessageBox.Show("Producto ya fue ingresado")
-        '        End If
-        '    Next
-        'Else
-        '    dgvProductos.Rows.Add(id, cantidad, descripcion, valorUnitario, valorTotal)
-        'End If
-
-
-
-        'dgvProductos.Rows.Add(prod.Valor, 1, prod.Pvp, prod.Pvp)
-        'txtSubtotal.Text = CDbl(txtSubtotal.Text) + prod.Pvp
-        'txtDescuento.Text = CDbl(txtSubtotal.Text) * CDbl(txtDsctoPorcentaje.Text) / 100
-        'txtIva.Text = CDbl(txtIva.Text) * 0.12
-        'txtTotal.Text = CDbl(txtSubtotal.Text) - CDbl(txtDescuento.Text) + CDbl(txtIva.Text)
     End Sub
 
     Sub actualizarValoresFactura()
-        txtDescuento.Text = (CDbl(txtSubtotal.Text) * CDbl(txtPorcentajeDscto.Text)) / 100
-        txtIva.Text = (CDbl(txtSubtotal.Text) - CDbl(txtDescuento.Text)) * 0.12
-        txtTotal.Text = CDbl(txtSubtotal.Text) - CDbl(txtDescuento.Text) + CDbl(txtIva.Text)
+        Dim descuento As Double = (CDbl(txtSubtotal.Text) * CDbl(txtPorcentajeDscto.Text)) / 100
+        Dim iva As Double = (CDbl(txtTarifa12.Text) - CDbl(txtDescuento.Text)) * 0.12
+        Dim total As Double = CDbl(txtTarifa12.Text) + iva + CDbl(txtTarifa0.Text) - CDbl(txtDescuento.Text)
+        Dim valorEntrada = 0.08 * total
+        txtDescuento.Text = descuento
+        txtIva.Text = iva
+        txtTotal.Text = total
+        txtEntrada.Text = valorEntrada
     End Sub
 
     Sub Valida(Data As TextBox)
@@ -544,9 +555,8 @@ Public Class frm_Facturacion
         End If
     End Sub
 
-
     Private Sub dgvProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellValueChanged
-        If e.ColumnIndex = 1 Then
+        If e.ColumnIndex > 1 Then
             If dgvProductos.Rows.Count <> 0 Then 'Preguntamos si el datagridview de productos esta lleno con al menos un producto
                 Dim dr As DataGridViewRow = dgvProductos.Rows(e.RowIndex)
                 Dim valorTotal As Double = dr.Cells("ValorTotal").Value
@@ -564,8 +574,16 @@ Public Class frm_Facturacion
                 End If
 
                 Dim nuevoTotal As Double = cantidad * dr.Cells("ValorUnitario").Value
+                Dim gravaIva As Integer = dr.Cells("GravaIva").Value
                 dr.Cells("ValorTotal").Value = nuevoTotal
+
+                If gravaIva = 0 Then
+                    txtTarifa0.Text = nuevoTotal
+                Else
+                    txtTarifa12.Text = nuevoTotal
+                End If
                 txtSubtotal.Text = CDbl(txtSubtotal.Text) + nuevoTotal - valorTotal
+
                 actualizarValoresFactura()
             End If
 

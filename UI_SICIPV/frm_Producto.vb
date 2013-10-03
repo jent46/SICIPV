@@ -70,7 +70,7 @@ Public Class frm_Producto
         tslModificar.Enabled = False
         tslConsultar.Enabled = True
         btnAceptar.Enabled = False
-
+        limpiarCampos()
     End Sub
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
@@ -149,6 +149,7 @@ Public Class frm_Producto
         txtValor.Text = String.Empty
         txtPvp.Text = String.Empty
         txtStock.Text = String.Empty
+        nupdPorcentajeInteres.Value = 0
         cbEstado.Checked = False
         cb0.Checked = False
         cb12.Checked = False
@@ -273,4 +274,17 @@ Public Class frm_Producto
     End Sub
 
 
+    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles nupdPorcentajeInteres.ValueChanged
+        If cb12.Checked Then
+            Dim iva = (CDbl(txtValor.Text) * 12) / 100
+            Dim costo As Double = CDbl(txtValor.Text) + iva
+            Dim valorInteres As Double = (costo * nupdPorcentajeInteres.Value) / 100
+            txtPvp.Text = costo + valorInteres
+        ElseIf cb0.Checked Then
+            Dim costo As Double = CDbl(txtValor.Text)
+            Dim valorInteres As Double = (costo * nupdPorcentajeInteres.Value) / 100
+            txtPvp.Text = costo + valorInteres
+        End If
+
+    End Sub
 End Class
