@@ -69,6 +69,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_CuotaValor.Designer.vb">
+      <DependentUpon>frm_CuotaValor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_CuotaValor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_Gasto.designer.vb">
       <DependentUpon>frm_Gasto.vb</DependentUpon>
     </Compile>
@@ -85,6 +91,12 @@
       <DependentUpon>frm_IngresarProductoFactura.vb</DependentUpon>
     </Compile>
     <Compile Include="frm_IngresarProductoFactura.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Marca.Designer.vb">
+      <DependentUpon>frm_Marca.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Marca.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_Producto.Designer.vb">
@@ -105,10 +117,10 @@
     <Compile Include="frm_Persona.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_principal.Designer.vb">
-      <DependentUpon>frm_principal.vb</DependentUpon>
+    <Compile Include="frm_Principal.Designer.vb">
+      <DependentUpon>frm_Principal.vb</DependentUpon>
     </Compile>
-    <Compile Include="frm_principal.vb">
+    <Compile Include="frm_Principal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_Facturacion.Designer.vb">
@@ -140,6 +152,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frm_CuotaValor.resx">
+      <DependentUpon>frm_CuotaValor.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_Gasto.resx">
       <DependentUpon>frm_Gasto.vb</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_IngresoProducto.resx">
       <DependentUpon>frm_IngresoProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Marca.resx">
+      <DependentUpon>frm_Marca.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Producto.resx">
       <DependentUpon>frm_Producto.vb</DependentUpon>
@@ -158,8 +176,8 @@
     <EmbeddedResource Include="frm_Persona.resx">
       <DependentUpon>frm_Persona.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_principal.resx">
-      <DependentUpon>frm_principal.vb</DependentUpon>
+    <EmbeddedResource Include="frm_Principal.resx">
+      <DependentUpon>frm_Principal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Facturacion.resx">
       <DependentUpon>frm_Facturacion.vb</DependentUpon>
@@ -210,6 +228,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\padlock-lock-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checklist-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping-bag-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Apps-preferences-contact-list-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cash-register-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fotos_de_color_gris4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User-Group-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

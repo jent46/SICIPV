@@ -46,6 +46,8 @@
     <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -66,11 +68,13 @@
     <Compile Include="DLL_Abono.vb" />
     <Compile Include="DLL_Base.vb" />
     <Compile Include="DLL_Cuota.vb" />
+    <Compile Include="DLL_CuotaValor.vb" />
     <Compile Include="DLL_EstadoCivil.vb" />
     <Compile Include="DLL_Factura.vb" />
     <Compile Include="DLL_Gasto.vb" />
     <Compile Include="DLL_IngresoProducto.vb" />
     <Compile Include="DLL_ItemFactura.vb" />
+    <Compile Include="DLL_Marca.vb" />
     <Compile Include="DLL_Persona.vb" />
     <Compile Include="DLL_Producto.vb" />
     <Compile Include="DLL_Rol.vb" />

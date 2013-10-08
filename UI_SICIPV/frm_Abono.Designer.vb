@@ -145,7 +145,7 @@ Partial Class frm_Abono
         '
         'btnBuscarCliente
         '
-        Me.btnBuscarCliente.Location = New System.Drawing.Point(185, 26)
+        Me.btnBuscarCliente.Location = New System.Drawing.Point(261, 47)
         Me.btnBuscarCliente.Name = "btnBuscarCliente"
         Me.btnBuscarCliente.Size = New System.Drawing.Size(28, 23)
         Me.btnBuscarCliente.TabIndex = 12

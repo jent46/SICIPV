@@ -26,18 +26,25 @@ Partial Class frm_principal
         Me.btnIngresar = New System.Windows.Forms.Button()
         Me.txtClave = New System.Windows.Forms.TextBox()
         Me.txtUsuario = New System.Windows.Forms.TextBox()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.AdministradorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FacturacionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AbonoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClienteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.IngresoProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GastoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CambiarDeUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FacturacionToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NuevaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UsuarioToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NuevoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClienteToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProductoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NuevoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IngroProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GastoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GastoToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CerrarCedionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SalirDelSistemaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InteresPorCuotaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gbIngreso.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -82,69 +89,18 @@ Partial Class frm_principal
         Me.txtUsuario.Size = New System.Drawing.Size(146, 20)
         Me.txtUsuario.TabIndex = 2
         '
-        'MenuStrip1
+        'Label1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdministradorToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1244, 24)
-        Me.MenuStrip1.TabIndex = 8
-        Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'AdministradorToolStripMenuItem
-        '
-        Me.AdministradorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturacionToolStripMenuItem, Me.AbonoToolStripMenuItem, Me.ProductoToolStripMenuItem, Me.ClienteToolStripMenuItem1, Me.UsuarioToolStripMenuItem, Me.IngresoProductoToolStripMenuItem, Me.GastoToolStripMenuItem, Me.CambiarDeUsuarioToolStripMenuItem})
-        Me.AdministradorToolStripMenuItem.Name = "AdministradorToolStripMenuItem"
-        Me.AdministradorToolStripMenuItem.Size = New System.Drawing.Size(95, 20)
-        Me.AdministradorToolStripMenuItem.Text = "Administrador"
-        '
-        'FacturacionToolStripMenuItem
-        '
-        Me.FacturacionToolStripMenuItem.Name = "FacturacionToolStripMenuItem"
-        Me.FacturacionToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.FacturacionToolStripMenuItem.Text = "Facturacion"
-        '
-        'AbonoToolStripMenuItem
-        '
-        Me.AbonoToolStripMenuItem.Name = "AbonoToolStripMenuItem"
-        Me.AbonoToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.AbonoToolStripMenuItem.Text = "Abono"
-        '
-        'ProductoToolStripMenuItem
-        '
-        Me.ProductoToolStripMenuItem.Name = "ProductoToolStripMenuItem"
-        Me.ProductoToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.ProductoToolStripMenuItem.Text = "Producto"
-        '
-        'ClienteToolStripMenuItem1
-        '
-        Me.ClienteToolStripMenuItem1.Name = "ClienteToolStripMenuItem1"
-        Me.ClienteToolStripMenuItem1.Size = New System.Drawing.Size(177, 22)
-        Me.ClienteToolStripMenuItem1.Text = "Cliente"
-        '
-        'UsuarioToolStripMenuItem
-        '
-        Me.UsuarioToolStripMenuItem.Name = "UsuarioToolStripMenuItem"
-        Me.UsuarioToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.UsuarioToolStripMenuItem.Text = "Usuario"
-        '
-        'IngresoProductoToolStripMenuItem
-        '
-        Me.IngresoProductoToolStripMenuItem.Name = "IngresoProductoToolStripMenuItem"
-        Me.IngresoProductoToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.IngresoProductoToolStripMenuItem.Text = "IngresoProducto"
-        '
-        'GastoToolStripMenuItem
-        '
-        Me.GastoToolStripMenuItem.Name = "GastoToolStripMenuItem"
-        Me.GastoToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.GastoToolStripMenuItem.Text = "Gasto"
-        '
-        'CambiarDeUsuarioToolStripMenuItem
-        '
-        Me.CambiarDeUsuarioToolStripMenuItem.Name = "CambiarDeUsuarioToolStripMenuItem"
-        Me.CambiarDeUsuarioToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.CambiarDeUsuarioToolStripMenuItem.Text = "Cambiar de usuario"
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Image = Global.UI_SICIPV.My.Resources.Resources.user
+        Me.Label1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label1.Location = New System.Drawing.Point(19, 50)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(111, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "USUARIO :          "
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label2
         '
@@ -159,18 +115,138 @@ Partial Class frm_principal
         Me.Label2.Text = "CLAVE :               "
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label1
+        'MenuStrip1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Image = Global.UI_SICIPV.My.Resources.Resources.user
-        Me.Label1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Label1.Location = New System.Drawing.Point(19, 50)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(111, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "USUARIO :          "
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.MenuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturacionToolStripMenuItem1, Me.UsuarioToolStripMenuItem1, Me.ClienteToolStripMenuItem, Me.ProductoToolStripMenuItem1, Me.GastoToolStripMenuItem1, Me.SalirToolStripMenuItem})
+        Me.MenuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(98, 522)
+        Me.MenuStrip1.TabIndex = 8
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'FacturacionToolStripMenuItem1
+        '
+        Me.FacturacionToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NuevaToolStripMenuItem, Me.InteresPorCuotaToolStripMenuItem})
+        Me.FacturacionToolStripMenuItem1.Image = Global.UI_SICIPV.My.Resources.Resources.cash_register_icon
+        Me.FacturacionToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.FacturacionToolStripMenuItem1.Name = "FacturacionToolStripMenuItem1"
+        Me.FacturacionToolStripMenuItem1.Size = New System.Drawing.Size(81, 83)
+        Me.FacturacionToolStripMenuItem1.Text = "Facturacion"
+        Me.FacturacionToolStripMenuItem1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'NuevaToolStripMenuItem
+        '
+        Me.NuevaToolStripMenuItem.Name = "NuevaToolStripMenuItem"
+        Me.NuevaToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.NuevaToolStripMenuItem.Text = "Nueva"
+        '
+        'UsuarioToolStripMenuItem1
+        '
+        Me.UsuarioToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NuevoToolStripMenuItem1})
+        Me.UsuarioToolStripMenuItem1.Image = Global.UI_SICIPV.My.Resources.Resources.User_Group_icon
+        Me.UsuarioToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.UsuarioToolStripMenuItem1.Name = "UsuarioToolStripMenuItem1"
+        Me.UsuarioToolStripMenuItem1.Size = New System.Drawing.Size(76, 83)
+        Me.UsuarioToolStripMenuItem1.Text = "Usuario"
+        Me.UsuarioToolStripMenuItem1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'NuevoToolStripMenuItem1
+        '
+        Me.NuevoToolStripMenuItem1.Name = "NuevoToolStripMenuItem1"
+        Me.NuevoToolStripMenuItem1.Size = New System.Drawing.Size(109, 22)
+        Me.NuevoToolStripMenuItem1.Text = "Nuevo"
+        '
+        'ClienteToolStripMenuItem
+        '
+        Me.ClienteToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClienteToolStripMenuItem2})
+        Me.ClienteToolStripMenuItem.Image = Global.UI_SICIPV.My.Resources.Resources.Apps_preferences_contact_list_icon
+        Me.ClienteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ClienteToolStripMenuItem.Name = "ClienteToolStripMenuItem"
+        Me.ClienteToolStripMenuItem.Size = New System.Drawing.Size(76, 83)
+        Me.ClienteToolStripMenuItem.Text = "Cliente"
+        Me.ClienteToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ClienteToolStripMenuItem2
+        '
+        Me.ClienteToolStripMenuItem2.Name = "ClienteToolStripMenuItem2"
+        Me.ClienteToolStripMenuItem2.Size = New System.Drawing.Size(109, 22)
+        Me.ClienteToolStripMenuItem2.Text = "Nuevo"
+        '
+        'ProductoToolStripMenuItem1
+        '
+        Me.ProductoToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NuevoToolStripMenuItem, Me.IngroProductoToolStripMenuItem})
+        Me.ProductoToolStripMenuItem1.Image = Global.UI_SICIPV.My.Resources.Resources.shopping_bag_icon
+        Me.ProductoToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ProductoToolStripMenuItem1.Name = "ProductoToolStripMenuItem1"
+        Me.ProductoToolStripMenuItem1.Size = New System.Drawing.Size(76, 83)
+        Me.ProductoToolStripMenuItem1.Text = "Producto"
+        Me.ProductoToolStripMenuItem1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'NuevoToolStripMenuItem
+        '
+        Me.NuevoToolStripMenuItem.Name = "NuevoToolStripMenuItem"
+        Me.NuevoToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.NuevoToolStripMenuItem.Text = "Nuevo"
+        '
+        'IngroProductoToolStripMenuItem
+        '
+        Me.IngroProductoToolStripMenuItem.Name = "IngroProductoToolStripMenuItem"
+        Me.IngroProductoToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.IngroProductoToolStripMenuItem.Text = "Ingresar producto"
+        '
+        'GastoToolStripMenuItem1
+        '
+        Me.GastoToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GastoToolStripMenuItem2, Me.InformeToolStripMenuItem})
+        Me.GastoToolStripMenuItem1.Image = Global.UI_SICIPV.My.Resources.Resources.checklist_icon
+        Me.GastoToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.GastoToolStripMenuItem1.Name = "GastoToolStripMenuItem1"
+        Me.GastoToolStripMenuItem1.Size = New System.Drawing.Size(76, 83)
+        Me.GastoToolStripMenuItem1.Text = "Gasto"
+        Me.GastoToolStripMenuItem1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'GastoToolStripMenuItem2
+        '
+        Me.GastoToolStripMenuItem2.Name = "GastoToolStripMenuItem2"
+        Me.GastoToolStripMenuItem2.Size = New System.Drawing.Size(116, 22)
+        Me.GastoToolStripMenuItem2.Text = "Nuevo"
+        '
+        'InformeToolStripMenuItem
+        '
+        Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
+        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
+        Me.InformeToolStripMenuItem.Text = "Informe"
+        '
+        'SalirToolStripMenuItem
+        '
+        Me.SalirToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CerrarCedionToolStripMenuItem, Me.SalirDelSistemaToolStripMenuItem})
+        Me.SalirToolStripMenuItem.Image = Global.UI_SICIPV.My.Resources.Resources.padlock_lock_icon
+        Me.SalirToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(76, 83)
+        Me.SalirToolStripMenuItem.Text = "Salir"
+        Me.SalirToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal
+        Me.SalirToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'CerrarCedionToolStripMenuItem
+        '
+        Me.CerrarCedionToolStripMenuItem.Name = "CerrarCedionToolStripMenuItem"
+        Me.CerrarCedionToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.CerrarCedionToolStripMenuItem.Text = "Cerrar sesión"
+        '
+        'SalirDelSistemaToolStripMenuItem
+        '
+        Me.SalirDelSistemaToolStripMenuItem.Name = "SalirDelSistemaToolStripMenuItem"
+        Me.SalirDelSistemaToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.SalirDelSistemaToolStripMenuItem.Text = "Salir del sistema"
+        '
+        'InteresPorCuotaToolStripMenuItem
+        '
+        Me.InteresPorCuotaToolStripMenuItem.Name = "InteresPorCuotaToolStripMenuItem"
+        Me.InteresPorCuotaToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.InteresPorCuotaToolStripMenuItem.Text = "Interes por cuota"
         '
         'frm_principal
         '
@@ -181,6 +257,7 @@ Partial Class frm_principal
         Me.Controls.Add(Me.gbIngreso)
         Me.Controls.Add(Me.MenuStrip1)
         Me.IsMdiContainer = True
+        Me.MaximizeBox = False
         Me.Name = "frm_principal"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = ".:: SCIPV ::."
@@ -200,13 +277,20 @@ Partial Class frm_principal
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
-    Friend WithEvents AdministradorToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents FacturacionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AbonoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ProductoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ClienteToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents UsuarioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents IngresoProductoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents GastoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CambiarDeUsuarioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FacturacionToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ClienteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ProductoToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GastoToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SalirToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CerrarCedionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SalirDelSistemaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents NuevaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents NuevoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents IngroProductoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ClienteToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GastoToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents InformeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents UsuarioToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents NuevoToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents InteresPorCuotaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

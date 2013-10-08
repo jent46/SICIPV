@@ -30,6 +30,9 @@ Partial Class frm_Producto
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.tslConsultar = New System.Windows.Forms.ToolStripLabel()
         Me.gbProducto = New System.Windows.Forms.GroupBox()
+        Me.btnNuevaMarca = New System.Windows.Forms.Button()
+        Me.cbMarca = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.nupdPorcentajeInteres = New System.Windows.Forms.NumericUpDown()
         Me.cb0 = New System.Windows.Forms.CheckBox()
@@ -57,6 +60,7 @@ Partial Class frm_Producto
         Me.btnAceptar = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolStrip1.SuspendLayout()
         Me.gbProducto.SuspendLayout()
         CType(Me.nupdPorcentajeInteres, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,6 +114,9 @@ Partial Class frm_Producto
         '
         'gbProducto
         '
+        Me.gbProducto.Controls.Add(Me.btnNuevaMarca)
+        Me.gbProducto.Controls.Add(Me.cbMarca)
+        Me.gbProducto.Controls.Add(Me.Label10)
         Me.gbProducto.Controls.Add(Me.Label9)
         Me.gbProducto.Controls.Add(Me.nupdPorcentajeInteres)
         Me.gbProducto.Controls.Add(Me.cb0)
@@ -129,16 +136,45 @@ Partial Class frm_Producto
         Me.gbProducto.Controls.Add(Me.Label1)
         Me.gbProducto.Location = New System.Drawing.Point(3, 324)
         Me.gbProducto.Name = "gbProducto"
-        Me.gbProducto.Size = New System.Drawing.Size(464, 221)
+        Me.gbProducto.Size = New System.Drawing.Size(464, 251)
         Me.gbProducto.TabIndex = 23
         Me.gbProducto.TabStop = False
         Me.gbProducto.Text = "Informacion Producto"
         Me.gbProducto.Visible = False
         '
+        'btnNuevaMarca
+        '
+        Me.btnNuevaMarca.Image = Global.UI_SICIPV.My.Resources.Resources.application_icon
+        Me.btnNuevaMarca.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnNuevaMarca.Location = New System.Drawing.Point(233, 71)
+        Me.btnNuevaMarca.Name = "btnNuevaMarca"
+        Me.btnNuevaMarca.Size = New System.Drawing.Size(34, 32)
+        Me.btnNuevaMarca.TabIndex = 32
+        Me.btnNuevaMarca.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnNuevaMarca.UseVisualStyleBackColor = True
+        '
+        'cbMarca
+        '
+        Me.cbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbMarca.FormattingEnabled = True
+        Me.cbMarca.Location = New System.Drawing.Point(91, 73)
+        Me.cbMarca.Name = "cbMarca"
+        Me.cbMarca.Size = New System.Drawing.Size(121, 21)
+        Me.cbMarca.TabIndex = 31
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(39, 80)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(43, 13)
+        Me.Label10.TabIndex = 30
+        Me.Label10.Text = "Marca :"
+        '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(29, 121)
+        Me.Label9.Location = New System.Drawing.Point(29, 148)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(56, 13)
         Me.Label9.TabIndex = 29
@@ -147,7 +183,7 @@ Partial Class frm_Producto
         'nupdPorcentajeInteres
         '
         Me.nupdPorcentajeInteres.DecimalPlaces = 2
-        Me.nupdPorcentajeInteres.Location = New System.Drawing.Point(91, 114)
+        Me.nupdPorcentajeInteres.Location = New System.Drawing.Point(91, 141)
         Me.nupdPorcentajeInteres.Name = "nupdPorcentajeInteres"
         Me.nupdPorcentajeInteres.Size = New System.Drawing.Size(56, 20)
         Me.nupdPorcentajeInteres.TabIndex = 28
@@ -155,7 +191,7 @@ Partial Class frm_Producto
         'cb0
         '
         Me.cb0.AutoSize = True
-        Me.cb0.Location = New System.Drawing.Point(144, 94)
+        Me.cb0.Location = New System.Drawing.Point(144, 121)
         Me.cb0.Name = "cb0"
         Me.cb0.Size = New System.Drawing.Size(40, 17)
         Me.cb0.TabIndex = 27
@@ -165,7 +201,7 @@ Partial Class frm_Producto
         'cb12
         '
         Me.cb12.AutoSize = True
-        Me.cb12.Location = New System.Drawing.Point(92, 95)
+        Me.cb12.Location = New System.Drawing.Point(92, 122)
         Me.cb12.Name = "cb12"
         Me.cb12.Size = New System.Drawing.Size(46, 17)
         Me.cb12.TabIndex = 26
@@ -175,7 +211,7 @@ Partial Class frm_Producto
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(57, 99)
+        Me.Label7.Location = New System.Drawing.Point(57, 126)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(28, 13)
         Me.Label7.TabIndex = 25
@@ -200,7 +236,7 @@ Partial Class frm_Producto
         'cbEstado
         '
         Me.cbEstado.AutoSize = True
-        Me.cbEstado.Location = New System.Drawing.Point(91, 191)
+        Me.cbEstado.Location = New System.Drawing.Point(91, 218)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(73, 17)
         Me.cbEstado.TabIndex = 5
@@ -210,7 +246,7 @@ Partial Class frm_Producto
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(39, 195)
+        Me.Label8.Location = New System.Drawing.Point(39, 222)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(46, 13)
         Me.Label8.TabIndex = 22
@@ -219,7 +255,7 @@ Partial Class frm_Producto
         'txtStock
         '
         Me.txtStock.Enabled = False
-        Me.txtStock.Location = New System.Drawing.Point(91, 165)
+        Me.txtStock.Location = New System.Drawing.Point(91, 192)
         Me.txtStock.Name = "txtStock"
         Me.txtStock.Size = New System.Drawing.Size(73, 20)
         Me.txtStock.TabIndex = 4
@@ -228,14 +264,14 @@ Partial Class frm_Producto
         'txtPvp
         '
         Me.txtPvp.Enabled = False
-        Me.txtPvp.Location = New System.Drawing.Point(91, 139)
+        Me.txtPvp.Location = New System.Drawing.Point(91, 166)
         Me.txtPvp.Name = "txtPvp"
         Me.txtPvp.Size = New System.Drawing.Size(73, 20)
         Me.txtPvp.TabIndex = 3
         '
         'txtValor
         '
-        Me.txtValor.Location = New System.Drawing.Point(91, 72)
+        Me.txtValor.Location = New System.Drawing.Point(91, 99)
         Me.txtValor.Name = "txtValor"
         Me.txtValor.Size = New System.Drawing.Size(73, 20)
         Me.txtValor.TabIndex = 2
@@ -250,7 +286,7 @@ Partial Class frm_Producto
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(44, 172)
+        Me.Label4.Location = New System.Drawing.Point(44, 199)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 13)
         Me.Label4.TabIndex = 0
@@ -259,7 +295,7 @@ Partial Class frm_Producto
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(51, 146)
+        Me.Label3.Location = New System.Drawing.Point(51, 173)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(34, 13)
         Me.Label3.TabIndex = 0
@@ -268,7 +304,7 @@ Partial Class frm_Producto
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(11, 79)
+        Me.Label2.Location = New System.Drawing.Point(11, 106)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(74, 13)
         Me.Label2.TabIndex = 0
@@ -339,7 +375,7 @@ Partial Class frm_Producto
         Me.pnlBotones.Controls.Add(Me.btnCancelar)
         Me.pnlBotones.Controls.Add(Me.btnAceptar)
         Me.pnlBotones.Enabled = False
-        Me.pnlBotones.Location = New System.Drawing.Point(3, 551)
+        Me.pnlBotones.Location = New System.Drawing.Point(3, 581)
         Me.pnlBotones.Name = "pnlBotones"
         Me.pnlBotones.Size = New System.Drawing.Size(464, 55)
         Me.pnlBotones.TabIndex = 26
@@ -370,7 +406,7 @@ Partial Class frm_Producto
         Me.FlowLayoutPanel1.Controls.Add(Me.pnlBotones)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 28)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(485, 621)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(485, 669)
         Me.FlowLayoutPanel1.TabIndex = 27
         '
         'ErrorProvider1
@@ -381,9 +417,10 @@ Partial Class frm_Producto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(513, 661)
+        Me.ClientSize = New System.Drawing.Size(513, 719)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
+        Me.MaximizeBox = False
         Me.Name = "frm_Producto"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = ".:: Productos ::."
@@ -436,4 +473,8 @@ Partial Class frm_Producto
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents nupdPorcentajeInteres As System.Windows.Forms.NumericUpDown
+    Friend WithEvents cbMarca As System.Windows.Forms.ComboBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents btnNuevaMarca As System.Windows.Forms.Button
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 End Class

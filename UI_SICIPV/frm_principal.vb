@@ -32,50 +32,59 @@ Public Class frm_principal
         ''frm_Facturacion.Show()
     End Sub
 
-    Private Sub FacturacionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturacionToolStripMenuItem.Click
-        frm_Facturacion.MdiParent = Me
-        frm_Facturacion.Show()
-        frm_Facturacion.usuario = Me.usuario
+    Private Sub deshabilitar()
+        'AdministradorToolStripMenuItem.Enabled = False
+    End Sub
+    Private Sub habilitarAdministrador()
+        'AdministradorToolStripMenuItem.Enabled = True
     End Sub
 
-    Private Sub ClienteToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ClienteToolStripMenuItem1.Click
-        frm_Persona.MdiParent = Me
-        frm_Persona.Show()
-        frm_Persona.usuario = Me.usuario
-    End Sub
 
-    Private Sub ProductoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductoToolStripMenuItem.Click
+    
+
+    Private Sub NuevoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NuevoToolStripMenuItem.Click
         frm_Producto.MdiParent = Me
         frm_Producto.Show()
         frm_Producto.usuario = Me.usuario
     End Sub
 
-    Private Sub UsuarioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UsuarioToolStripMenuItem.Click
-        frm_Usuario.MdiParent = Me
-        frm_Usuario.Show()
-    End Sub
-
-    Private Sub deshabilitar()
-        AdministradorToolStripMenuItem.Enabled = False
-    End Sub
-    Private Sub habilitarAdministrador()
-        AdministradorToolStripMenuItem.Enabled = True
-    End Sub
-
-    Private Sub IngresoProductoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IngresoProductoToolStripMenuItem.Click
+    Private Sub IngroProductoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IngroProductoToolStripMenuItem.Click
         frm_IngresoProducto.MdiParent = Me
         frm_IngresoProducto.Show()
         frm_IngresoProducto.usuario = Me.usuario
     End Sub
 
-    Private Sub GastoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GastoToolStripMenuItem.Click
+    Private Sub NuevaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NuevaToolStripMenuItem.Click
+        frm_Facturacion.MdiParent = Me
+        frm_Facturacion.Show()
+        frm_Facturacion.usuario = Me.usuario
+    End Sub
+
+  
+    Private Sub ClienteToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ClienteToolStripMenuItem2.Click
+        frm_Persona.MdiParent = Me
+        frm_Persona.Show()
+        frm_Persona.usuario = Me.usuario
+    End Sub
+
+    Private Sub GastoToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles GastoToolStripMenuItem2.Click
         frm_Gasto.MdiParent = Me
         frm_Gasto.Show()
         frm_Gasto.usuario = Me.usuario
     End Sub
 
-    Private Sub CambiarDeUsuarioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CambiarDeUsuarioToolStripMenuItem.Click
+    Private Sub NuevoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles NuevoToolStripMenuItem1.Click
+        frm_Usuario.MdiParent = Me
+        frm_Usuario.Show()
+    End Sub
+
+    Private Sub CerrarCedionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CerrarCedionToolStripMenuItem.Click
         gbIngreso.Visible = True
         deshabilitar()
+    End Sub
+
+    Private Sub InteresPorCuotaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InteresPorCuotaToolStripMenuItem.Click
+        frm_CuotaValor.MdiParent = Me
+        frm_CuotaValor.Show()
     End Sub
 End Class

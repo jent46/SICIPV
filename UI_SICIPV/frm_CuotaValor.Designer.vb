@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frm_IngresoProducto
+Partial Class frm_CuotaValor
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -34,14 +34,10 @@ Partial Class frm_IngresoProducto
         Me.dgvBusqueda = New System.Windows.Forms.DataGridView()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtBusqueda = New System.Windows.Forms.TextBox()
-        Me.gbProducto = New System.Windows.Forms.GroupBox()
-        Me.cbProducto = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
-        Me.cbEstado = New System.Windows.Forms.CheckBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtCantidad = New System.Windows.Forms.TextBox()
+        Me.gbDatos = New System.Windows.Forms.GroupBox()
+        Me.txtPorcentajeCuota = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtNumeroCuota = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlBotones = New System.Windows.Forms.Panel()
         Me.btnCancelar = New System.Windows.Forms.Button()
@@ -51,7 +47,7 @@ Partial Class frm_IngresoProducto
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.gbBuscar.SuspendLayout()
         CType(Me.dgvBusqueda, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.gbProducto.SuspendLayout()
+        Me.gbDatos.SuspendLayout()
         Me.pnlBotones.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -61,8 +57,8 @@ Partial Class frm_IngresoProducto
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tslIngresar, Me.ToolStripSeparator1, Me.tslModificar, Me.ToolStripSeparator2, Me.tslConsultar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(522, 25)
-        Me.ToolStrip1.TabIndex = 28
+        Me.ToolStrip1.Size = New System.Drawing.Size(491, 25)
+        Me.ToolStrip1.TabIndex = 31
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'tslIngresar
@@ -100,12 +96,12 @@ Partial Class frm_IngresoProducto
         'FlowLayoutPanel1
         '
         Me.FlowLayoutPanel1.Controls.Add(Me.gbBuscar)
-        Me.FlowLayoutPanel1.Controls.Add(Me.gbProducto)
+        Me.FlowLayoutPanel1.Controls.Add(Me.gbDatos)
         Me.FlowLayoutPanel1.Controls.Add(Me.pnlBotones)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 28)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(471, 568)
-        Me.FlowLayoutPanel1.TabIndex = 29
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(474, 321)
+        Me.FlowLayoutPanel1.TabIndex = 30
         '
         'gbBuscar
         '
@@ -115,10 +111,10 @@ Partial Class frm_IngresoProducto
         Me.gbBuscar.Enabled = False
         Me.gbBuscar.Location = New System.Drawing.Point(3, 3)
         Me.gbBuscar.Name = "gbBuscar"
-        Me.gbBuscar.Size = New System.Drawing.Size(464, 315)
+        Me.gbBuscar.Size = New System.Drawing.Size(464, 184)
         Me.gbBuscar.TabIndex = 24
         Me.gbBuscar.TabStop = False
-        Me.gbBuscar.Text = "Busqueda Productos"
+        Me.gbBuscar.Text = "Busqueda Cuota "
         Me.gbBuscar.Visible = False
         '
         'dgvBusqueda
@@ -126,125 +122,82 @@ Partial Class frm_IngresoProducto
         Me.dgvBusqueda.AllowUserToAddRows = False
         Me.dgvBusqueda.AllowUserToDeleteRows = False
         Me.dgvBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvBusqueda.Location = New System.Drawing.Point(15, 79)
+        Me.dgvBusqueda.Location = New System.Drawing.Point(15, 56)
         Me.dgvBusqueda.Name = "dgvBusqueda"
         Me.dgvBusqueda.ReadOnly = True
-        Me.dgvBusqueda.Size = New System.Drawing.Size(432, 208)
+        Me.dgvBusqueda.Size = New System.Drawing.Size(432, 108)
         Me.dgvBusqueda.TabIndex = 5
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(15, 38)
+        Me.Label5.Location = New System.Drawing.Point(12, 34)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(53, 13)
+        Me.Label5.Size = New System.Drawing.Size(106, 13)
         Me.Label5.TabIndex = 22
-        Me.Label5.Text = "Producto:"
+        Me.Label5.Text = "Numero de la cuota :"
         '
         'txtBusqueda
         '
-        Me.txtBusqueda.Location = New System.Drawing.Point(74, 31)
+        Me.txtBusqueda.Location = New System.Drawing.Point(124, 30)
         Me.txtBusqueda.Name = "txtBusqueda"
-        Me.txtBusqueda.Size = New System.Drawing.Size(313, 20)
+        Me.txtBusqueda.Size = New System.Drawing.Size(226, 20)
         Me.txtBusqueda.TabIndex = 3
         '
-        'gbProducto
+        'gbDatos
         '
-        Me.gbProducto.Controls.Add(Me.cbProducto)
-        Me.gbProducto.Controls.Add(Me.Label3)
-        Me.gbProducto.Controls.Add(Me.dtpFecha)
-        Me.gbProducto.Controls.Add(Me.cbEstado)
-        Me.gbProducto.Controls.Add(Me.Label8)
-        Me.gbProducto.Controls.Add(Me.txtCantidad)
-        Me.gbProducto.Controls.Add(Me.Label2)
-        Me.gbProducto.Controls.Add(Me.Label1)
-        Me.gbProducto.Location = New System.Drawing.Point(3, 324)
-        Me.gbProducto.Name = "gbProducto"
-        Me.gbProducto.Size = New System.Drawing.Size(464, 164)
-        Me.gbProducto.TabIndex = 23
-        Me.gbProducto.TabStop = False
-        Me.gbProducto.Text = "Ingreso de Producto"
-        Me.gbProducto.Visible = False
+        Me.gbDatos.Controls.Add(Me.txtPorcentajeCuota)
+        Me.gbDatos.Controls.Add(Me.Label2)
+        Me.gbDatos.Controls.Add(Me.txtNumeroCuota)
+        Me.gbDatos.Controls.Add(Me.Label1)
+        Me.gbDatos.Location = New System.Drawing.Point(3, 193)
+        Me.gbDatos.Name = "gbDatos"
+        Me.gbDatos.Size = New System.Drawing.Size(464, 58)
+        Me.gbDatos.TabIndex = 23
+        Me.gbDatos.TabStop = False
+        Me.gbDatos.Text = "Informacion Cuota"
+        Me.gbDatos.Visible = False
         '
-        'cbProducto
+        'txtPorcentajeCuota
         '
-        Me.cbProducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cbProducto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cbProducto.FormattingEnabled = True
-        Me.cbProducto.Location = New System.Drawing.Point(89, 32)
-        Me.cbProducto.Name = "cbProducto"
-        Me.cbProducto.Size = New System.Drawing.Size(238, 21)
-        Me.cbProducto.TabIndex = 25
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(16, 32)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(56, 13)
-        Me.Label3.TabIndex = 24
-        Me.Label3.Text = "Producto :"
-        '
-        'dtpFecha
-        '
-        Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFecha.Location = New System.Drawing.Point(89, 103)
-        Me.dtpFecha.Name = "dtpFecha"
-        Me.dtpFecha.Size = New System.Drawing.Size(106, 20)
-        Me.dtpFecha.TabIndex = 23
-        '
-        'cbEstado
-        '
-        Me.cbEstado.AutoSize = True
-        Me.cbEstado.Location = New System.Drawing.Point(89, 141)
-        Me.cbEstado.Name = "cbEstado"
-        Me.cbEstado.Size = New System.Drawing.Size(73, 17)
-        Me.cbEstado.TabIndex = 5
-        Me.cbEstado.Text = "Habilitado"
-        Me.cbEstado.UseVisualStyleBackColor = True
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(16, 141)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(40, 13)
-        Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Estado"
-        '
-        'txtCantidad
-        '
-        Me.txtCantidad.Location = New System.Drawing.Point(89, 60)
-        Me.txtCantidad.Name = "txtCantidad"
-        Me.txtCantidad.Size = New System.Drawing.Size(73, 20)
-        Me.txtCantidad.TabIndex = 1
+        Me.txtPorcentajeCuota.Location = New System.Drawing.Point(248, 21)
+        Me.txtPorcentajeCuota.Name = "txtPorcentajeCuota"
+        Me.txtPorcentajeCuota.Size = New System.Drawing.Size(100, 20)
+        Me.txtPorcentajeCuota.TabIndex = 3
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(16, 103)
+        Me.Label2.Location = New System.Drawing.Point(157, 25)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(40, 13)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Fecha:"
+        Me.Label2.Size = New System.Drawing.Size(94, 13)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Porcentaje cuota :"
+        '
+        'txtNumeroCuota
+        '
+        Me.txtNumeroCuota.Location = New System.Drawing.Point(91, 21)
+        Me.txtNumeroCuota.Name = "txtNumeroCuota"
+        Me.txtNumeroCuota.Size = New System.Drawing.Size(59, 20)
+        Me.txtNumeroCuota.TabIndex = 1
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(16, 63)
+        Me.Label1.Location = New System.Drawing.Point(6, 25)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(52, 13)
+        Me.Label1.Size = New System.Drawing.Size(80, 13)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Cantidad:"
+        Me.Label1.Text = "Numero cuota :"
         '
         'pnlBotones
         '
         Me.pnlBotones.Controls.Add(Me.btnCancelar)
         Me.pnlBotones.Controls.Add(Me.btnAceptar)
         Me.pnlBotones.Enabled = False
-        Me.pnlBotones.Location = New System.Drawing.Point(3, 494)
+        Me.pnlBotones.Location = New System.Drawing.Point(3, 257)
         Me.pnlBotones.Name = "pnlBotones"
-        Me.pnlBotones.Size = New System.Drawing.Size(464, 63)
+        Me.pnlBotones.Size = New System.Drawing.Size(464, 55)
         Me.pnlBotones.TabIndex = 26
         Me.pnlBotones.Visible = False
         '
@@ -270,25 +223,23 @@ Partial Class frm_IngresoProducto
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'frm_IngresoProducto
+        'frm_CuotaValor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(522, 648)
+        Me.ClientSize = New System.Drawing.Size(491, 353)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
-        Me.MaximizeBox = False
-        Me.Name = "frm_IngresoProducto"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = ".::Ingresar Producto::."
+        Me.Name = "frm_CuotaValor"
+        Me.Text = ".::Cuota Valor::."
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.gbBuscar.ResumeLayout(False)
         Me.gbBuscar.PerformLayout()
         CType(Me.dgvBusqueda, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.gbProducto.ResumeLayout(False)
-        Me.gbProducto.PerformLayout()
+        Me.gbDatos.ResumeLayout(False)
+        Me.gbDatos.PerformLayout()
         Me.pnlBotones.ResumeLayout(False)
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -306,17 +257,13 @@ Partial Class frm_IngresoProducto
     Friend WithEvents dgvBusqueda As System.Windows.Forms.DataGridView
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents txtBusqueda As System.Windows.Forms.TextBox
-    Friend WithEvents gbProducto As System.Windows.Forms.GroupBox
-    Friend WithEvents cbEstado As System.Windows.Forms.CheckBox
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents txtCantidad As System.Windows.Forms.TextBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents gbDatos As System.Windows.Forms.GroupBox
+    Friend WithEvents txtNumeroCuota As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents pnlBotones As System.Windows.Forms.Panel
     Friend WithEvents btnCancelar As System.Windows.Forms.Button
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
-    Friend WithEvents dtpFecha As System.Windows.Forms.DateTimePicker
+    Friend WithEvents txtPorcentajeCuota As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents ErrorProvider1 As System.Windows.Forms.ErrorProvider
-    Friend WithEvents cbProducto As System.Windows.Forms.ComboBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
 End Class

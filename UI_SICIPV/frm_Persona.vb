@@ -41,7 +41,6 @@ Public Class frm_Persona
 
     End Sub
 
-
     Private Sub tslModificar_Click(sender As Object, e As EventArgs) Handles tslModificar.Click
         gbDatos.Enabled = True
         gbDatos.Visible = True
@@ -105,15 +104,28 @@ Public Class frm_Persona
             Else
                 persona.Estado = 0
             End If
+            Dim dt As DataTable = BLL_Persona.ValidarCedula(persona.Cedula, mensaje)
+            Dim count As Integer
 
             Select Case operacion
                 Case "I"
                     persona.IdUsuarioCreacion = usuario
                     persona.IdUsuarioModificacion = usuario
                     persona.FechaCreacion = Now
-                    If BLL_Persona.ingresarBD(persona, mensaje) Then
-                        limpiarCampos()
+                    For index = 0 To dt.Rows.Count - 1
+                        If (dt.Rows(index)("cedula") = persona.Cedula) Then
+                            count = +1
+                            mensaje = "Numero de cedula ya se encuentra registrado"
+                        End If
+                    Next
+
+                    If count = 0 Then
+                        If (BLL_Persona.ingresarBD(persona, mensaje)) Then
+                            limpiarCampos()
+                        End If
                     End If
+
+                    
                     MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
 
                 Case "M"
@@ -125,6 +137,7 @@ Public Class frm_Persona
                     MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
 
             End Select
+
         End If
     End Sub
 
@@ -149,7 +162,7 @@ Public Class frm_Persona
         End If
 
         If txtCodigoCliente.Text = "" Then
-            ErrorProvider1.SetError(txtApellido, "CodigoCliente es requerido")
+            ErrorProvider1.SetError(txtCodigoCliente, "CodigoCliente es requerido")
             resultado = False
         End If
         'If (txtCedula.Text.Length <> 10) Then
@@ -218,7 +231,6 @@ Public Class frm_Persona
 
     End Sub
 
-
     Private Sub frm_Persona_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.SetBounds(400, 0, 516, 465)
         cbEstadoCivil.DataSource = BLL_EstadoCivil.ConsultarEstadoCivilTodos(mensaje)
@@ -233,20 +245,33 @@ Public Class frm_Persona
     End Sub
 
     Private Sub dgvBusqueda_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
-        Dim dr As DataGridViewRow = dgvBusqueda.Rows(e.RowIndex)
-        Dim dt As DataTable = BLL_Persona.ConsultarPersonasPorId(dr.Cells("Id").Value, mensaje)
-        idPersona = dt.Rows(0)("idPersona")
-        txtNombre.Text = dt.Rows(0)("nombre")
-        txtApellido.Text = dt.Rows(0)("apellido")
-        txtCedula.Text = dt.Rows(0)("cedula")
-        txtDireccion.Text = dt.Rows(0)("direccion")
-        txtTelefono.Text = dt.Rows(0)("telefono")
-        cbEstadoCivil.SelectedValue = dt.Rows(0)("idEstadoCivil")
-        If (dt.Rows(0)("estado")) = 1 Then
-            cbEstado.Checked = True
-        End If
-        txtBusqueda.Text = String.Empty
-        dgvBusqueda.Columns.Clear()
-        tslModificar_Click(Nothing, Nothing)
+
+        Dim dr As DataGridViewRow
+        Dim dt As DataTable
+
+        Try
+            dr = dgvBusqueda.Rows(e.RowIndex)
+            dt = BLL_Persona.ConsultarPersonasPorId(dr.Cells("Id").Value, mensaje)
+            idPersona = dt.Rows(0)("idPersona")
+            txtNombre.Text = dt.Rows(0)("nombre")
+            txtApellido.Text = dt.Rows(0)("apellido")
+            txtCedula.Text = dt.Rows(0)("cedula")
+            txtDireccion.Text = dt.Rows(0)("direccion")
+            txtTelefono.Text = dt.Rows(0)("telefono")
+            cbEstadoCivil.SelectedValue = dt.Rows(0)("idEstadoCivil")
+            If (dt.Rows(0)("estado")) = 1 Then
+                cbEstado.Checked = True
+            End If
+            txtBusqueda.Text = String.Empty
+            dgvBusqueda.Columns.Clear()
+            tslModificar_Click(Nothing, Nothing)
+        Catch ex As Exception
+            Me.mensaje = "Debe dar doble click en una fila de la tabla para modificar"
+            MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+        End Try
+    End Sub
+
+    Private Sub txtBusqueda_TextChanged(sender As Object, e As EventArgs) Handles txtBusqueda.TextChanged
+        btnBuscar_Click(Nothing, Nothing)
     End Sub
 End Class

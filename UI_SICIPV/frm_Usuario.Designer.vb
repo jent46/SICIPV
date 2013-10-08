@@ -341,6 +341,7 @@ Partial Class frm_Usuario
         Me.ClientSize = New System.Drawing.Size(496, 667)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.FlowLayoutPanel2)
+        Me.MaximizeBox = False
         Me.Name = "frm_Usuario"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = ".:: Usuario ::."

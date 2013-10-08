@@ -403,6 +403,7 @@ Partial Class frm_Persona
         Me.ClientSize = New System.Drawing.Size(511, 750)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.MaximizeBox = False
         Me.Name = "frm_Persona"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = ".:: Cliente ::."

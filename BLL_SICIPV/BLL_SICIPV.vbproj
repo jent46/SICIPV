@@ -62,9 +62,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL_CuotaValor.vb" />
     <Compile Include="BLL_EstadoCivil.vb" />
     <Compile Include="BLL_Gasto.vb" />
     <Compile Include="BLL_IngreoProducto.vb" />
+    <Compile Include="BLL_Marca.vb" />
     <Compile Include="BLL_Persona.vb" />
     <Compile Include="BLL_Producto.vb" />
     <Compile Include="BLL_Rol.vb" />

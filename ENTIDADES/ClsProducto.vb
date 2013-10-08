@@ -13,7 +13,19 @@
     Private _stock As Integer
     Private _fechaCreacion As Date
     Private _fechaModificacion As Date
-    
+
+
+    Private _idMarca As ClsMarca
+    Public Property IdMarca() As ClsMarca
+        Get
+            Return _idMarca
+        End Get
+        Set(ByVal value As ClsMarca)
+            _idMarca = value
+        End Set
+    End Property
+
+
     Private _estado As Integer
     Public Property Estado() As Integer
         Get

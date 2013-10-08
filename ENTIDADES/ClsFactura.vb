@@ -39,9 +39,6 @@
         End Set
     End Property
 
-
-
-
     Public Property IdFactura() As Integer
         Get
             Return _idFactura
@@ -77,6 +74,17 @@
             _idGarante = value
         End Set
     End Property
+
+    Private _idCuotaValor As ClsCuotaValor
+    Public Property IdCuotaValor() As ClsCuotaValor
+        Get
+            Return _idCuotaValor
+        End Get
+        Set(ByVal value As ClsCuotaValor)
+            _idCuotaValor = value
+        End Set
+    End Property
+
 
     Public Property IdUsuarioCreacion() As ClsUsuario
         Get

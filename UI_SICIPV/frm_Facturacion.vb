@@ -9,15 +9,19 @@ Public Class frm_Facturacion
     Public usuario As ClsUsuario
     Dim idPersona As Integer
     Dim idGarante As Integer
+    Dim txtCuotas As NumericUpDown
 
     Private Sub frm_Facturacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         gbBuscar.SetBounds(11, 40, gbBuscar.Width, gbBuscar.Height)
         Me.SetBounds(200, 0, 918, 637)
         sep = Application.CurrentCulture.NumberFormat.NumberDecimalSeparator
+        ''Combo box para el tipo de venta
         cbTipoVenta.DataSource = BLL_TipoVenta.ConsultarTipoVentaTodos(mensaje)
         cbTipoVenta.DisplayMember = "descripcion"
         cbTipoVenta.ValueMember = "idTipoVenta"
         cbTipoVenta.SelectedIndex = -1
+        ''Combo box el numero de cuota
+
     End Sub
 
     Private Sub tslIngresar_Click(sender As Object, e As EventArgs) Handles tslIngresar.Click
@@ -107,8 +111,9 @@ Public Class frm_Facturacion
         txtTelefono.Enabled = True
         dtpFecha.Value = Date.Now
         txtPorcentajeDscto.Value = 0.0
-        txtCuotas.Text = 0
-        txtInteres.Text = 0
+        cbCuotas.SelectedValue = -1
+        txtValorEntrada.Text = 0
+
         txtCedulaGarante.Text = String.Empty
         txtGarante.Text = String.Empty
         txtGarante.Enabled = True
@@ -122,7 +127,7 @@ Public Class frm_Facturacion
         txtTarifa12.Text = 0.0
         txtIva.Text = 0.0
         txtTotal.Text = 0.0
-        txtEntrada.Text = 0.0
+        txtValorEntrada.Text = 0.0
         dgvProductos.Columns.Clear()
     End Sub
 
@@ -179,10 +184,7 @@ Public Class frm_Facturacion
             resultado = False
         End If
 
-        If txtInteres.Text = "" Then
-            ErrorProvider1.SetError(txtInteres, "% de Interes es requerido")
-            resultado = False
-        End If
+     
 
 
         If txtCedulaGarante.Text = "" Or Not Long.TryParse(txtCedulaGarante.Text, New Long) Or (txtCedulaGarante.TextLength <> 10 And txtCedulaGarante.TextLength <> 13) Then
@@ -282,12 +284,12 @@ Public Class frm_Facturacion
                 Dim cuota As ClsCuota = New ClsCuota()
                 Dim arrayInteresCuota As Double() = {30, 35, 2.17, 3.26, 4.35, 5.43, 6.52, 7.61, 8.69, 9.78, 10.87, 11.95, 13.04, 14.13, 15.21, 16.3, 18.29, 20.13}
 
-                Dim valorFinanciado As Double = factura.TotalVenta - txtEntrada.Text
+                Dim valorFinanciado As Double = factura.TotalVenta - txtValorEntrada.Text
                 Dim indice As Integer = factura.Cuotas - 1
                 Dim valorInteres As Double = (CDbl(arrayInteresCuota(indice)) / 100) * valorFinanciado
                 Dim valorCredito As Double = valorInteres + valorFinanciado
                 Dim valorPorCuota As Double = valorCredito / txtCuotas.Value
-                Dim valorFinal As Double = valorCredito + txtEntrada.Text
+                Dim valorFinal As Double = valorCredito + txtValorEntrada.Text
 
                 cuota.IdFactura = factura
                 cuota.IdUsuarioCreacion = usuario
@@ -510,7 +512,7 @@ Public Class frm_Facturacion
         txtDescuento.Text = descuento
         txtIva.Text = iva
         txtTotal.Text = total
-        txtEntrada.Text = valorEntrada
+        txtValorEntrada.Text = valorEntrada
     End Sub
 
     Sub Valida(Data As TextBox)
@@ -572,7 +574,6 @@ Public Class frm_Facturacion
                     dr.Cells("Cantidad").Value = 1
                     cantidad = 1
                 End If
-
                 Dim nuevoTotal As Double = cantidad * dr.Cells("ValorUnitario").Value
                 Dim gravaIva As Integer = dr.Cells("GravaIva").Value
                 dr.Cells("ValorTotal").Value = nuevoTotal
@@ -583,7 +584,6 @@ Public Class frm_Facturacion
                     txtTarifa12.Text = nuevoTotal
                 End If
                 txtSubtotal.Text = CDbl(txtSubtotal.Text) + nuevoTotal - valorTotal
-
                 actualizarValoresFactura()
             End If
 

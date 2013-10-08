@@ -93,9 +93,10 @@ Partial Class frm_IngresarProductoFactura
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(477, 328)
         Me.Controls.Add(Me.gbBuscar)
+        Me.MaximizeBox = False
         Me.Name = "frm_IngresarProductoFactura"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frm_IngresarProductoFactura"
+        Me.Text = ".::Agregar Producto::."
         Me.gbBuscar.ResumeLayout(False)
         Me.gbBuscar.PerformLayout()
         CType(Me.dgvBusqueda, System.ComponentModel.ISupportInitialize).EndInit()

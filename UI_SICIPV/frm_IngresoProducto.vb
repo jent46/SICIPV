@@ -140,19 +140,25 @@ Public Class frm_IngresoProducto
     End Sub
 
     Private Sub dgvBusqueda_CellContentClick(sender As Object, e As Windows.Forms.DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
-        Dim dr As DataGridViewRow = dgvBusqueda.Rows(e.RowIndex)
-        Dim dt As DataTable = BLL_IngreoProducto.ConsultarIngreosProductoPorId(dr.Cells("Id").Value, mensaje)
-        idIngresoProducto = dt.Rows(0)("idIngresoProducto")
+        Try
+            Dim dr As DataGridViewRow = dgvBusqueda.Rows(e.RowIndex)
+            Dim dt As DataTable = BLL_IngreoProducto.ConsultarIngreosProductoPorId(dr.Cells("Id").Value, mensaje)
+            idIngresoProducto = dt.Rows(0)("idIngresoProducto")
 
-        cbProducto.SelectedValue = dt.Rows(0)("idIngresoProducto")
-        txtCantidad.Text = dt.Rows(0)("cantidad")
-        dtpFecha.Value = dt.Rows(0)("fecha")
-        If (dt.Rows(0)("estado")) = 1 Then
-            cbEstado.Checked = True
-        End If
-        txtBusqueda.Text = String.Empty
-        dgvBusqueda.Columns.Clear()
-        tslModificar_Click(Nothing, Nothing)
+            cbProducto.SelectedValue = dt.Rows(0)("idIngresoProducto")
+            txtCantidad.Text = dt.Rows(0)("cantidad")
+            dtpFecha.Value = dt.Rows(0)("fecha")
+            If (dt.Rows(0)("estado")) = 1 Then
+                cbEstado.Checked = True
+            End If
+            txtBusqueda.Text = String.Empty
+            dgvBusqueda.Columns.Clear()
+            tslModificar_Click(Nothing, Nothing)
+        Catch ex As Exception
+            Me.mensaje = "Debe dar doble click en una fila de la tabla para modificar"
+            MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+        End Try
+        
     End Sub
 
     Private Sub txtCantidad_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCantidad.KeyPress

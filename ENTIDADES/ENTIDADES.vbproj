@@ -69,10 +69,12 @@
     <Compile Include="ClsGasto.vb" />
     <Compile Include="ClsIngresoProducto.vb" />
     <Compile Include="ClsItemFactura.vb" />
+    <Compile Include="ClsMarca.vb" />
     <Compile Include="ClsProducto.vb" />
     <Compile Include="ClsRol.vb" />
     <Compile Include="ClsTipoVenta.vb" />
     <Compile Include="ClsUsuario.vb" />
+    <Compile Include="ClsCuotaValor.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

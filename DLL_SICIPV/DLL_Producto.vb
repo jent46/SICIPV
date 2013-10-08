@@ -10,7 +10,7 @@ Public Class DLL_Producto
         Dim estado As Boolean = False
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "INS_Producto"
-
+        comando.Parameters.AddWithValue("_idMarca", producto.IdMarca.IdMarca)
         comando.Parameters.AddWithValue("_idUsuarioCreacion", producto.IdUsuarioCreacion.IdUsuario)
         comando.Parameters.AddWithValue("_idUsuarioModificacion", producto.IdUsuarioModificacion.IdUsuario)
         comando.Parameters.AddWithValue("_descripcion", producto.Descripcion)
@@ -46,7 +46,7 @@ Public Class DLL_Producto
         Dim estado As Boolean = False
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "UPD_Producto"
-
+        comando.Parameters.AddWithValue("_idMarca", producto.IdMarca)
         comando.Parameters.AddWithValue("_idProducto", producto.IdProducto)
         comando.Parameters.AddWithValue("_idUsuarioModificacion", producto.IdUsuarioModificacion.IdUsuario)
         comando.Parameters.AddWithValue("_descripcion", producto.Descripcion)

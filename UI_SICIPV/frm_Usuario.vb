@@ -148,7 +148,8 @@ Public Class frm_Usuario
     End Sub
 
     Private Sub frm_Usuario_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.SetBounds(0, 0, 512, 451)
+
+        Me.SetBounds(400, 0, 516, 465)
         cbRol.DataSource = BLL_Rol.ConsultarRolTodos(mensaje)
         cbRol.DisplayMember = "descripcion"
         cbRol.ValueMember = "id_Rol"
@@ -184,19 +185,24 @@ Public Class frm_Usuario
     End Sub
 
     Private Sub dgvBusqueda_CellContentClick(sender As Object, e As Windows.Forms.DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
-        Dim dr As DataGridViewRow = dgvBusqueda.Rows(e.RowIndex)
-        Dim dt As DataTable = BLL_Usuario.ConsultarUsuarioPorId(dr.Cells("Id").Value, mensaje)
-        idUsuario = dt.Rows(0)("idUsuario")
-        txtNombre.Text = dt.Rows(0)("nombre")
-        txtApellido.Text = dt.Rows(0)("apellido")
-        txtUsuario.Text = dt.Rows(0)("usuario")
-        txtcontrasena.Text = dt.Rows(0)("contrasena")
-        cbRol.SelectedValue = dt.Rows(0)("idRol")
-        If dt.Rows(0)("estado") = 1 Then
-            cbEstado.Checked = True
-        End If
-        dgvBusqueda.Columns.Clear()
-        tslModificar_Click(Nothing, Nothing)
+        Try
+            Dim dr As DataGridViewRow = dgvBusqueda.Rows(e.RowIndex)
+            Dim dt As DataTable = BLL_Usuario.ConsultarUsuarioPorId(dr.Cells("Id").Value, mensaje)
+            idUsuario = dt.Rows(0)("idUsuario")
+            txtNombre.Text = dt.Rows(0)("nombre")
+            txtApellido.Text = dt.Rows(0)("apellido")
+            txtUsuario.Text = dt.Rows(0)("usuario")
+            txtcontrasena.Text = dt.Rows(0)("contrasena")
+            cbRol.SelectedValue = dt.Rows(0)("idRol")
+            If dt.Rows(0)("estado") = 1 Then
+                cbEstado.Checked = True
+            End If
+            dgvBusqueda.Columns.Clear()
+            tslModificar_Click(Nothing, Nothing)
+        Catch ex As Exception
+            Me.mensaje = "Debe dar doble click en una fila de la tabla para modificar"
+            MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+        End Try
     End Sub
 
 End Class

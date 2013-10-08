@@ -23,6 +23,9 @@ Public Class BLL_Persona
         Return New DLL_Persona().ConsultarPersonasPorId(idPersona, mensaje)
     End Function
 
+    Shared Function ValidarCedula(ByVal cedula As Integer, ByRef mensaje As String) As DataTable
+        Return New DLL_Persona().ValidarCedula(cedula, mensaje)
+    End Function
 End Class
 
 

@@ -194,20 +194,26 @@ Public Class frm_Gasto
     Private Sub dgvBusqueda_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
         Dim dr As DataGridViewRow
         Dim dt As DataTable
-        dr = dgvBusqueda.Rows(e.RowIndex)
-        dt = BLL_Gasto.ConsultarGastoPorId(dr.Cells("Id").Value, mensaje)
-        Me.idGasto = dt.Rows(0)("idGasto")
-        dtpFecha.Value = dt.Rows(0)("fecha")
-        txtObservacion.Text = dt.Rows(0)("observacion")
-        txtBeneficiario.Text = dt.Rows(0)("beneficiario")
-        txtDetalle.Text = dt.Rows(0)("detalle")
-        txtNumFactura.Text = dt.Rows(0)("numFactura")
-        txtNumDocumento.Text = dt.Rows(0)("numDocumento")
-        txtNumRetencion.Text = dt.Rows(0)("numRetencion")
-        txtValor.Text = dt.Rows(0)("valor")
-        txtBusqueda.Text = String.Empty
-        dgvBusqueda.Columns.Clear()
-        tslModificar_Click(Nothing, Nothing)
+        Try
+            dr = dgvBusqueda.Rows(e.RowIndex)
+            dt = BLL_Gasto.ConsultarGastoPorId(dr.Cells("Id").Value, mensaje)
+            Me.idGasto = dt.Rows(0)("idGasto")
+            dtpFecha.Value = dt.Rows(0)("fecha")
+            txtObservacion.Text = dt.Rows(0)("observacion")
+            txtBeneficiario.Text = dt.Rows(0)("beneficiario")
+            txtDetalle.Text = dt.Rows(0)("detalle")
+            txtNumFactura.Text = dt.Rows(0)("numFactura")
+            txtNumDocumento.Text = dt.Rows(0)("numDocumento")
+            txtNumRetencion.Text = dt.Rows(0)("numRetencion")
+            txtValor.Text = dt.Rows(0)("valor")
+            txtBusqueda.Text = String.Empty
+            dgvBusqueda.Columns.Clear()
+            tslModificar_Click(Nothing, Nothing)
+        Catch ex As Exception
+            Me.mensaje = "Debe dar doble click en una fila de la tabla para modificar"
+            MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+        End Try
+       
     End Sub
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click

@@ -380,6 +380,7 @@ Partial Class frm_Gasto
         Me.ClientSize = New System.Drawing.Size(501, 750)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.MaximizeBox = False
         Me.Name = "frm_Gasto"
         Me.Text = ".::Gasto::."
         Me.FlowLayoutPanel1.ResumeLayout(False)

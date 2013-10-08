@@ -12,7 +12,12 @@ Public Class frm_Producto
     Private Sub frmProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.SetBounds(400, 0, 516, 465)
         'Detectar el separador decimal de la aplicación.
-        Sep = Application.CurrentCulture.NumberFormat.NumberDecimalSeparator
+        sep = Application.CurrentCulture.NumberFormat.NumberDecimalSeparator
+        cbMarca.DataSource = BLL_Marca.ConsultarMarcas(mensaje)
+        cbMarca.DisplayMember = "nombreMarca"
+        cbMarca.ValueMember = "idMarca"
+        cbMarca.SelectedIndex = -1
+        Me.ToolTip1.SetToolTip(btnNuevaMarca, "Nueva Marca")
     End Sub
 
     Private Sub tslIngresar_Click(sender As Object, e As EventArgs) Handles tslIngresar.Click
@@ -55,7 +60,6 @@ Public Class frm_Producto
         tslIngresar.Enabled = False
         tslModificar.Enabled = False
         tslConsultar.Enabled = False
-        btnAceptar.Enabled = False
         operacion = "C"
     End Sub
 
@@ -104,7 +108,8 @@ Public Class frm_Producto
 
 
             producto.IdUsuarioModificacion = usuario
-
+            producto.IdMarca = New ClsMarca
+            producto.IdMarca.IdMarca = cbMarca.SelectedValue
 
             producto.Descripcion = txtDescripcion.Text
             producto.Modelo = txtModelo.Text
@@ -146,10 +151,11 @@ Public Class frm_Producto
     Private Sub limpiarCampos()
         txtDescripcion.Text = String.Empty
         txtModelo.Text = String.Empty
-        txtValor.Text = String.Empty
+        cbMarca.SelectedIndex = -1
+        txtValor.Text = 0.0
         txtPvp.Text = String.Empty
         txtStock.Text = String.Empty
-        nupdPorcentajeInteres.Value = 0
+        nupdPorcentajeInteres.Value = 0.0
         cbEstado.Checked = False
         cb0.Checked = False
         cb12.Checked = False
@@ -172,6 +178,11 @@ Public Class frm_Producto
 
         If txtPvp.Text = "" Then
             ErrorProvider1.SetError(txtPvp, "PVP es requerido")
+            resultado = False
+        End If
+
+        If cbMarca.SelectedIndex = -1 Then
+            ErrorProvider1.SetError(cbMarca, "Estado Civil es requerido")
             resultado = False
         End If
 
@@ -239,34 +250,36 @@ Public Class frm_Producto
         Dim dr As DataGridViewRow
         Try
             dr = dgvBusqueda.Rows(e.RowIndex)
+            Dim dt As DataTable = BLL_Producto.ConsultarProductosPorId(dr.Cells("Id").Value, mensaje)
+            Me.idProducto = dt.Rows(0)("idProducto")
+            txtDescripcion.Text = dt.Rows(0)("descripcion")
+
+            If (dt.Rows(0)("modelo") Is DBNull.Value) Then
+                txtModelo.Text = ""
+            Else
+                txtModelo.Text = dt.Rows(0)("modelo")
+            End If
+            cbMarca.SelectedValue = dt.Rows(0)("idMarca")
+            txtPvp.Text = dt.Rows(0)("pvp")
+            txtStock.Text = dt.Rows(0)("stock")
+            txtValor.Text = dt.Rows(0)("valor")
+            If (dt.Rows(0)("estado")) = 1 Then
+                cbEstado.Checked = True
+            End If
+            If (dt.Rows(0)("gravaIva")) = 1 Then
+                cb12.Checked = True
+            ElseIf (dt.Rows(0)("gravaIva")) = 0 Then
+                cb0.Checked = True
+            End If
+            txtBusqueda.Text = String.Empty
+            dgvBusqueda.Columns.Clear()
+            tslModificar_Click(Nothing, Nothing)
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+            Me.mensaje = "Debe dar doble click en una fila de la tabla para modificar"
+            MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
         End Try
 
-        Dim dt As DataTable = BLL_Producto.ConsultarProductosPorId(dr.Cells("Id").Value, mensaje)
-        Me.idProducto = dt.Rows(0)("idProducto")
-        txtDescripcion.Text = dt.Rows(0)("descripcion")
-
-        If (dt.Rows(0)("modelo") Is DBNull.Value) Then
-            txtModelo.Text = ""
-        Else
-            txtModelo.Text = dt.Rows(0)("modelo")
-        End If
-
-        txtPvp.Text = dt.Rows(0)("pvp")
-        txtStock.Text = dt.Rows(0)("stock")
-        txtValor.Text = dt.Rows(0)("valor")
-        If (dt.Rows(0)("estado")) = 1 Then
-            cbEstado.Checked = True
-        End If
-        If (dt.Rows(0)("gravaIva")) = 1 Then
-            cb12.Checked = True
-        ElseIf (dt.Rows(0)("gravaIva")) = 0 Then
-            cb0.Checked = True
-        End If
-        txtBusqueda.Text = String.Empty
-        dgvBusqueda.Columns.Clear()
-        tslModificar_Click(Nothing, Nothing)
+       
     End Sub
 
     Private Sub txtBusqueda_TextChanged(sender As Object, e As EventArgs) Handles txtBusqueda.KeyUp
@@ -276,7 +289,7 @@ Public Class frm_Producto
 
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles nupdPorcentajeInteres.ValueChanged
         If cb12.Checked Then
-            Dim iva = (CDbl(txtValor.Text) * 12) / 100
+            Dim iva As Double = (CDbl(txtValor.Text) * 12) / 100
             Dim costo As Double = CDbl(txtValor.Text) + iva
             Dim valorInteres As Double = (costo * nupdPorcentajeInteres.Value) / 100
             txtPvp.Text = costo + valorInteres
@@ -286,5 +299,10 @@ Public Class frm_Producto
             txtPvp.Text = costo + valorInteres
         End If
 
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnNuevaMarca.Click
+        frm_Marca.ShowDialog()
+        cbMarca.DataSource = BLL_Marca.ConsultarMarcas(mensaje)
     End Sub
 End Class
