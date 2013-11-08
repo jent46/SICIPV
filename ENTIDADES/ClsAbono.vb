@@ -61,5 +61,14 @@
         End Set
     End Property
 
+    Private _comentario As String
+    Public Property Comentario() As String
+        Get
+            Return _comentario
+        End Get
+        Set(ByVal value As String)
+            _comentario = value
+        End Set
+    End Property
 
 End Class
