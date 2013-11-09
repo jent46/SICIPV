@@ -8,8 +8,8 @@
     Private _idUsuarioCreacion As ClsUsuario
     Private _idUsuarioModificacion As ClsUsuario
     Private _descripcion As String
-    Private _valor As Double
-    Private _pvp As Double
+    Private _valor As Decimal
+    Private _pvp As Decimal
     Private _stock As Integer
     Private _fechaCreacion As Date
     Private _fechaModificacion As Date
@@ -25,7 +25,6 @@
         End Set
     End Property
 
-
     Private _estado As Integer
     Public Property Estado() As Integer
         Get
@@ -35,7 +34,6 @@
             _estado = value
         End Set
     End Property
-
 
     Public Property IdProducto() As Integer
         Get
@@ -72,6 +70,7 @@
             _descripcion = value
         End Set
     End Property
+
     Private _modelo As String
     Public Property Modelo() As String
         Get
@@ -83,23 +82,24 @@
     End Property
 
 
-    Public Property Valor() As Double
+    Public Property Valor() As Decimal
         Get
             Return _valor
         End Get
-        Set(ByVal value As Double)
+        Set(ByVal value As Decimal)
             _valor = value
         End Set
     End Property
 
-    Public Property Pvp() As Double
+    Public Property Pvp() As Decimal
         Get
             Return _pvp
         End Get
-        Set(ByVal value As Double)
+        Set(ByVal value As Decimal)
             _pvp = value
         End Set
     End Property
+
     Private _gravaIva As Integer
     Public Property GravaIva() As String
         Get
@@ -107,6 +107,16 @@
         End Get
         Set(ByVal value As String)
             _gravaIva = value
+        End Set
+    End Property
+
+    Private _porcentajeInteres As Double
+    Public Property PorcentajeInteres() As Double
+        Get
+            Return _porcentajeInteres
+        End Get
+        Set(ByVal value As Double)
+            _porcentajeInteres = value
         End Set
     End Property
 
@@ -119,8 +129,6 @@
             _stock = value
         End Set
     End Property
-
-
 
     Public Property FechaCreacion() As Date
         Get

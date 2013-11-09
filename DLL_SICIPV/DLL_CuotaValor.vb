@@ -53,6 +53,7 @@ Public Class DLL_CuotaValor
             conn.Open()
             comando.ExecuteNonQuery()
             estado = True
+            mensaje = "Modificaco correctamente"
         Catch ex As Exception
             estado = False
             mensaje = ex.Message

@@ -110,11 +110,11 @@ Partial Class frm_Abono
         'labelFiltrar
         '
         Me.labelFiltrar.AutoSize = True
-        Me.labelFiltrar.Location = New System.Drawing.Point(21, 50)
+        Me.labelFiltrar.Location = New System.Drawing.Point(21, 47)
         Me.labelFiltrar.Name = "labelFiltrar"
-        Me.labelFiltrar.Size = New System.Drawing.Size(133, 13)
+        Me.labelFiltrar.Size = New System.Drawing.Size(129, 13)
         Me.labelFiltrar.TabIndex = 36
-        Me.labelFiltrar.Text = "Buscar cliente por cedula :"
+        Me.labelFiltrar.Text = "NUMERO DE FACTURA:"
         '
         'txtFiltrar
         '
@@ -125,11 +125,11 @@ Partial Class frm_Abono
         '
         'btnFiltrar
         '
-        Me.btnFiltrar.Location = New System.Drawing.Point(266, 43)
+        Me.btnFiltrar.Image = Global.UI_SICIPV.My.Resources.Resources.consultar
+        Me.btnFiltrar.Location = New System.Drawing.Point(266, 18)
         Me.btnFiltrar.Name = "btnFiltrar"
-        Me.btnFiltrar.Size = New System.Drawing.Size(55, 20)
+        Me.btnFiltrar.Size = New System.Drawing.Size(43, 45)
         Me.btnFiltrar.TabIndex = 38
-        Me.btnFiltrar.Text = "Buscar"
         Me.btnFiltrar.UseVisualStyleBackColor = True
         '
         'FlowLayoutPanel1

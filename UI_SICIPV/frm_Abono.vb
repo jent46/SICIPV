@@ -25,6 +25,10 @@ Public Class frm_Abono
         pnlBotones.Visible = True
         tslIngresar.Enabled = False
         operacion = "I"
+        labelFiltrar.Visible = True
+        txtFiltrar.Visible = True
+        txtFiltrar.Enabled = True
+        btnFiltrar.Visible = True
     End Sub
 
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
@@ -38,6 +42,7 @@ Public Class frm_Abono
             btnAceptar.Enabled = True
             operacion = ""
             limpiarCampos()
+
         End If
 
     End Sub
@@ -63,8 +68,30 @@ Public Class frm_Abono
     End Sub
 
     Private Sub limpiarCampos()
-        DataGridViewAbono.Columns.Clear()
-        'txtBusqueda.Text = String.Empty
+        DataGridViewAbono.Rows.Clear() 'Limpia el contenido del datagridview
+        txtFiltrar.Text = String.Empty
+        txt_fdIngreso.Text = String.Empty
+        txt_vendedor.Text = String.Empty
+        txt_codigo.Text = String.Empty
+        txt_nombreApellido.Text = String.Empty
+        txt_cedula.Text = String.Empty
+        txt_direccion.Text = String.Empty
+        txt_telefono.Text = String.Empty
+        txt_descripcionArticulo.Text = String.Empty
+        txt_valorTotal.Text = String.Empty
+        txt_entrada.Text = String.Empty
+        txt_saldo.Text = String.Empty
+        txt_fdeVenc.Text = String.Empty
+        txt_formaDePago.Text = String.Empty
+        txt_Cuotas.Text = String.Empty
+        txt_de.Text = String.Empty
+        txt_cada.Text = String.Empty
+        txtDeuda.Text = String.Empty
+        txtTotalAbono.Text = String.Empty
+        txtSaldoRestante.Text = String.Empty
+        labelFiltrar.Visible = False
+        txtFiltrar.Visible = False
+        btnFiltrar.Visible = False
     End Sub
 
     Private Sub frm_Abono_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -72,6 +99,7 @@ Public Class frm_Abono
         txtFiltrar.Visible = False
         labelFiltrar.Visible = False
         btnFiltrar.Visible = False
+
     End Sub
 
     Private Sub deshabilitar()
@@ -148,7 +176,8 @@ Public Class frm_Abono
 
                         DataGridViewAbono.Rows.Add(ID, No_LETRA, F_DE_PAGO.ToShortDateString, CUOTA, VALOR, DIFERENCIA, COMENTARIO)
                         DataGridViewAbono.ColumnHeadersDefaultCellStyle.BackColor = Color.Yellow
-                        DataGridViewAbono.RowsDefaultCellStyle.BackColor = Color.Blue
+                        DataGridViewAbono.RowsDefaultCellStyle.BackColor = Color.LightCyan
+
                     Next
 
                     'DataGridViewAbono.DataSource = dataTableDGV
@@ -169,30 +198,6 @@ Public Class frm_Abono
 
     Private Sub DataGridViewAbono_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewAbono.CellClick
         Dim dr As DataGridViewRow
-        Dim dt As DataTable = BLL_Abono.deshabilitarAbono(mensaje)
-
-        'If DataGridViewAbono.Columns(e.ColumnIndex).Name = "btnabonar" Then
-        '    dr = DataGridViewAbono.Rows(e.RowIndex)
-        '    Dim ID As Integer = dr.Cells("ID").Value
-        '    frm_AgregarAbono.setIdCuota(ID)
-        '    frm_AgregarAbono.ShowDialog()
-        '    dr.Cells("VALOR").Value = frm_AgregarAbono.getAbono.Valor
-        '    If (dr.Cells("DIFERENCIA").Value = 0) Then
-        '        dr.Cells("DIFERENCIA").Value = Decimal.Round(dr.Cells("CUOTA").Value - dr.Cells("VALOR").Value, 2)
-        '    Else
-        '        dr.Cells("DIFERENCIA").Value = Decimal.Round(dr.Cells("DIFERENCIA").Value - dr.Cells("VALOR").Value, 2)
-        '    End If
-        '    txtTotalAbono.Text = txtTotalAbono.Text + dr.Cells("VALOR").Value
-        '    txtSaldoRestante.Text = txtDeuda.Text - txtTotalAbono.Text
-        'End If
-        'Else
-        '    dr = DataGridViewAbono.Rows(e.RowIndex)
-        '    DataGridViewAbono.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.YellowGreen
-        'End If
-
-
-
-
         If DataGridViewAbono.Columns(e.ColumnIndex).Name = "btnImpresion" Then
             dr = DataGridViewAbono.Rows(e.RowIndex)
             dr.Cells("VALOR").Value = 0.0
@@ -201,37 +206,45 @@ Public Class frm_Abono
     End Sub
 
     Private Sub DataGridViewAbono_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewAbono.CellValueChanged
+
         If DataGridViewAbono.Rows.Count <> 0 Then 'Preguntamos si el datagridview esta lleno.
-            Dim dr As DataGridViewRow = DataGridViewAbono.Rows(e.RowIndex)
+            Dim dr As DataGridViewRow = DataGridViewAbono.Rows(e.RowIndex) 'Para capturar la fila en donde se realizo el cambio
+            Dim dt As DataTable = BLL_Abono.deshabilitarAbono(dr.Cells("ID").Value, mensaje)
+            Dim totalAbonadoPorCuota As Decimal = dt.Rows(0)("totalAbonado")
+            Dim cuota As Decimal = Decimal.Round(dr.Cells("CUOTA").Value, 2)
+            Dim diferencia As Double = Decimal.Round(dr.Cells("DIFERENCIA").Value, 2)
 
             If (dr.Cells("COMENTARIO").IsInEditMode) Then 'Indica que se ha cambiado un valor en dicha celda
                 comentarioFinal = dr.Cells("COMENTARIO").Value
             End If
-
-
             If (dr.Cells("VALOR").IsInEditMode) Then 'Indica que se ha cambiado un valor en dicha celda
                 Dim valor As Double = Decimal.Round(dr.Cells("VALOR").Value, 2)
-                'Para llenar el objeto abono ---------------
-                valorFinal = valor
-                idCuota = dr.Cells("ID").Value
-                '-------------------------------------------
-                Dim cuota As Double = Decimal.Round(dr.Cells("CUOTA").Value, 2)
-                Dim diferencia As Double = Decimal.Round(dr.Cells("DIFERENCIA").Value, 2)
-                If (Decimal.TryParse(dr.Cells("VALOR").Value, New Decimal()) And valor <= cuota) Then 'Valida que se ingrese una cantidad correcta y que el valor sea menor a la cuota
 
-                    'If (diferencia = 0) Then
+                If (totalAbonadoPorCuota = cuota) Then
+                    dr.Cells("VALOR").ReadOnly = True
+                    dr.Cells("COMENTARIO").ReadOnly = True
+                    dr.DefaultCellStyle.BackColor = Color.Red
+                    'DataGridViewAbono.RowsDefaultCellStyle.BackColor = Color.Blue
+                End If
 
-                    dr.Cells("DIFERENCIA").Value = cuota - valor
-                    txtTotalAbono.Text = txtTotalAbono.Text + valor
-                    txtSaldoRestante.Text = txtDeuda.Text - txtTotalAbono.Text
-                    'Else
-                    '    dr.Cells("DIFERENCIA").Value = diferencia - valor
-                    '    txtTotalAbono.Text = txtTotalAbono.Text + valor
-                    '    txtSaldoRestante.Text = txtDeuda.Text - txtTotalAbono.Text
-                    'End If
 
+                If ((totalAbonadoPorCuota + valor) <= dr.Cells("CUOTA").Value And valor <= cuota And dr.Cells("VALOR").Value <> 0) Then 'validar que no se abone mas de el valor en una cuota
+                    'Para llenar el objeto abono ---------------
+                    valorFinal = valor
+                    idCuota = dr.Cells("ID").Value
+                    '-------------------------------------------
+
+                    If (Decimal.TryParse(dr.Cells("VALOR").Value, New Decimal())) Then
+                        dr.Cells("DIFERENCIA").Value = cuota - valor
+                        txtTotalAbono.Text = txtTotalAbono.Text + valor
+                        txtSaldoRestante.Text = txtDeuda.Text - txtTotalAbono.Text
+                    Else
+                        MsgBox("Tiene que ingresar una cantidad correcta", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+                    End If
                 Else
-                    MsgBox("Tiene que ingresar una cantidad correcta", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
+                    Dim valorMaximo As String = CStr(cuota - totalAbonadoPorCuota)
+                    dr.Cells("VALOR").Value = 0.0
+                    MsgBox("La cantidad maxima que puede ingresar en esa cuota es : $" + valorMaximo + ", o tiene que ser diferente de $0.00.", MsgBoxStyle.Information, My.Settings.NOMBREAPP)
                 End If
             End If
         End If
@@ -240,15 +253,11 @@ Public Class frm_Abono
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
         Dim abono As ClsAbono = New ClsAbono
         Dim cuota As ClsCuota = New ClsCuota
-   
-
         abono.IdCuota = New ClsCuota()
         abono.IdCuota.IdCuota = idCuota
         abono.Valor = valorFinal
         abono.Comentario = comentarioFinal
         abono.Fecha = Date.Now
-
-
         Select Case operacion
             Case "I"
                 abono.IdUsuarioCreacion = usuario
@@ -258,7 +267,6 @@ Public Class frm_Abono
                 limpiarCampos()
                 MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
         End Select
-
         Me.Close()
     End Sub
 End Class

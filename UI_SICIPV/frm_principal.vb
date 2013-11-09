@@ -33,14 +33,21 @@ Public Class frm_principal
     End Sub
 
     Private Sub deshabilitar()
-        'AdministradorToolStripMenuItem.Enabled = False
+        FacturacionToolStripMenuItem1.Enabled = False
+        UsuarioToolStripMenuItem1.Enabled = False
+        ClienteToolStripMenuItem.Enabled = False
+        ProductoToolStripMenuItem1.Enabled = False
+        GastoToolStripMenuItem1.Enabled = False
+        SalirToolStripMenuItem.Enabled = False
     End Sub
     Private Sub habilitarAdministrador()
-        'AdministradorToolStripMenuItem.Enabled = True
+        FacturacionToolStripMenuItem1.Enabled = True
+        UsuarioToolStripMenuItem1.Enabled = True
+        ClienteToolStripMenuItem.Enabled = True
+        ProductoToolStripMenuItem1.Enabled = True
+        GastoToolStripMenuItem1.Enabled = True
+        SalirToolStripMenuItem.Enabled = True
     End Sub
-
-
-    
 
     Private Sub NuevoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NuevoToolStripMenuItem.Click
         frm_Producto.MdiParent = Me
@@ -86,5 +93,11 @@ Public Class frm_principal
     Private Sub InteresPorCuotaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InteresPorCuotaToolStripMenuItem.Click
         frm_CuotaValor.MdiParent = Me
         frm_CuotaValor.Show()
+    End Sub
+
+    Private Sub CartillaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CartillaToolStripMenuItem.Click
+        frm_Abono.MdiParent = Me
+        frm_Abono.Show()
+        frm_Abono.usuario = Me.usuario
     End Sub
 End Class

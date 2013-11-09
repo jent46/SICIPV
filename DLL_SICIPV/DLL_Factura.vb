@@ -27,18 +27,19 @@ Public Class DLL_Factura
             comando.Parameters("_idFactura").Direction = ParameterDirection.Output
             comando.Parameters.AddWithValue("_idPersona", factura.IdPersona.IdPersona)
             comando.Parameters.AddWithValue("_idGarante", factura.IdGarante.IdPersona)
+            comando.Parameters.AddWithValue("_idCuotaValor", factura.IdCuotaValor.IdCuotaValor)
             comando.Parameters.AddWithValue("_idUsuarioCreacion", factura.IdUsuarioCreacion.IdUsuario)
             comando.Parameters.AddWithValue("_idUsuarioModificacion", factura.IdUsuarioModificacion.IdUsuario)
             comando.Parameters.AddWithValue("_numeroFactura", factura.NumeroFactura)
             comando.Parameters.AddWithValue("_numeroContrato", factura.NumeroContrato)
             comando.Parameters.AddWithValue("_fechaVenta", factura.FechaVenta)
+            comando.Parameters.AddWithValue("_porcentajeDescuento", factura.PorcentajeDescuento)
+            comando.Parameters.AddWithValue("_valorEntrada", factura.ValorEntrada)
             comando.Parameters.AddWithValue("_subtotal", factura.Subtotal)
             comando.Parameters.AddWithValue("_iva", factura.Iva)
-            comando.Parameters.AddWithValue("_porcentajeDescuento", factura.PorcentajeDescuento)
             comando.Parameters.AddWithValue("_descuento", factura.Descuento)
             comando.Parameters.AddWithValue("_totalVenta", factura.TotalVenta)
             comando.Parameters.AddWithValue("_estado", factura.Estado)
-            comando.Parameters.AddWithValue("_cuotas", factura.Cuotas)
             comando.Parameters.AddWithValue("_clienteNombre", factura.ClienteNombre)
             comando.Parameters.AddWithValue("_clienteCedula", factura.ClienteCedula)
             comando.Parameters.AddWithValue("_clienteTelefono", factura.ClienteTelefono)
@@ -77,6 +78,7 @@ Public Class DLL_Factura
             Next
 
             For Each itemCuota As ClsCuota In factura.ListaCuotas
+
                 comando = New MySqlCommand
                 comando.Connection = conn
                 comando.CommandType = CommandType.StoredProcedure
@@ -84,14 +86,15 @@ Public Class DLL_Factura
                 comando.Parameters.AddWithValue("_idFactura", idFactura)
                 comando.Parameters.AddWithValue("_idUsuarioCreacion", itemCuota.IdUsuarioCreacion.IdUsuario)
                 comando.Parameters.AddWithValue("_idUsuarioModificacion", itemCuota.IdUsuarioModificacion.IdUsuario)
+                comando.Parameters.AddWithValue("_numeroDeCuota", itemCuota.NumeroDeCuota)
                 comando.Parameters.AddWithValue("_fecha", itemCuota.Fecha)
                 comando.Parameters.AddWithValue("_saldo", itemCuota.Saldo)
                 comando.Parameters.AddWithValue("_valorCuota", itemCuota.ValorCuota)
                 comando.Parameters.AddWithValue("_porcentajeInteres", itemCuota.PorcentajeInteres)
                 comando.Parameters.AddWithValue("_interesFactura", itemCuota.InteresFactura)
-                comando.Parameters.AddWithValue("_interesMora", itemCuota.InteresMora)
+
                 comando.Parameters.AddWithValue("_valorTotal", itemCuota.ValorTotal)
-                comando.Parameters.AddWithValue("_comentario", itemCuota.Comentario)
+
                 comando.Parameters.AddWithValue("_estado", itemCuota.Estado)
                 comando.Parameters.AddWithValue("_fechaCreacion", itemCuota.FechaCreacion)
                 comando.Parameters.AddWithValue("_fechaModificacion", itemCuota.FechaModificacion)
@@ -147,7 +150,7 @@ Public Class DLL_Factura
             comando.Parameters.AddWithValue("_porcentajeDescuento", factura.PorcentajeDescuento)
             comando.Parameters.AddWithValue("_descuento", factura.Descuento)
             comando.Parameters.AddWithValue("_estado", factura.Estado)
-            comando.Parameters.AddWithValue("_cuotas", factura.Cuotas)
+            'comando.Parameters.AddWithValue("_cuotas", factura.Cuotas)
             comando.Parameters.AddWithValue("_clienteNombre", factura.ClienteNombre)
             comando.Parameters.AddWithValue("_clienteCedula", factura.ClienteCedula)
             comando.Parameters.AddWithValue("_clienteTelefono", factura.ClienteTelefono)

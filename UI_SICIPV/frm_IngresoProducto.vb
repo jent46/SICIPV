@@ -109,6 +109,8 @@ Public Class frm_IngresoProducto
             ingresoProducto.IdProducto.IdProducto = cbProducto.SelectedValue
             ingresoProducto.Cantidad = txtCantidad.Text
             ingresoProducto.Fecha = dtpFecha.Value.Date
+            ingresoProducto.Proveedor = txtProveedor.Text
+            ingresoProducto.Comprador = txtComprador.Text
 
             If cbEstado.Checked Then
                 ingresoProducto.Estado = 1

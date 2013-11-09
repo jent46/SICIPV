@@ -18,6 +18,7 @@ Public Class DLL_Producto
         comando.Parameters.AddWithValue("_valor", producto.Valor)
         comando.Parameters.AddWithValue("_pvp", producto.Pvp)
         comando.Parameters.AddWithValue("_gravaIva", producto.GravaIva)
+        comando.Parameters.AddWithValue("_porcentajeInteres", producto.PorcentajeInteres)
         comando.Parameters.AddWithValue("_stock", producto.Stock)
         comando.Parameters.AddWithValue("_estado", producto.Estado)
         comando.Parameters.AddWithValue("_fechaCreacion", producto.FechaCreacion)
@@ -46,13 +47,15 @@ Public Class DLL_Producto
         Dim estado As Boolean = False
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "UPD_Producto"
-        comando.Parameters.AddWithValue("_idMarca", producto.IdMarca)
         comando.Parameters.AddWithValue("_idProducto", producto.IdProducto)
+        comando.Parameters.AddWithValue("_idMarca", producto.IdMarca)
         comando.Parameters.AddWithValue("_idUsuarioModificacion", producto.IdUsuarioModificacion.IdUsuario)
         comando.Parameters.AddWithValue("_descripcion", producto.Descripcion)
         comando.Parameters.AddWithValue("_modelo", producto.Modelo)
         comando.Parameters.AddWithValue("_valor", producto.Valor)
         comando.Parameters.AddWithValue("_pvp", producto.Pvp)
+        comando.Parameters.AddWithValue("_gravaIva", producto.GravaIva)
+        comando.Parameters.AddWithValue("_porcentajeInteres", producto.PorcentajeInteres)
         comando.Parameters.AddWithValue("_stock", producto.Stock)
         comando.Parameters.AddWithValue("_estado", producto.Estado)
         comando.Parameters.AddWithValue("_fechaModificacion", producto.FechaModificacion)

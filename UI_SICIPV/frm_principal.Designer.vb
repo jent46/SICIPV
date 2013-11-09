@@ -31,6 +31,7 @@ Partial Class frm_principal
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FacturacionToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.NuevaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InteresPorCuotaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuarioToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.NuevoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -44,7 +45,7 @@ Partial Class frm_principal
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CerrarCedionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirDelSistemaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.InteresPorCuotaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CartillaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gbIngreso.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -129,7 +130,7 @@ Partial Class frm_principal
         '
         'FacturacionToolStripMenuItem1
         '
-        Me.FacturacionToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NuevaToolStripMenuItem, Me.InteresPorCuotaToolStripMenuItem})
+        Me.FacturacionToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NuevaToolStripMenuItem, Me.InteresPorCuotaToolStripMenuItem, Me.CartillaToolStripMenuItem})
         Me.FacturacionToolStripMenuItem1.Image = Global.UI_SICIPV.My.Resources.Resources.cash_register_icon
         Me.FacturacionToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.FacturacionToolStripMenuItem1.Name = "FacturacionToolStripMenuItem1"
@@ -142,6 +143,12 @@ Partial Class frm_principal
         Me.NuevaToolStripMenuItem.Name = "NuevaToolStripMenuItem"
         Me.NuevaToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.NuevaToolStripMenuItem.Text = "Nueva"
+        '
+        'InteresPorCuotaToolStripMenuItem
+        '
+        Me.InteresPorCuotaToolStripMenuItem.Name = "InteresPorCuotaToolStripMenuItem"
+        Me.InteresPorCuotaToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.InteresPorCuotaToolStripMenuItem.Text = "Interes por cuota"
         '
         'UsuarioToolStripMenuItem1
         '
@@ -242,11 +249,11 @@ Partial Class frm_principal
         Me.SalirDelSistemaToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
         Me.SalirDelSistemaToolStripMenuItem.Text = "Salir del sistema"
         '
-        'InteresPorCuotaToolStripMenuItem
+        'CartillaToolStripMenuItem
         '
-        Me.InteresPorCuotaToolStripMenuItem.Name = "InteresPorCuotaToolStripMenuItem"
-        Me.InteresPorCuotaToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
-        Me.InteresPorCuotaToolStripMenuItem.Text = "Interes por cuota"
+        Me.CartillaToolStripMenuItem.Name = "CartillaToolStripMenuItem"
+        Me.CartillaToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.CartillaToolStripMenuItem.Text = "Cartilla"
         '
         'frm_principal
         '
@@ -293,4 +300,5 @@ Partial Class frm_principal
     Friend WithEvents UsuarioToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NuevoToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InteresPorCuotaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CartillaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

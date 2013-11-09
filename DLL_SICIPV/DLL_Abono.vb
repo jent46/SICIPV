@@ -23,6 +23,7 @@ Public Class DLL_Abono
             conn.Open()
             comando.ExecuteNonQuery()
             estado = True
+            mensaje = "Operacion exitosa"
         Catch ex As Exception
             estado = False
             mensaje = ex.Message
@@ -52,11 +53,11 @@ Public Class DLL_Abono
             da.Fill(dt)
             If dt.Rows.Count = 0 Then
                 dt = Nothing
-                mensaje = "No existe datos para la cartilla"
+                mensaje = "Proceso exitoso!"
             End If
         Catch ex As Exception
             dt = Nothing
-            mensaje = ex.Message
+            mensaje = "No existe factura con ese numero"
         Finally
             If conn.State = ConnectionState.Open Then
                 conn.Close()
@@ -128,11 +129,12 @@ Public Class DLL_Abono
         Return dt
     End Function
 
-    Public Function deshabilitarAbono(ByRef mensaje As String) As DataTable
+    Public Function deshabilitarAbono(ByVal idCuota As Integer, ByRef mensaje As String) As DataTable
         getConexion()
         Dim comando As New MySqlCommand
         comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = "QRY_deshabilitarAbono"
+        comando.Parameters.AddWithValue("_idCuota", idCuota)
 
         Dim da As New MySqlDataAdapter
         Dim dt As New DataTable
@@ -144,7 +146,7 @@ Public Class DLL_Abono
             da.Fill(dt)
             If dt.Rows.Count = 0 Then
                 dt = Nothing
-                mensaje = "No existe tipoventa con ese QRY_deshabilitarAbono"
+                mensaje = "No existe cuota con ese ID"
             End If
         Catch ex As Exception
             dt = Nothing

@@ -76,6 +76,28 @@
             _estado = value
         End Set
     End Property
+    Private _proveedor As String
+    Public Property Proveedor() As String
+        Get
+            Return _proveedor
+        End Get
+        Set(ByVal value As String)
+            _proveedor = value
+        End Set
+    End Property
+
+
+
+    Private _comprador As String
+    Public Property Comprador() As String
+        Get
+            Return _comprador
+        End Get
+        Set(ByVal value As String)
+            _comprador = value
+        End Set
+    End Property
+
 
     Public Property FechaCreacion() As Date
         Get

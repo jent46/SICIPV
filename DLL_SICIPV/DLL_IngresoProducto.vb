@@ -17,6 +17,8 @@ Public Class DLL_IngresoProducto
         comando.Parameters.AddWithValue("_cantidad", ingresoProducto.Cantidad)
         comando.Parameters.AddWithValue("_fecha", ingresoProducto.Fecha)
         comando.Parameters.AddWithValue("_estado", ingresoProducto.Estado)
+        comando.Parameters.AddWithValue("_proveedor", ingresoProducto.Proveedor)
+        comando.Parameters.AddWithValue("_comprador", ingresoProducto.Comprador)
         comando.Parameters.AddWithValue("_fechaCreacion", ingresoProducto.FechaCreacion)
         comando.Parameters.AddWithValue("_fechaModificacion", ingresoProducto.FechaModificacion)
         comando.Parameters.AddWithValue("_stock", ingresoProducto.Cantidad) 'Actualiza el stock de la tabla Producto
@@ -51,6 +53,8 @@ Public Class DLL_IngresoProducto
         comando.Parameters.AddWithValue("_idUsuarioModificacion", ingresoProducto.IdUsuarioModificacion)
         comando.Parameters.AddWithValue("_cantidad", ingresoProducto.Cantidad)
         comando.Parameters.AddWithValue("_fecha", ingresoProducto.Fecha)
+        comando.Parameters.AddWithValue("_proveedor", ingresoProducto.Proveedor)
+        comando.Parameters.AddWithValue("_comprador", ingresoProducto.Comprador)
         comando.Parameters.AddWithValue("_estado", ingresoProducto.Estado)
         comando.Parameters.AddWithValue("_fechaModificacion", ingresoProducto.FechaModificacion)
 

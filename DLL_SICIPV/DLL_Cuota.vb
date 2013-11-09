@@ -14,14 +14,15 @@ Public Class DLL_Cuota
         comando.Parameters.AddWithValue("_idFactura", cuota.IdFactura)
         comando.Parameters.AddWithValue("_idUsuarioCreacion", cuota.IdUsuarioCreacion)
         comando.Parameters.AddWithValue("_idUsuarioModificacion", cuota.IdUsuarioModificacion)
+        comando.Parameters.AddWithValue("_numeroDeCuota", cuota.IdUsuarioModificacion)
         comando.Parameters.AddWithValue("_fecha", cuota.Fecha)
         comando.Parameters.AddWithValue("_saldo", cuota.Saldo)
         comando.Parameters.AddWithValue("_valorCuota", cuota.ValorCuota)
         comando.Parameters.AddWithValue("_porcentajeInteres", cuota.PorcentajeInteres)
         comando.Parameters.AddWithValue("_interesFactura", cuota.InteresFactura)
-        comando.Parameters.AddWithValue("_interesMora", cuota.InteresMora)
+
         comando.Parameters.AddWithValue("_valorTotal", cuota.ValorTotal)
-        comando.Parameters.AddWithValue("_comentario", cuota.Comentario)
+
         comando.Parameters.AddWithValue("_estado", cuota.Estado)
         comando.Parameters.AddWithValue("_fechaCreacion", cuota.FechaCreacion)
         comando.Parameters.AddWithValue("_fechaModificacion", cuota.FechaModificacion)

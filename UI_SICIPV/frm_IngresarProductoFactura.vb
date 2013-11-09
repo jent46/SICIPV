@@ -41,9 +41,9 @@ Public Class frm_IngresarProductoFactura
             Dim prod As New ClsProducto()
             prod.IdProducto = dt.Rows(0)("idProducto")
             prod.Descripcion = dt.Rows(0)("descripcion")
-            prod.Pvp = dt.Rows(0)("pvp")
+            prod.Pvp = Decimal.Round(dt.Rows(0)("pvp"), 2)
             prod.Stock = dt.Rows(0)("stock")
-            prod.Valor = dt.Rows(0)("valor") 'Costo
+            prod.Valor = Decimal.Round(dt.Rows(0)("valor"), 2) 'Costo
             prod.GravaIva = dt.Rows(0)("gravaIva")
             dgvBusqueda.Columns.Clear()
             frm_Facturacion.agregarProducto(prod)

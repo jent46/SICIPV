@@ -115,19 +115,21 @@ Public Class frm_Producto
             producto.Modelo = txtModelo.Text
             producto.Valor = CDbl(txtValor.Text)
             producto.Pvp = CDbl(txtPvp.Text)
-            producto.Stock = CInt(txtStock.Text)
             If cb12.Checked Then
                 producto.GravaIva = 1
             ElseIf cb0.Checked Then
                 producto.GravaIva = 0
             End If
-            producto.FechaModificacion = Now()
-
+            producto.PorcentajeInteres = nupdPorcentajeInteres.Value
+            producto.Stock = CInt(txtStock.Text)
             If cbEstado.Checked Then
                 producto.Estado = 1
             Else
                 producto.Estado = 0
             End If
+            producto.FechaModificacion = Now()
+
+       
 
             Select Case operacion
                 Case "I"

@@ -163,6 +163,18 @@
         End Set
     End Property
 
+    Private _valorEntrada As Double
+    Public Property ValorEntrada() As Double
+        Get
+            Return _valorEntrada
+        End Get
+        Set(ByVal value As Double)
+            _valorEntrada = value
+        End Set
+    End Property
+
+
+
     Public Property Descuento() As Double
         Get
             Return _descuento
@@ -190,15 +202,7 @@
         End Set
     End Property
 
-    Private _cuotas As Integer
-    Public Property Cuotas() As Integer
-        Get
-            Return _cuotas
-        End Get
-        Set(ByVal value As Integer)
-            _cuotas = value
-        End Set
-    End Property
+
 
 
     Private _clienteNombre As String

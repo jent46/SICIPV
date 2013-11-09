@@ -1,13 +1,6 @@
 ﻿Public Class ClsCuota
-    ''' <summary>
-    ''' Declaracion de atributos
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private _idCuota As Integer
-    Private _idFactura As ClsFactura
-    Private _usuarioCreacion As ClsUsuario
-    Private _usuarioModificacion As ClsUsuario
 
+    Private _idCuota As Integer
     Public Property IdCuota() As Integer
         Get
             Return _idCuota
@@ -17,6 +10,7 @@
         End Set
     End Property
 
+    Private _idFactura As ClsFactura
     Public Property IdFactura() As ClsFactura
         Get
             Return _idFactura
@@ -26,6 +20,7 @@
         End Set
     End Property
 
+    Private _usuarioCreacion As ClsUsuario
     Public Property IdUsuarioCreacion() As ClsUsuario
         Get
             Return _usuarioCreacion
@@ -35,6 +30,7 @@
         End Set
     End Property
 
+    Private _usuarioModificacion As ClsUsuario
     Public Property IdUsuarioModificacion() As ClsUsuario
         Get
             Return _usuarioModificacion
@@ -43,6 +39,17 @@
             _usuarioModificacion = value
         End Set
     End Property
+
+    Private _numeroDeCuota As Integer
+    Public Property NumeroDeCuota() As Integer
+        Get
+            Return _numeroDeCuota
+        End Get
+        Set(ByVal value As Integer)
+            _numeroDeCuota = value
+        End Set
+    End Property
+
 
     Private _fecha As Date
     Public Property Fecha() As Date
@@ -74,7 +81,6 @@
         End Set
     End Property
 
-
     Private _porcentajeInteres As Double
     Public Property PorcentajeInteres() As Double
         Get
@@ -95,16 +101,6 @@
         End Set
     End Property
 
-    Private _interesMora As Double
-    Public Property InteresMora() As Double
-        Get
-            Return _interesMora
-        End Get
-        Set(ByVal value As Double)
-            _interesMora = value
-        End Set
-    End Property
-
     Private _valorTotal As Double
     Public Property ValorTotal() As Double
         Get
@@ -112,16 +108,6 @@
         End Get
         Set(ByVal value As Double)
             _valorTotal = value
-        End Set
-    End Property
-
-    Private _comentario As String
-    Public Property Comentario() As String
-        Get
-            Return _comentario
-        End Get
-        Set(ByVal value As String)
-            _comentario = value
         End Set
     End Property
 
@@ -155,6 +141,14 @@
         End Set
     End Property
 
-
+    Private _abonos As New List(Of ClsAbono)
+    Public Property Abonos() As List(Of ClsAbono)
+        Get
+            Return _abonos
+        End Get
+        Set(ByVal value As List(Of ClsAbono))
+            _abonos = value
+        End Set
+    End Property
 
 End Class

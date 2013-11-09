@@ -122,6 +122,7 @@ Partial Class frm_Facturacion
         '
         'gbProductos
         '
+        Me.gbProductos.Controls.Add(Me.dgvProductos)
         Me.gbProductos.Controls.Add(Me.txtTarifa12)
         Me.gbProductos.Controls.Add(Me.txtTarifa0)
         Me.gbProductos.Controls.Add(Me.Label23)
@@ -136,7 +137,6 @@ Partial Class frm_Facturacion
         Me.gbProductos.Controls.Add(Me.Label12)
         Me.gbProductos.Controls.Add(Me.txtSubtotal)
         Me.gbProductos.Controls.Add(Me.Label11)
-        Me.gbProductos.Controls.Add(Me.dgvProductos)
         Me.gbProductos.Location = New System.Drawing.Point(12, 291)
         Me.gbProductos.Name = "gbProductos"
         Me.gbProductos.Size = New System.Drawing.Size(874, 316)

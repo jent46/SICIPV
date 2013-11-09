@@ -4,7 +4,7 @@ Imports System.Windows.Forms
 
 Public Class frm_Persona
 
-    Public usuario As ClsUsuario
+    Public usuario As ClsUsuario = frm_principal.usuario
     Private idPersona As Integer
     Private operacion As String = ""
     Private mensaje As String = ""
@@ -112,6 +112,7 @@ Public Class frm_Persona
                     persona.IdUsuarioCreacion = usuario
                     persona.IdUsuarioModificacion = usuario
                     persona.FechaCreacion = Now
+
                     For index = 0 To dt.Rows.Count - 1
                         If (dt.Rows(index)("cedula") = persona.Cedula) Then
                             count = +1
@@ -119,13 +120,15 @@ Public Class frm_Persona
                         End If
                     Next
 
+
+
                     If count = 0 Then
                         If (BLL_Persona.ingresarBD(persona, mensaje)) Then
                             limpiarCampos()
                         End If
                     End If
 
-                    
+
                     MsgBox(mensaje, MsgBoxStyle.Information, My.Settings.NOMBREAPP)
 
                 Case "M"

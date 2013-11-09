@@ -187,6 +187,7 @@ Partial Class frm_Producto
         Me.nupdPorcentajeInteres.Name = "nupdPorcentajeInteres"
         Me.nupdPorcentajeInteres.Size = New System.Drawing.Size(56, 20)
         Me.nupdPorcentajeInteres.TabIndex = 28
+        Me.nupdPorcentajeInteres.Value = New Decimal(New Integer() {62, 0, 0, 0})
         '
         'cb0
         '

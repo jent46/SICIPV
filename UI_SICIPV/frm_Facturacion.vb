@@ -9,7 +9,9 @@ Public Class frm_Facturacion
     Public usuario As ClsUsuario
     Dim idPersona As Integer
     Dim idGarante As Integer
-    Dim txtCuotas As NumericUpDown
+    Dim datatable As DataTable
+
+
 
     Private Sub frm_Facturacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         gbBuscar.SetBounds(11, 40, gbBuscar.Width, gbBuscar.Height)
@@ -21,6 +23,13 @@ Public Class frm_Facturacion
         cbTipoVenta.ValueMember = "idTipoVenta"
         cbTipoVenta.SelectedIndex = -1
         ''Combo box el numero de cuota
+        datatable = BLL_CuotaValor.ConsultarCuotaValor(mensaje)
+
+        cbCuotas.DataSource = datatable
+        cbCuotas.DisplayMember = "cuota"
+        cbCuotas.ValueMember = "idcuotaValor"
+        cbCuotas.SelectedIndex = -1
+
 
     End Sub
 
@@ -179,10 +188,7 @@ Public Class frm_Facturacion
             resultado = False
         End If
 
-        If txtCuotas.Text = "" Then
-            ErrorProvider1.SetError(txtCuotas, "No. Cuotas es requerido")
-            resultado = False
-        End If
+    
 
      
 
@@ -228,20 +234,26 @@ Public Class frm_Facturacion
             factura.IdGarante = New ClsPersona()
             factura.IdGarante.IdPersona = Me.idGarante
 
+            factura.IdCuotaValor = New ClsCuotaValor()
+            factura.IdCuotaValor.IdCuotaValor = cbCuotas.SelectedValue
+
             factura.NumeroFactura = CInt(txtNoFactura.Text)
             factura.NumeroContrato = CInt(txtNoContrato.Text)
             factura.FechaVenta = dtpFecha.Value.Date
+            factura.PorcentajeDescuento = CDbl(txtPorcentajeDscto.Text)
+            factura.ValorEntrada = CDbl(txtValorEntrada.Text)
+
             factura.Subtotal = CDbl(txtSubtotal.Text)
             factura.Iva = CDbl(txtIva.Text)
-            factura.PorcentajeDescuento = CDbl(txtPorcentajeDscto.Text)
+
             factura.Descuento = CDbl(txtDescuento.Text)
             factura.TotalVenta = CDbl(txtTotal.Text)
             'If cbEstado.Checked Then
             '    factura.Estado = 1
-            'Else
+            'Else   
             '    factura.Estado = 0
             'End If
-            factura.Cuotas = CInt(txtCuotas.Text)
+
             factura.ClienteNombre = txtCliente.Text
             factura.ClienteCedula = txtCedula.Text
             factura.ClienteTelefono = txtTelefono.Text
@@ -280,33 +292,39 @@ Public Class frm_Facturacion
 
 
             'Creo cada una de las cuotas
-            For index = 0 To txtCuotas.Value - 1
-                Dim cuota As ClsCuota = New ClsCuota()
-                Dim arrayInteresCuota As Double() = {30, 35, 2.17, 3.26, 4.35, 5.43, 6.52, 7.61, 8.69, 9.78, 10.87, 11.95, 13.04, 14.13, 15.21, 16.3, 18.29, 20.13}
 
+            Dim numeroCuota As Integer = CInt(datatable.Rows(cbCuotas.SelectedValue).Item("cuota")) - 1
+            Dim porcentajeCuota As Double = CDbl(datatable.Rows(cbCuotas.SelectedValue - 1).Item("interesCuota"))
+
+            For index = 0 To numeroCuota - 1
+                Dim cuota As ClsCuota = New ClsCuota()
                 Dim valorFinanciado As Double = factura.TotalVenta - txtValorEntrada.Text
-                Dim indice As Integer = factura.Cuotas - 1
-                Dim valorInteres As Double = (CDbl(arrayInteresCuota(indice)) / 100) * valorFinanciado
+                Dim valorInteres As Double = (porcentajeCuota / 100) * valorFinanciado
                 Dim valorCredito As Double = valorInteres + valorFinanciado
-                Dim valorPorCuota As Double = valorCredito / txtCuotas.Value
+                Dim valorPorCuota As Double = valorCredito / numeroCuota
                 Dim valorFinal As Double = valorCredito + txtValorEntrada.Text
 
                 cuota.IdFactura = factura
                 cuota.IdUsuarioCreacion = usuario
                 cuota.IdUsuarioModificacion = usuario
+                cuota.NumeroDeCuota = (index + 1)
                 cuota.Fecha = Date.Now.AddMonths(index + 1) 'Se va sumando un mes a cada cuota
                 cuota.Saldo = factura.TotalVenta
                 cuota.ValorCuota = valorPorCuota
-                cuota.PorcentajeInteres = arrayInteresCuota(txtCuotas.Value + 1)
+                cuota.PorcentajeInteres = porcentajeCuota
                 cuota.InteresFactura = valorInteres
-                cuota.InteresMora = 0.0
+
                 cuota.ValorTotal = valorFinal
-                cuota.Comentario = ""
+
                 cuota.Estado = 1
                 cuota.FechaCreacion = Date.Now
                 cuota.FechaModificacion = Date.Now
                 factura.ListaCuotas.Add(cuota)
             Next
+
+
+          
+
 
             Select Case operacion
                 Case "I"
@@ -468,11 +486,11 @@ Public Class frm_Facturacion
 
         Dim id As Integer = prod.IdProducto
         Dim cantidad As Integer = 1
-        Dim costo As Double = prod.Valor
+        Dim costo As Decimal = Decimal.Round(prod.Valor, 2)
         Dim stock As Integer = prod.Stock
         Dim descripcion As String = prod.Descripcion
-        Dim valorUnitario As Double = prod.Pvp / 1.12
-        Dim valorTotal As Double = cantidad * valorUnitario
+        Dim valorUnitario As Decimal = Decimal.Round(Decimal.Round(prod.Pvp, 2) / Decimal.Round(CDec(1.12), 2), 2)
+        Dim valorTotal As Decimal = Decimal.Round(cantidad * valorUnitario, 2)
         Dim gravaIva As Integer = prod.GravaIva
 
         Dim flag As Boolean = True
